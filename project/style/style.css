@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Nandinagari:700|Noto%20Sans%20Nandinagari:400');
+
+body {
+  font-family: 'Noto Sans Nandinagari';
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Noto Sans Nandinagari';
+  font-weight: bolder;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 3.210rem; /* 67.36px */}
+
+h2 {font-size: 2.658rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: red;
+    margin: 0;
+    padding: 0;
+}
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav div{
+    margin: 0 1rem;
+}
+
+.logo {
+    justify-content: start;
+    text-decoration: none;
+    color: #000;
+}
