@@ -7,7 +7,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: 'Noto Sans Nandinagari';
-  font-weight: bolder;
+  font-weight: 900;
 }
 
 html {font-size: 100%;} /* 16px */
@@ -29,10 +29,26 @@ body {
     padding: 0;
 }
 
+.DarkWhiteMode {
+    cursor: pointer;
+    user-select: none;
+}
+
 nav {
-    background-color: red;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #c7916c;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+}
+
+nav div {
+    padding: 1.5rem;
 }
 .nav {
     width: 100%;
@@ -54,4 +70,26 @@ nav {
     justify-content: start;
     text-decoration: none;
     color: #000;
+}
+body {
+    background-color: #f9f7f6;
+    color: #12100f;
+    scrollbar-width:thin;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    column-gap: 4rem;
+    padding: 1rem;
+}
+
+.grid img {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.body {
+    margin: 2%;
 }
