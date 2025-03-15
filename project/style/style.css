@@ -1,21 +1,28 @@
 @font-face {
     font-family: 'Poppins';
-    src: url('../fonts/Nunito_Sans\,Poppins/Poppins/Poppins-Regular.ttf');
+    src: url('../fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'PoppinsExtraBold';
+    src: url('../fonts/Poppins/Poppins-Bold.ttf');
+    font-weight: bold;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: Poppins;
+
 }
 
 .DarkWhiteMode {
     cursor: pointer;
     user-select: none;
-    background-color: #987157;
+    background-color: #e188bd;
     border-radius: 15px;
     padding: 0.8rem;
-    color: white;
+    color: #f3e7ee;
 }
 
 nav {
@@ -23,7 +30,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #c7916c;
+    background-color: #e05eab;
     margin: 0;
     padding: 0;
     display: flex;
@@ -41,6 +48,10 @@ nav div {
     justify-content: end;
 }
 
+h1 {
+    font-family: PoppinsExtraBold;
+}
+
 .nav a {
     margin: 0 1rem;
     text-decoration: none;
@@ -52,9 +63,6 @@ nav div {
 .nav div{
     margin: 0 1rem;
 }
-
-
-
 
 .logo {
     display: flex;
@@ -69,7 +77,8 @@ nav div {
 }
 
 body {
-    background-color: #f9f7f6;
+    background-color: #ffecf7;
+
     color: #12100f;
     scrollbar-width:thin;
 }
