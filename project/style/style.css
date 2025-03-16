@@ -17,6 +17,7 @@ body {
     scrollbar-width: thin;
     background-image: linear-gradient(140deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
     text-shadow: #cacaca 0.06rem 0.06rem 0.4rem;
+    scroll-behavior: smooth;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -42,7 +43,7 @@ nav {
     display: flex;
     justify-content: space-between;
     font-weight: bolder;
-    background-image: linear-gradient(140deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
+    background-image: linear-gradient(40deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
 
 }
 
@@ -116,5 +117,33 @@ h1 {
 }
 
 .socials img{
-    width: 3%;
+    padding-left: 1em;
+    width: 40%;
+    filter: grayscale(100%);
+    
+}
+
+.socials {
+    display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+width: 50%;
+}
+
+.footer {
+    background-color: #e188bd;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.left {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.right {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+
 }
