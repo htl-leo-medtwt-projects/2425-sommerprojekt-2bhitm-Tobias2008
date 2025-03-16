@@ -13,8 +13,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Poppins;
-
+    color: #12100f;
+    scrollbar-width: thin;
+    background-image: linear-gradient(140deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
+    text-shadow: #cacaca 0.06rem 0.06rem 0.4rem;
 }
+
+h1,h2,h3,h4,h5,h6 {
+    text-shadow: none;}
 
 .DarkWhiteMode {
     cursor: pointer;
@@ -23,6 +29,7 @@ body {
     border-radius: 15px;
     padding: 0.8rem;
     color: #f3e7ee;
+    text-shadow: #fdacfd 0.02rem 0.03rem 0.8rem;
 }
 
 nav {
@@ -30,12 +37,13 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #e05eab;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-between;
     font-weight: bolder;
+    background-image: linear-gradient(140deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
+
 }
 
 nav div {
@@ -53,34 +61,29 @@ h1 {
 }
 
 .nav a {
+    color: #12100f;
     margin: 0 1rem;
     text-decoration: none;
-    color: #000;
     display: flex;
     align-items: center;
+    
 }
 
-.nav div{
+.nav div {
     margin: 0 1rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    text-shadow: #cacaca 0.02rem 0.03rem 0rem;
 
 }
 
 .logo a {
-    color: black;
+    color: #12100f;
     text-decoration: none;
     padding-left: 1.5rem;
-}
-
-body {
-    background-color: #ffecf7;
-
-    color: #12100f;
-    scrollbar-width:thin;
 }
 
 .grid {
@@ -95,7 +98,9 @@ body {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 8px;
 }
+
 .body {
     margin: 2%;
 }
@@ -108,4 +113,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+.socials img{
+    width: 3%;
 }
