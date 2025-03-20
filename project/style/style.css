@@ -9,13 +9,20 @@
     font-weight: bold;
 }
 
+:root {
+    --color: #12100f;
+    --background-image: linear-gradient(140deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
+    --highlight-color: #e188bd;
+    --nav-gradient: linear-gradient(40deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Poppins;
-    color: #12100f;
+    color: var(--color);
     scrollbar-width: thin;
-    background-image: linear-gradient(140deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
+    background-image: var(--background-image);
     text-shadow: #cacaca 0.06rem 0.06rem 0.4rem;
     scroll-behavior: smooth;
 }
@@ -26,7 +33,7 @@ h1,h2,h3,h4,h5,h6 {
 .DarkWhiteMode {
     cursor: pointer;
     user-select: none;
-    background-color: #e188bd;
+    background-color: var(--highlight-color);
     border-radius: 15px;
     padding: 0.8rem;
     color: #f3e7ee;
@@ -43,7 +50,7 @@ nav {
     display: flex;
     justify-content: space-between;
     font-weight: bolder;
-    background-image: linear-gradient(40deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
+    background-image: var(--nav-gradient);
 
 }
 
@@ -57,12 +64,21 @@ nav div {
     justify-content: end;
 }
 
+nav a {
+    transition: all 0.3s;
+}
+/* 
+nav a:hover {
+    border-radius:15px;
+    color:_
+} */
+
 h1 {
     font-family: PoppinsExtraBold;
 }
 
 .nav a {
-    color: #12100f;
+    color: var(--color);
     margin: 0 1rem;
     text-decoration: none;
     display: flex;
@@ -77,17 +93,16 @@ h1 {
 .logo {
     display: flex;
     align-items: center;
-    text-shadow: #cacaca 0.02rem 0.03rem 0rem;
 
 }
 
 .logo a {
-    color: #12100f;
+    color: var(--color);
     text-decoration: none;
     padding-left: 1.5rem;
 }
 
-.grid {
+.overview {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
@@ -95,7 +110,7 @@ h1 {
     padding: 1rem;
 }
 
-.grid img {
+.overview img {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -118,7 +133,7 @@ h1 {
 
 .socials img{
     padding-left: 1em;
-    width: 40%;
+    width: 60%;
     filter: grayscale(100%);
     
 }
@@ -126,17 +141,23 @@ h1 {
 .socials {
     display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
-width: 50%;
+width: 100%;
 }
 
 .footer {
-    background-color: #e188bd;
+    background-color: var(--highlight-color);
     padding: 2rem;
     display: flex;
     justify-content: space-between;
 }
+
+.footer a {
+    text-decoration: none;
+    color: rgb(96, 94, 94);
+    text-shadow: none;
+}
 .left {
-    width: 30%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
