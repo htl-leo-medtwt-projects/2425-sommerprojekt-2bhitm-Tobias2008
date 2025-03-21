@@ -9,17 +9,29 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'Classical';
+    src: url('../fonts/classica_3/Classica-Book.ttf');
+}
+
+@font-face {
+    font-family: 'ClassicalBold';
+    src: url('../fonts/classica_3/Classica-Bold.ttf');
+}
+
 :root {
     --color: #12100f;
     --background-image: linear-gradient(140deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
     --highlight-color: #e188bd;
     --nav-gradient: linear-gradient(40deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
+    --transitions: 0.3s all ease-in-out;
+    --lightercolor: rgb(122, 122, 122);
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Poppins;
+    font-family: Classical;
     color: var(--color);
     scrollbar-width: thin;
     background-image: var(--background-image);
@@ -73,8 +85,9 @@ nav a:hover {
     color:_
 } */
 
-h1 {
-    font-family: PoppinsExtraBold;
+h1, h2 , h3{
+    font-family: ClassicalBold;
+    font-weight: bolder;
 }
 
 .nav a {
@@ -122,7 +135,7 @@ h1 {
 }
 
 .gridText {
-    color: grey;
+    color: var(--lightercolor);
 }
 
 .flex {
@@ -153,9 +166,15 @@ width: 100%;
 
 .footer a {
     text-decoration: none;
-    color: rgb(96, 94, 94);
+    color: var(--lightercolor);
     text-shadow: none;
+    transition: var(--transitions);
 }
+
+.footer a:hover {
+    color: var(--color);
+}
+
 .left {
     width: 10%;
     display: flex;
@@ -167,4 +186,19 @@ width: 100%;
     display: flex;
     justify-content: space-between;
 
+}
+
+.flaggenquizInfos {
+    width: 50%;
+    text-align: justify;
+}
+
+.flaggenquizInfos p {
+    color: var(--lightercolor);
+    margin-top: 0;
+    text-shadow: none;
+}
+
+.flaggenquizInfos h3 {
+    margin-bottom: 0;
 }
