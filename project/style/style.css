@@ -37,6 +37,7 @@ body {
     background-image: var(--background-image);
     text-shadow: #cacaca 0.06rem 0.06rem 0.4rem;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -63,6 +64,7 @@ nav {
     justify-content: space-between;
     font-weight: bolder;
     background-image: var(--nav-gradient);
+    z-index: 1000000;
 
 }
 
@@ -189,7 +191,7 @@ width: 100%;
 }
 
 .flaggenquizInfos {
-    width: 50%;
+    width: 90%;
     text-align: justify;
 }
 
@@ -202,3 +204,30 @@ width: 100%;
 .flaggenquizInfos h3 {
     margin-bottom: 0;
 }
+
+.flaggenquiz {
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 0%;
+}
+
+.flaggenquiz img {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    left: 11%;
+}
+
+.laenderquiz {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 4rem;
+}
+
+.laenderquiz img {
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;}

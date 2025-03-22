@@ -1,0 +1,56 @@
+{
+    "nav": [
+        {
+            "name": "MindQuest",
+            "link": ""
+        },
+        {
+            "name": "Spielerklärung",
+            "link": ""
+        },
+        {
+            "name": "Shop",
+            "link": ""
+        },
+        {
+            "name": "Quiz Auswahl",
+            "link": ""
+        },
+        {
+            "name": "Darkmode",
+            "onclick": ""
+        }
+    ],
+    "overview": [
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+        },
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+        },
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+        }
+    ],
+    "flagquiz": [
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+        },
+        {
+            "headline": "",
+            "information": ""
+        },
+        {
+            "headline": "",
+            "information": ""
+        }
+    ]
+}
