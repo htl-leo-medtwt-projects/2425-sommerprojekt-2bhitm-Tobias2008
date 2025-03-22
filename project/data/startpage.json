@@ -52,5 +52,32 @@
             "headline": "",
             "information": ""
         }
+    ],
+    "laenderquiz": [
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+        },
+        {
+            "headline": "",
+            "information": "",
+            "imgSRC": ""
+            
+        }
+    ],
+    "musikquiz": [
+        {
+            "headline": "",
+            "information": ""
+        },
+        {
+            "headline": "",
+            "information": ""
+        },
+        {
+            "headline": "",
+            "information": ""
+        }
     ]
 }
