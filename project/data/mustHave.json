@@ -1,0 +1,89 @@
+{
+    "nav": [
+        {
+            "name": "MindQuest",
+            "link": ""
+        },
+        {
+            "name": "Spielerklärung",
+            "link": ""
+        },
+        {
+            "name": "Shop",
+            "link": ""
+        },
+        {
+            "name": "Quiz Auswahl",
+            "link": ""
+        },
+        {
+            "name": "Darkmode",
+            "onclick": ""
+        }
+    ],
+    "footer": [
+        {
+            "name": "Kontakt",
+            "Infos": [
+                {
+                    "name": "Limesstraße 12/14",
+                    "link": ""
+                },
+                {
+                    "name": "4060 Leonding",
+                    "link": ""
+                },
+                {
+                    "name": "+43 732 6733680",
+                    "link": ""
+                },
+                {
+                    "name": "t.payreder@students.htl-leonding.ac.at",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "name": "Socials",
+            "Infos": [
+                {
+                    "name": "Snapchat - t_obiene",
+                    "link": ""
+                },
+                {
+                    "name": "Tiktok - tobi_..08",
+                    "link": ""
+                },
+                {
+                    "name": "Instagram - tobiene_",
+                    "link": ""
+                },
+                {
+                    "name": "Linkedin - Tobias Payreder",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "name": "SocialButtons",
+            "Infos": [
+                {
+                    "imgSCR": "Linkedin",
+                    "link": ""
+                },
+                {
+                    "imgSCR": "Instagram",
+                    "link": ""
+                },
+                {
+                    "imgSCR": "Snapchat",
+                    "link": ""
+                },
+                {
+                    "imgSCR": "Tiktok",
+                    "link": ""
+                }
+            ]
+        }
+    ]
+}

@@ -1,26 +1,4 @@
 {
-    "nav": [
-        {
-            "name": "MindQuest",
-            "link": ""
-        },
-        {
-            "name": "Spielerklärung",
-            "link": ""
-        },
-        {
-            "name": "Shop",
-            "link": ""
-        },
-        {
-            "name": "Quiz Auswahl",
-            "link": ""
-        },
-        {
-            "name": "Darkmode",
-            "onclick": ""
-        }
-    ],
     "overview": [
         {
             "headline": "",
@@ -38,7 +16,7 @@
             "imgSRC": ""
         }
     ],
-    "flagquiz": [
+    "flaggenquiz": [
         {
             "headline": "",
             "information": "",

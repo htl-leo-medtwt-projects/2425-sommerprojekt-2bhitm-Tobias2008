@@ -136,11 +136,11 @@ h1, h2 , h3{
     text-align: center; 
 }
 
-.bottomNav a:hover {
+/* .bottomNav a:hover {
 }
 
 .bottomNavLinks a:last-child {
-}
+} */
 
 .bottomNavLinks a:last-child:hover {
     background-color: var(--secondary-color);
