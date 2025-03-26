@@ -1,4 +1,4 @@
-{
+const MUST_HAVE_DATA = {
     "nav": [
         {
             "name": "MindQuest",

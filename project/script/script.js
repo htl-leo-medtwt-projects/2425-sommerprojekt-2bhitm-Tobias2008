@@ -1,3 +1,5 @@
+
+
 // Autor: Tobias Payreder
 
 console.log('script.js loaded');
@@ -44,7 +46,7 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
 
         localStorage.setItem('theme', 'DarkMode');
-    }  
+    }
 }
 
 function changeDarkWhiteMode() {
@@ -75,3 +77,22 @@ function changeDarkWhiteMode() {
 /******** Dynamische Content Generierung ********/
 /************************************************/
 
+/* Nav */
+let nav = document.querySelector('nav');
+
+loadNav();
+
+function loadNav() {
+    nav.innerHTML = `
+        <div class="logo"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+        <div class="nav"></div>
+    `;
+
+    for (let i = 1; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+        document.getElementsByClassName('nav')[0].innerHTML += `
+            <a href="${MUST_HAVE_DATA.nav[i].link}" onclick="${MUST_HAVE_DATA.nav[i].onclick}">${MUST_HAVE_DATA.nav[i].name}</a>
+        `;
+    }
+    document.getElementsByClassName('nav')[0].innerHTML += `
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
+}

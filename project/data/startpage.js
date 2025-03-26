@@ -1,4 +1,4 @@
-{
+const STARTPAGHE_DATA ={
     "overview": [
         {
             "headline": "Flaggenquiz",
