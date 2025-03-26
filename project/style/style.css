@@ -142,6 +142,7 @@ nav a {
     padding-left: 1em;
     width: 60%;
     filter: grayscale(100%);
+    transition: var(--transitions);
 }
 
 .socials {
@@ -320,5 +321,8 @@ hr {
         font-weight: 900;
     }
 
-    
+    .socials img:hover {
+        filter: grayscale(0%);
+        transform: translateY(-2px);
+    }
 }

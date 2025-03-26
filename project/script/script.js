@@ -5,7 +5,7 @@ console.log('script.js loaded');
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
 
-// Habe ChatGPT gefragt, wie ich üprüfen kann ob ein Element existiert/geladen ist
+// Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
 const style = document.createElement('link');
 style.rel = 'stylesheet';
 style.href = './style/style.css';
@@ -16,6 +16,10 @@ style.onload = () => {
 document.head.appendChild(style);
 
 /* Script start */
+
+/************************************************/
+/*************** Dark-, WhiteMode ***************/
+/************************************************/
 
 let root = document.querySelector(':root');
 
@@ -66,3 +70,8 @@ function changeDarkWhiteMode() {
         localStorage.setItem('theme', 'WhiteMode');
     }
 }
+
+/************************************************/
+/******** Dynamische Content Generierung ********/
+/************************************************/
+
