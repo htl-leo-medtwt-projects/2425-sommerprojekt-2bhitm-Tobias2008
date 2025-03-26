@@ -6,16 +6,28 @@ console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
+setTimeout(load, 100);
 
-// Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
-const style = document.createElement('link');
-style.rel = 'stylesheet';
-style.href = './style/style.css';
-style.onload = () => {
-    console.log('style.css loaded');
-    loadDarkWhiteMode();
-};
-document.head.appendChild(style);
+function load() {
+    // Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = './style/style.css';
+    style.onload = () => {
+        console.log('style.css loaded');
+        loadDarkWhiteMode();
+    };
+    document.head.appendChild(style);
+
+
+
+    loadNav();
+    loadFooterBricks();
+    socials = document.getElementsByClassName('socials')[0];
+    loadFooterData();
+    loadStartpageBricks();
+    loadStartpageData();
+}
 
 /* Script start */
 
@@ -77,10 +89,9 @@ function changeDarkWhiteMode() {
 /******** Dynamische Content Generierung ********/
 /************************************************/
 
-/* Nav */
-let nav = document.querySelector('nav');
+/****************** Navigation ******************/
 
-loadNav();
+let nav = document.querySelector('nav');
 
 function loadNav() {
     nav.innerHTML = `
@@ -97,10 +108,9 @@ function loadNav() {
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
 }
 
-/* Footer */
-let footer = document.querySelector('footer');
+/******************** Footer ********************/
 
-loadFooterBricks();
+let footer = document.querySelector('footer');
 
 function loadFooterBricks() {
     footer.innerHTML = `
@@ -118,9 +128,7 @@ function loadFooterBricks() {
         `;
 }
 
-let socials = document.getElementsByClassName('socials')[0];
-
-loadFooterData();
+let socials;
 
 function loadFooterData() {
     for (let i = 0; i < MUST_HAVE_DATA.footer.length; i++) {
@@ -159,4 +167,67 @@ function loadFooterData() {
 
         }
     }
+}
+
+/******************* Startpage ******************/
+
+let startpage = document.getElementsByClassName('body')[0];
+
+
+function loadStartpageBricks() {
+    startpage.innerHTML = `
+        <h1>MindQuest - interaktives Quiz mit Kategorien</h1>
+        <h2>Verschiedene Quizzes</h2>
+        <div class="overview"></div>
+        <h2>Flaggenquiz</h2>
+        <div class="flaggenquiz"></div>
+        <h2>Länderquiz</h2>
+        <div class="laenderquiz"></div>
+        <h2>Musikquiz</h2>
+        <div class="musikquiz"></div>
+        <div class="bottomNav"></div>
+    `;
+}
+
+function loadStartpageData() {
+    // Overview
+    let overview = document.getElementsByClassName('overview')[0];
+    for (let i = 0; i < STARTPAGE_DATA.overview.length; i++) {
+        overview.innerHTML += `
+            <div class="flex">
+                <img src="${STARTPAGE_DATA.overview[i].imgSRC}">
+                <div>
+                    <div class="gridHeadline">${STARTPAGE_DATA.overview[i].headline}</div>
+                    <div class="gridText">${STARTPAGE_DATA.overview[i].information}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    //Flaggenquiz
+    let flaggenquiz = document.getElementsByClassName('flaggenquiz')[0];
+    let brick = `<div class="flaggenquizInfos">`;
+    for (let i = 0; i < STARTPAGE_DATA.flaggenquiz.length; i++) {
+       brick += `
+                <h3>${STARTPAGE_DATA.flaggenquiz[i].headline}</h3>
+                <p>${STARTPAGE_DATA.flaggenquiz[i].information}</p>
+        `;
+    }
+    brick += `</div>`;
+    flaggenquiz.innerHTML = brick;
+    flaggenquiz.innerHTML += `<img src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
+
+    //Länderquiz
+    let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
+    
+    for(let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++){
+        laenderquiz.innerHTML += `
+            <div id="grid-${(i+1).toString()}">  
+            <img src="${STARTPAGE_DATA.laenderquiz[i].imgSRC}">
+            <h3>${STARTPAGE_DATA.laenderquiz[i].headline}</h3>
+            <p>${STARTPAGE_DATA.laenderquiz[i].information}</p>
+            </div>
+            `;
+    }
+
 }

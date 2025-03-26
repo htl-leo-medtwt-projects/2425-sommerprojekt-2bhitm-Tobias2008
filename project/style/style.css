@@ -185,6 +185,10 @@ hr {
     gap: 1.5rem;
 }
 
+.gridHeadline {
+    font-weight: 900;
+}
+
 .overview {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

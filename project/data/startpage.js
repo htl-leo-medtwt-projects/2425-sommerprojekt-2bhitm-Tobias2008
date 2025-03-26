@@ -1,4 +1,4 @@
-const STARTPAGHE_DATA ={
+const STARTPAGE_DATA ={
     "overview": [
         {
             "headline": "Flaggenquiz",
@@ -35,12 +35,12 @@ const STARTPAGHE_DATA ={
         {
             "headline": "Was erwartet dich im Länderquiz?",
             "information": "Im Länderquiz testest du dein Wissen rund um die Staaten unserer Erde. Dabei geht es nicht nur um die bloßen Namen der Länder, sondern auch um deren geografische Lage, Nachbarländer, Hauptstädte und manchmal auch spezielle Merkmale. Du bekommst Fragen zu verschiedenen Regionen gestellt – mal einfach, mal knifflig – und kannst so deine Kenntnisse spielerisch erweitern. Ob du bereits ein Geografie-Pro bist oder noch am Anfang stehst: Dieses Quiz bringt dir die Welt näher!",
-            "imgSRC": "./media/Images/platzhalter.png"
+            "imgSRC": "./media/Images/platzhalter.jpg"
         },
         {
             "headline": "Spielerisch lernen – mit echtem Mehrwert",
             "information": "Das Länderquiz ist mehr als nur ein Ratespiel – es ist eine clevere Mischung aus Lernen und Spaß. Du trainierst dein Orientierungsvermögen, entwickelst ein besseres Verständnis für politische und geografische Zusammenhänge und lernst, wie vielfältig unsere Erde wirklich ist. Besonders cool: Du bekommst direktes Feedback zu deinen Antworten, was den Lerneffekt enorm steigert. Ideal also für Schule, Freizeit oder einfach, um dein Wissen aufzufrischen.",
-            "imgSRC": "./media/Images/platzhalter.png"
+            "imgSRC": "./media/Images/platzhalter.jpg"
         }
     ],
     "musikquiz": [
