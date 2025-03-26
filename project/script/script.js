@@ -1,24 +1,32 @@
+// Autor: Tobias Payreder
+
+console.log('script.js loaded');
+
+let theme = localStorage.getItem('theme') ?? 'WhiteMode';
+
+
 let root = document.querySelector(':root');
 
 function DarkWhiteMode() {
-    root.style.setProperty('--color', '#f3e7ee');
-    root.style.setProperty('--lighter-color', 'rgb(182, 182, 182)');
-    root.style.setProperty('--primary-color', '#ae377d');
-    root.style.setProperty('--secondary-color', '#761e53');
-    root.style.setProperty('--accent-color', '#a31f6e');
-    // root.style.setProperty('--background-image', 'linear-gradient(320deg, rgb(224, 155, 232) 0%, rgb(163, 102, 172) 50%, rgb(165, 72, 128) 100%)');
-    // root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, rgba(224, 155, 232, 1) 0%, rgba(163, 102, 172, 1) 50%, rgba(165, 72, 128, 1) 100%)');
-    
-    /*
-    --nav-gradient: linear-gradient(40deg, rgba(128, 12, 143, 1) 0%, rgba(181, 41, 161, 1) 50%, rgba(224, 94, 171, 1) 100%);
-    --transitions: 0.3s all ease-in-out;
-    --font: 'NotoSans';
-    --background-image: linear-gradient(320deg, rgb(231, 188, 236) 0%, rgb(241, 196, 247) 50%, rgb(230, 141, 194) 100%);
+    theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
-    --color: #12100f;
-    --lighter-color: rgb(122, 122, 122);
-    --primary-color: #c74f96;
-    --secondary-color: #e188bd;
-    --accent-color: #e05eab;
-    */
+    if (theme === 'WhiteMode') {
+        root.style.setProperty('--color', '#fce4f1');
+        root.style.setProperty('--lighter-color', '#cfa8c3');
+        root.style.setProperty('--secondary-color', '#3a1c2f');
+        root.style.setProperty('--accent-color', '#ff7eb9');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
+
+        localStorage.setItem('theme', 'DarkMode');
+    } else  if(theme === 'DarkMode') {
+        root.style.setProperty('--color', '#351829');
+        root.style.setProperty('--lighter-color', '#7e3d64');
+        root.style.setProperty('--secondary-color', '#fcd6e9');
+        root.style.setProperty('--accent-color', '#d96cbf');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
+
+        localStorage.setItem('theme', 'WhiteMode');
+    }
 }
