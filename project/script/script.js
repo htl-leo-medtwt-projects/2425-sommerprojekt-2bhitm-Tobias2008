@@ -230,4 +230,13 @@ function loadStartpageData() {
             `;
     }
 
+    //Musikquiz
+    let musikquiz = document.getElementsByClassName('musikquiz')[0];
+
+    for(let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++){
+        musikquiz.innerHTML += `
+           <div class="musikinfoItem">${STARTPAGE_DATA.musikquiz[i].headline}</div>
+            `;
+    }
+
 }

@@ -262,6 +262,11 @@ hr {
     padding: 3rem;
     font-size: 1.5rem;
     border-radius: 14px;
+    font-weight: 900;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottomNav {
