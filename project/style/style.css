@@ -108,7 +108,7 @@ nav a {
     transition: var(--transitions);
 }
 
-.footer {
+footer {
     background-color: var(--secondary-color);
     padding: 2rem;
     display: flex;
@@ -116,7 +116,7 @@ nav a {
     color: var(--color);
 }
 
-.footer a {
+footer a {
     text-decoration: none;
     color: var(--color);
     font-weight: normal;
@@ -316,7 +316,7 @@ hr {
         transform: translateY(-2px);
     }
 
-    .footer a:hover, .contactNumber:hover {
+    footer a:hover, .contactNumber:hover {
         color: var(--lighter-color);
         font-weight: 900;
     }

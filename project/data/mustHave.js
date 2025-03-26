@@ -30,7 +30,7 @@ const MUST_HAVE_DATA = {
                     "link": "https://www.google.at/maps/place/HTL+Leonding/@48.2670915,14.2532357,127a,35y,328.3h,45t/data=!3m1!1e3!4m6!3m5!1s0x477396fb96f68367:0xf2b265395a736637!8m2!3d48.2684159!4d14.2517532!16s%2Fg%2F121_5ddh?hl=de&entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoASAFQAw%3D%3D"
                 },
                 {
-                    "name": "+43 732 6733680"
+                    "name": "+43 732 6733680",
                 },
                 {
                     "name": "t.payreder@students.htl-leonding.ac.at",

@@ -96,3 +96,67 @@ function loadNav() {
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
 }
+
+/* Footer */
+let footer = document.querySelector('footer');
+
+loadFooterBricks();
+
+function loadFooterBricks() {
+    footer.innerHTML = `
+        <div class="left">
+            <div class="footerLogo"><a href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+            <div class="socials">
+            </div>
+        </div>
+        <div class="right">
+            <div class="ContactData">
+            </div>
+            <div class="ContactSocials">
+            </div>
+        </div>
+        `;
+}
+
+let socials = document.getElementsByClassName('socials')[0];
+
+loadFooterData();
+
+function loadFooterData() {
+    for (let i = 0; i < MUST_HAVE_DATA.footer.length; i++) {
+        switch (MUST_HAVE_DATA.footer[i].name) {
+            case 'SocialButtons':
+                for (let j = 0; j < MUST_HAVE_DATA.footer[i].Infos.length; j++) {
+                    socials.innerHTML += `
+                        <a href="${MUST_HAVE_DATA.footer[i].Infos[j].link}" target="_blank"><img src="${MUST_HAVE_DATA.footer[i].Infos[j].imgSCR}"></a>
+                    `;
+                }
+                break;
+            case 'Kontakt':
+                let contactData = document.getElementsByClassName('ContactData')[0];
+                contactData.innerHTML = `<h3>Kontakt</h3><hr>`;
+                for (let j = 0; j < MUST_HAVE_DATA.footer[i].Infos.length; j++) {
+                    if (!MUST_HAVE_DATA.footer[i].Infos[j].link) {
+                        contactData.innerHTML += `
+                            <div class="contactNumber">${MUST_HAVE_DATA.footer[i].Infos[j].name}</div>
+                     `;
+                    } else {
+                        contactData.innerHTML += `
+                            <div><a href="${MUST_HAVE_DATA.footer[i].Infos[j].link}" target="_blank">${MUST_HAVE_DATA.footer[i].Infos[j].name}</a></div>
+                     `;
+                    }
+                }
+                break;
+            case 'Socials':
+                let contactSocials = document.getElementsByClassName('ContactSocials')[0];
+                contactSocials.innerHTML = `<h3>Socials</h3><hr>`;
+                for (let j = 0; j < MUST_HAVE_DATA.footer[i].Infos.length; j++) {
+                    contactSocials.innerHTML += `
+                        <div><a href="${MUST_HAVE_DATA.footer[i].Infos[j].link}" target="_blank">${MUST_HAVE_DATA.footer[i].Infos[j].name}</a></div>
+                    `;
+                }
+                break;
+
+        }
+    }
+}
