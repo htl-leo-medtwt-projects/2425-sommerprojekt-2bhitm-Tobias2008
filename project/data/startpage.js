@@ -1,3 +1,5 @@
+console.log(' STARTPAGE_DATA verfügbar');
+
 const STARTPAGE_DATA ={
     "overview": [
         {
@@ -58,3 +60,5 @@ const STARTPAGE_DATA ={
         }
     ]
 }
+
+console.log(STARTPAGE_DATA)

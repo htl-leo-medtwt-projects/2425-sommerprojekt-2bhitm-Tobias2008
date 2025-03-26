@@ -1,4 +1,4 @@
-
+console.log('Startpage Data ist:', typeof STARTPAGE_DATA);
 
 // Autor: Tobias Payreder
 
@@ -6,7 +6,9 @@ console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
-setTimeout(load, 100);
+document.addEventListener('DOMContentLoaded', () => {
+    load();
+});
 
 function load() {
     // Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
@@ -190,10 +192,12 @@ function loadStartpageBricks() {
 }
 
 function loadStartpageData() {
+    console.log('STARTPAGE_DATA:', STARTPAGE_DATA);
     // Overview
     let overview = document.getElementsByClassName('overview')[0];
-    for (let i = 0; i < STARTPAGE_DATA.overview.length; i++) {
-        overview.innerHTML += `
+    if (typeof STARTPAGE_DATA !== 'undefined' && STARTPAGE_DATA.overview) {
+        for (let i = 0; i < STARTPAGE_DATA.overview.length; i++) {
+            overview.innerHTML += `
             <div class="flex">
                 <img src="${STARTPAGE_DATA.overview[i].imgSRC}">
                 <div>
@@ -202,13 +206,14 @@ function loadStartpageData() {
                 </div>
             </div>
         `;
+        }
     }
 
     //Flaggenquiz
     let flaggenquiz = document.getElementsByClassName('flaggenquiz')[0];
     let brick = `<div class="flaggenquizInfos">`;
     for (let i = 0; i < STARTPAGE_DATA.flaggenquiz.length; i++) {
-       brick += `
+        brick += `
                 <h3>${STARTPAGE_DATA.flaggenquiz[i].headline}</h3>
                 <p>${STARTPAGE_DATA.flaggenquiz[i].information}</p>
         `;
@@ -219,10 +224,10 @@ function loadStartpageData() {
 
     //Länderquiz
     let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
-    
-    for(let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++){
+
+    for (let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++) {
         laenderquiz.innerHTML += `
-            <div id="grid-${(i+1).toString()}">  
+            <div id="grid-${(i + 1).toString()}">  
             <img src="${STARTPAGE_DATA.laenderquiz[i].imgSRC}">
             <h3>${STARTPAGE_DATA.laenderquiz[i].headline}</h3>
             <p>${STARTPAGE_DATA.laenderquiz[i].information}</p>
@@ -233,7 +238,7 @@ function loadStartpageData() {
     //Musikquiz
     let musikquiz = document.getElementsByClassName('musikquiz')[0];
 
-    for(let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++){
+    for (let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++) {
         musikquiz.innerHTML += `
            <div class="musikinfoItem">${STARTPAGE_DATA.musikquiz[i].headline}</div>
             `;
