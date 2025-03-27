@@ -1,5 +1,3 @@
-console.log(' STARTPAGE_DATA verfügbar');
-
 const STARTPAGE_DATA ={
     "overview": [
         {

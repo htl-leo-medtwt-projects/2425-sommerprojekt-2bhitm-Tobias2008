@@ -1,5 +1,3 @@
-console.log('Startpage Data ist:', typeof STARTPAGE_DATA);
-
 // Autor: Tobias Payreder
 
 console.log('script.js loaded');
