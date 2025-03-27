@@ -20,7 +20,7 @@ const STARTPAGE_DATA ={
         {
             "headline": "Was ist das Flaggenquiz?",
             "information": "Das Flaggenquiz ist ein interaktives Wissensspiel, bei dem du Flaggen verschiedenen Ländern zuordnen musst. Du bekommst eine Vielzahl von Flaggen aus der ganzen Welt präsentiert – von bekannten Nationen bis hin zu kleinen Inselstaaten. Ziel ist es, die Flaggen so schnell und korrekt wie möglich zu erkennen. Egal ob du ein echter Geografie-Nerd bist oder einfach nur dein Allgemeinwissen testen möchtest – das Quiz bietet dir die perfekte Herausforderung.",
-            "imgSRC": "./media/Images/international-sos-risk-map-2025-screenshot.png"
+            "imgSRC": "./media/Images/flaggen.jpg"
         },
         {
             "headline": "Warum lohnt sich das Mitmachen?",
@@ -35,7 +35,7 @@ const STARTPAGE_DATA ={
         {
             "headline": "Was erwartet dich im Länderquiz?",
             "information": "Im Länderquiz testest du dein Wissen rund um die Staaten unserer Erde. Dabei geht es nicht nur um die bloßen Namen der Länder, sondern auch um deren geografische Lage, Nachbarländer, Hauptstädte und manchmal auch spezielle Merkmale. Du bekommst Fragen zu verschiedenen Regionen gestellt – mal einfach, mal knifflig – und kannst so deine Kenntnisse spielerisch erweitern. Ob du bereits ein Geografie-Pro bist oder noch am Anfang stehst: Dieses Quiz bringt dir die Welt näher!",
-            "imgSRC": "./media/Images/platzhalter.jpg"
+            "imgSRC": "./media/Images/international-sos-risk-map-2025-screenshot.png"
         },
         {
             "headline": "Spielerisch lernen – mit echtem Mehrwert",

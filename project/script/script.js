@@ -49,6 +49,8 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
 
         localStorage.setItem('theme', 'WhiteMode');
+
+        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#fce4f1');
         root.style.setProperty('--lighter-color', '#cfa8c3');
@@ -58,6 +60,8 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
 
         localStorage.setItem('theme', 'DarkMode');
+
+        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
     }
 }
 
@@ -73,6 +77,8 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
 
         localStorage.setItem('theme', 'DarkMode');
+        
+        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#351829');
         root.style.setProperty('--lighter-color', '#7e3d64');
@@ -82,6 +88,8 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
 
         localStorage.setItem('theme', 'WhiteMode');
+
+        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
     }
 }
 
@@ -218,7 +226,7 @@ function loadStartpageData() {
     }
     brick += `</div>`;
     flaggenquiz.innerHTML = brick;
-    flaggenquiz.innerHTML += `<img src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
+    flaggenquiz.innerHTML += `<img style="border-radius: 10px" src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
 
     //Länderquiz
     let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
@@ -238,7 +246,7 @@ function loadStartpageData() {
 
     for (let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++) {
         musikquiz.innerHTML += `
-           <div class="musikinfoItem">${STARTPAGE_DATA.musikquiz[i].headline}</div>
+           <div class="musikinfoItem" onclick="loadMusikQuizData(${i})">${STARTPAGE_DATA.musikquiz[i].headline}</div>
             `;
     }
 
