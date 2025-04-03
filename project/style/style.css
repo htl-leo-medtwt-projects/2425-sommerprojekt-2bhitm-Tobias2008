@@ -37,6 +37,10 @@
     --border-radius: 15px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -104,7 +108,6 @@ nav a {
     border-radius: var(--border-radius);
     padding: 0.8rem;
     color: var(--color);
-    height: 20px;
     transition: var(--transitions);
 }
 
@@ -140,7 +143,7 @@ footer a {
 
 .socials img {
     padding-left: 1em;
-    width: 60%;
+    width: 100%;
     filter: grayscale(100%);
     transition: var(--transitions);
 }
@@ -159,7 +162,9 @@ footer a {
     width: 50%;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font);
     font-weight: bolder;
 }
@@ -245,32 +250,91 @@ hr {
     display: block;
     margin: 0 auto;
     border-radius: 8px;
-    
+
 }
 
 .musikquiz {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
-    margin: 0 auto;
-    text-align: center;
+    justify-content: center;
     width: 80%;
+    margin: 0 auto;
 }
+
 
 .musikinfoItem {
     background-color: var(--secondary-color);
-    padding: 3rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border-radius: 14px;
-    font-weight: 900;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-weight: 500;
+    overflow: hidden;
+    max-height: 4em;
+    padding: 1em;
+    cursor: pointer;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    flex: 1 1 calc(33% - 2rem);
+    /* Drei Spalten */
+    min-width: 250px;
 }
 
+.musikinfoItem .content {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.musikinfoItem.expanded {
+    max-height: 20em;
+    padding: 2em;
+}
+
+.musikinfoItem.expanded .content {
+    opacity: 1;
+}
+
+.musikHeadline {
+    padding-top: 0.4em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    user-select: none;
+}
+
+.content {
+    padding: 1em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.musikquiz.open .content {
+    opacity: 1;
+}
+
+/* .musikinfoItem {
+    background-color: var(--secondary-color);
+    padding: 3rem;
+    font-size: 1.3rem;
+    border-radius: 14px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: 5vh;
+    overflow: hidden;
+    padding-top: 2.3rem;
+}
+
+.musikinfoItem h3 {
+    margin-top: 0;
+} */
+
+
 .bottomNav {
-    margin-top: 10%;
+    margin: 1%;
+    margin-top: 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -325,7 +389,8 @@ hr {
         transform: translateY(-2px);
     }
 
-    footer a:hover, .contactNumber:hover {
+    footer a:hover,
+    .contactNumber:hover {
         color: var(--lighter-color);
         font-weight: 900;
     }

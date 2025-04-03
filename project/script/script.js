@@ -77,7 +77,7 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
 
         localStorage.setItem('theme', 'DarkMode');
-        
+
         document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#351829');
@@ -246,8 +246,53 @@ function loadStartpageData() {
 
     for (let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++) {
         musikquiz.innerHTML += `
-           <div class="musikinfoItem" onclick="loadMusikQuizData(${i})">${STARTPAGE_DATA.musikquiz[i].headline}</div>
+           <div class="musikinfoItem" id="musikinfoItem${i}" onclick="animateMusikQuizData(${i})"><div class="musikHeadline">${STARTPAGE_DATA.musikquiz[i].headline}</div>
+        <div class="content"><p>${STARTPAGE_DATA.musikquiz[i].information}</p></div></div>
             `;
     }
 
+    let bottomNav = document.getElementsByClassName('bottomNav')[0];
+    bottomNav.innerHTML = `<h1>Sonstiges...</h1>`;
+
+    //Bottomnav
+
+    bottomNav.innerHTML += `
+        <div class="bottomNavButtons">
+            <a href="#">Back2Top</a>
+            <a href="${MUST_HAVE_DATA.nav[1].link}">Spielerklärung</a>
+            
+        </div>
+`;
+}
+
+function animateMusikQuizData(index) {
+    let items = document.querySelectorAll('.musikinfoItem');
+
+    items.forEach((item, i) => {
+        let content = item.querySelector('.content');
+
+        if (i === index) {
+            let isExpanded = item.style.maxHeight === '27em';
+
+            if (isExpanded) {
+                item.style.maxHeight = '4em';
+                item.style.padding = '1em';
+                if (content) content.style.opacity = '0';
+            } else {
+                item.style.maxHeight = '27em';
+                item.style.padding = '2em';
+                item.onclick = () => animateMusikQuizData(index, -1);
+                if (content) {
+                    setTimeout(() => {
+                        content.style.opacity = '1';
+                    }, 300);
+                }
+            }
+        } else {
+            item.style.maxHeight = '4em';
+            item.style.padding = '1em';
+            let otherContent = item.querySelector('.content');
+            if (otherContent) otherContent.style.opacity = '0';
+        }
+    });
 }
