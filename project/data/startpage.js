@@ -40,7 +40,7 @@ const STARTPAGE_DATA ={
         {
             "headline": "Spielerisch lernen – mit echtem Mehrwert",
             "information": "Das Länderquiz ist mehr als nur ein Ratespiel – es ist eine clevere Mischung aus Lernen und Spaß. Du trainierst dein Orientierungsvermögen, entwickelst ein besseres Verständnis für politische und geografische Zusammenhänge und lernst, wie vielfältig unsere Erde wirklich ist. Besonders cool: Du bekommst direktes Feedback zu deinen Antworten, was den Lerneffekt enorm steigert. Ideal also für Schule, Freizeit oder einfach, um dein Wissen aufzufrischen.",
-            "imgSRC": "./media/Images/platzhalter.jpg"
+            "imgSRC": "./media/Images/laender.jpg"
         }
     ],
     "musikquiz": [
