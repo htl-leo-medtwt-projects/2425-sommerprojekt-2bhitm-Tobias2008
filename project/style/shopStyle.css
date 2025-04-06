@@ -1,0 +1,26 @@
+.shopItems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+}
+
+.shopItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: var(--transitions);
+}
+
+@media screen and (min-width: 1000px) {
+    .shopItem:hover {
+        transform: scale(1.05);
+    }
+    
+}

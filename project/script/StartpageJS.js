@@ -109,7 +109,7 @@ function loadNav() {
 
     for (let i = 1; i < MUST_HAVE_DATA.nav.length - 1; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
-            <a href="${MUST_HAVE_DATA.nav[i].link}" onclick="${MUST_HAVE_DATA.nav[i].onclick}">${MUST_HAVE_DATA.nav[i].name}</a>
+            <a href="${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
     document.getElementsByClassName('nav')[0].innerHTML += `

@@ -14,6 +14,8 @@ function load() {
     loadNav();
     loadFooterBricks();
     loadFooterData();
+    loadData();
+
 }
 load();
 
@@ -27,7 +29,7 @@ function loadNav() {
 
     for (let i = 1; i < MUST_HAVE_DATA.nav.length - 1; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
-            <a href="${MUST_HAVE_DATA.nav[i].link}" onclick="${MUST_HAVE_DATA.nav[i].onclick}">${MUST_HAVE_DATA.nav[i].name}</a>
+            <a href="${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
 
@@ -152,4 +154,27 @@ function changeDarkWhiteMode() {
 
         document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
     }
+}
+
+/******************** Script Start ********************/
+
+function loadData() {
+    let shopData = document.getElementById('shopData');
+    shopData.innerHTML = `
+        <div class="shopTitle">${SHOP_DATA.title}</div>
+        <div class="shopDescription">${SHOP_DATA.description}</div>
+        <div class="shopItems"></div>
+    `;
+    let shopItems = document.getElementsByClassName('shopItems')[0];
+
+    for (let i = 0; i < SHOP_DATA.items.length; i++) {
+        shopItems.innerHTML += `
+            <div class="shopItem" onclick="buyPowerUp(${i})">
+                <div class="itemName">${SHOP_DATA.items[i].name}</div>
+                <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
+                <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
+            </div>
+        `;
+    }
+
 }
