@@ -366,6 +366,12 @@ hr {
     transition: var(--transitions);
 }
 
+.bottomNavButtons {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1.5rem;
+}
+
 .contactNumber {
     transition: var(--transitions);
     cursor: default;

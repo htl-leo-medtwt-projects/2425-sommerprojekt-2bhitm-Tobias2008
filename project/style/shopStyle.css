@@ -1,10 +1,11 @@
 .shopItems {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 1rem;
+    gap: 1rem 4rem;
 }
 
 .shopItem {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,9 +19,43 @@
     transition: var(--transitions);
 }
 
+.shopTitle {
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.shopDescription {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    text-align: justify;
+}
+
+#shopData {
+    font-size: 1rem;
+    text-align: center;
+    margin: 1.4rem;
+}
+
+.itemName {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.itemPrice {
+    font-size: 1.2rem;
+    margin: 1rem 0 0 0;
+}
+
+.itemDescription {
+    font-size: 0.9rem;
+    margin: -0.2rem 0.5rem;
+    color: var(--lighter-color);
+}
+
 @media screen and (min-width: 1000px) {
     .shopItem:hover {
         transform: scale(1.05);
-    }
-    
+    }   
 }
