@@ -54,8 +54,19 @@
     color: var(--lighter-color);
 }
 
+.buyButton {
+    font-size: 1.3rem;
+    margin-top: 4%;
+    padding: 0.5em 1em;
+    transition: var(--transitions);
+    border-radius: var(--border-radius);
+    background-color: var(--extra-highlight);
+}
+
 @media screen and (min-width: 1000px) {
-    .shopItem:hover {
-        transform: scale(1.05);
-    }   
+     
+
+    .buyButton:hover {
+        transform: scale(1.05) translateY(-4px);
+    }
 }
