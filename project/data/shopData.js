@@ -65,6 +65,3 @@ const SHOP_DATA = {
         }
     ]
 }
-
-
-console.log(SHOP_DATA);

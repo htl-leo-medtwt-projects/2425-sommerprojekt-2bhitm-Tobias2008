@@ -129,7 +129,7 @@ let footer = document.querySelector('footer');
 function loadFooterBricks() {
     footer.innerHTML = `
         <div class="left">
-            <div class="footerLogo"><a href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+            <div class="footerLogo"><a href="#">MindQuest</a></div>
             <div class="socials">
             </div>
         </div>

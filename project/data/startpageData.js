@@ -58,5 +58,3 @@ const STARTPAGE_DATA ={
         }
     ]
 }
-
-console.log(STARTPAGE_DATA)

@@ -61,6 +61,7 @@
     transition: var(--transitions);
     border-radius: var(--border-radius);
     background-color: var(--extra-highlight);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (min-width: 1000px) {
@@ -68,5 +69,9 @@
 
     .buyButton:hover {
         transform: scale(1.05) translateY(-4px);
+    }
+
+    .buyButton:hover p {
+        color: var(--secondary-color);
     }
 }
