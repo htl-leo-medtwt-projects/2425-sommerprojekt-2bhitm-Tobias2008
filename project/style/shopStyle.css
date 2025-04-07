@@ -56,22 +56,26 @@
 
 .buyButton {
     font-size: 1.3rem;
-    margin-top: 4%;
-    padding: 0.5em 1em;
     transition: var(--transitions);
     border-radius: var(--border-radius);
     background-color: var(--extra-highlight);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+    margin: 1em 0 0 0;
+}
+
+.buyButton p {
+    margin: 0;
+    padding: 0.5em 1em;
+    transition: var(--transitions);
 }
 
 @media screen and (min-width: 1000px) {
-     
-
     .buyButton:hover {
         transform: scale(1.05) translateY(-4px);
     }
 
     .buyButton:hover p {
-        color: var(--secondary-color);
+        color: var(--lighter-color);
+        font-weight: bolder;
     }
 }

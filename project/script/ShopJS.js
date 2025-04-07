@@ -109,7 +109,7 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--accent-color', '#d96cbf');
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
-        root.style.setProperty('--extra-highlight', 'red');
+        root.style.setProperty('--extra-highlight', '#f9abd7');
 
         localStorage.setItem('theme', 'WhiteMode');
 
@@ -153,7 +153,7 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--accent-color', '#d96cbf');
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
-        root.style.setProperty('--extra-highlight', 'red');
+        root.style.setProperty('--extra-highlight', '#f9abd7');
 
         localStorage.setItem('theme', 'WhiteMode');
 
@@ -168,6 +168,7 @@ function loadData() {
     shopData.innerHTML = `
         <div class="shopTitle">${SHOP_DATA.title}</div>
         <div class="shopDescription">${SHOP_DATA.description}</div>
+        <div class="bigView"></div>
         <div class="shopItems"></div>
     `;
     let shopItems = document.getElementsByClassName('shopItems')[0];
@@ -178,9 +179,25 @@ function loadData() {
                 <div class="itemName">${SHOP_DATA.items[i].name}</div>
                 <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
                 <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
-                <div class="buyButton" onclick="buyPowerUp(${i})">Buy</div>
+                <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
                 </div>
         `;
     }
 
 }
+
+// $('.slider-for').slick({
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     arrows: false,
+//     fade: true,
+//     asNavFor: '.slider-nav'
+//   });
+//   $('.slider-nav').slick({
+//     slidesToShow: 3,
+//     slidesToScroll: 1,
+//     asNavFor: '.slider-for',
+//     dots: true,
+//     centerMode: true,
+//     focusOnSelect: true
+//   });
