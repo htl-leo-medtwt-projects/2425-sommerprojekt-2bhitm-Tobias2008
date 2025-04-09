@@ -423,17 +423,25 @@ hr {
 }
 
 .shopicon {
-    width: 40px;
+    width: 34px;
     filter: grayscale(100%);
     transition: var(--transitions);
-    margin: 0 1rem 1rem 1rem;
+    margin-right: 1rem;
+}
+
+.itemName p {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: max-content
 }
 
 .itemheader {
     font-size: 1.5rem;
     font-weight: 900;
     text-align: center;
-    margin: 0;
+    margin: 0 1rem 1rem 1rem;
+    
     display: flex;
     justify-content: center;
     align-items: center;

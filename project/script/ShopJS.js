@@ -180,7 +180,7 @@ function loadData() {
             <div class="shopItem">
                 <div class="itemheader">
                     <img class="shopicon" src=".${SHOP_DATA.items[i].icon}" alt="${SHOP_DATA.items[i].name}">    
-                    <div class="itemName">${SHOP_DATA.items[i].name}</div>
+                    <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
                 </div>
                 <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
                 <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
@@ -203,13 +203,15 @@ function buyPowerUp(index) {
             // item gekauft
         } else {
             // nicht genug Coins
-            alert("nicht genus coins");
+            console.log('Nicht genug Coins!');
         }
+    } else {
+        console.log('kein User eingeloggt');
     }
 }
 
 function userLoggedIn() {
-    let userData = JSON.parse(localStorage.getItem('User'));
+    let userData = PLAYER_DATA;
     return (
         userData.Username != "" &&
         userData.Password != "" 
