@@ -109,11 +109,11 @@ let nav = document.querySelector('nav');
 
 function loadNav() {
     nav.innerHTML = `
-        <div class="logo"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+        <div class="logo"><img src="${MUST_HAVE_DATA.nav[1].link}"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
         <div class="nav"></div>
     `;
 
-    for (let i = 1; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 1; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
             <a href="${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;

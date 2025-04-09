@@ -9,13 +9,14 @@ function load() {
     };
     document.head.appendChild(style);
 
-
-
     loadNav();
     loadFooterBricks();
     loadFooterData();
     loadData();
 
+    if(localStorage.getItem('User') === null || localStorage.getItem('User') === undefined) {
+        localStorage.setItem('User', JSON.stringify(PLAYER_DATA));
+    }
 }
 load();
 
@@ -23,11 +24,11 @@ function loadNav() {
     let nav = document.querySelector('nav');
 
     nav.innerHTML = `
-        <div class="logo"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+        <div class="logo"><img src=".${MUST_HAVE_DATA.nav[1].link}"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
         <div class="nav"></div>
     `;
 
-    for (let i = 1; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 1; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
             <a href="${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
@@ -184,6 +185,31 @@ function loadData() {
         `;
     }
 
+}
+
+function buyPowerUp(index) {
+    if(userLoggedIn()) {
+        let userData = JSON.parse(localStorage.getItem('User'));
+        let shopData = SHOP_DATA.items[index];
+
+        if (userData.Coins >= shopData.price) {
+            userData.Coins -= shopData.price;
+            userData.Inventory.push(shopData);
+            localStorage.setItem('User', JSON.stringify(userData));
+            // item gekauft
+        } else {
+            // nicht genug Coins
+            alert("nicht genus coins");
+        }
+    }
+}
+
+function userLoggedIn() {
+    let userData = JSON.parse(localStorage.getItem('User'));
+    return (
+        userData.Username != "" &&
+        userData.Password != "" 
+    )
 }
 
 // $('.slider-for').slick({

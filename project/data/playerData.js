@@ -10,5 +10,3 @@ let PLAYER_DATA = JSON.parse(localStorage.getItem('playerData')) ?? {
     "Achievements": [],
     "Quests": [],
 }
-
-console.log(PLAYER_DATA)

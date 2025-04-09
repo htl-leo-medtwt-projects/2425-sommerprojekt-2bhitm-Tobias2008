@@ -5,6 +5,10 @@ const MUST_HAVE_DATA = {
             "link": "./index.html"
         },
         {
+            "name": "UserIcon",
+            "link": "./media/Images/USERICON.png"
+        },
+        {
             "name": "Spielerklärung",
             "link": "./pages/gameExplanation.html"
         },
