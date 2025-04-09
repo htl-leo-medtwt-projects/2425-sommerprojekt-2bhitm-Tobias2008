@@ -4,25 +4,25 @@ const SHOP_DATA = {
 
     "items": [
         {
-            "name": "Hinweis",
+            "name": "Hint",
             "price": 10,
             "description": "Erhalte einen kleinen Hinweis zur aktuellen Frage",
             "onclick": 1
         },
         {
-            "name": "Zufallshilfe",
+            "name": "Random hilfe",
             "price": 15,
             "description": "Ein zufälliger Power-Up-Effekt wird ausgelöst",
             "onclick": 2
         },
         {
-            "name": "Überspringen",
+            "name": "Skip",
             "price": 20,
             "description": "Beantworte die aktuelle Frage nicht und gehe zur nächsten über",
             "onclick": 3
         },
         {
-            "name": "Zeit einfrieren",
+            "name": "Time freeze",
             "price": 25,
             "description": "Friere den Timer für 15 Sekunden ein",
             "onclick": 4
@@ -30,7 +30,7 @@ const SHOP_DATA = {
         {
             "name": "Risiko-Boost",
             "price": 25,
-            "description": "Setze Punkte auf Risiko: doppelt bei richtiger Antwort, sonst verlierst du sie",
+            "description": "Setze XP und Coins auf Risiko: doppelt bei richtiger Antwort, sonst verlierst du sie",
             "onclick": 5
         },
         {
@@ -58,7 +58,7 @@ const SHOP_DATA = {
             "onclick": 9
         },
         {
-            "name": "Kettenbonus",
+            "name": "Streak Boost",
             "price": 50,
             "description": "Jede richtige Antwort in den nächsten 3 Fragen bringt +5 Extra-Punkte",
             "onclick": 10
