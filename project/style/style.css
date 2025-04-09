@@ -97,11 +97,12 @@ nav a {
 }
 
 .logo img {
-    width: 60px;
-    margin: 0;
-    padding-left: 1rem;
-    border-radius: var(--border-radius);
-    margin-right: 1rem;
+    width: 30px;
+    border-radius: var(--border-radius * 10);
+    margin: 0 1rem;
+    transition: var(--transitions);
+    cursor: pointer;
+
 }
 
 .logo a {
@@ -390,6 +391,54 @@ hr {
     cursor: default;
 }
 
+#loginWindow {
+    position: fixed;
+    top: 10vh;
+    left: 30vw;
+    right: 30vw;
+    background-color: var(--secondary-color);
+    z-index: 1000000;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 1px 1px 5px black;
+    display: none;
+}
+
+#loginWindow h2 {
+    text-align: center;
+    font-weight: 900;
+}   
+
+#loginWindow input {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: none;
+    border-bottom: var(--color) 2px solid; 
+    background-color: var(--secondary-color);
+    color: var(--color);
+    font-size: 1.1rem;
+    font-weight: 900;
+    transition: var(--transitions);
+}
+
+.shopicon {
+    width: 40px;
+    filter: grayscale(100%);
+    transition: var(--transitions);
+    margin: 0 1rem 1rem 1rem;
+}
+
+.itemheader {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -423,5 +472,10 @@ hr {
     .bottomNav a:hover {
         color: var(--lighter-color);
         transform: translateY(-2px);
+    }
+
+    .logo img:hover {
+        transform: translateY(-2px);
+        filter: brightness(0.8);
     }
 }

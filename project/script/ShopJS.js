@@ -24,7 +24,7 @@ function loadNav() {
     let nav = document.querySelector('nav');
 
     nav.innerHTML = `
-        <div class="logo"><img src=".${MUST_HAVE_DATA.nav[1].link}"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+        <div class="logo"><img src=".${MUST_HAVE_DATA.nav[1].link}" onclick="openLoginWindow()"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
         <div class="nav"></div>
     `;
 
@@ -171,17 +171,21 @@ function loadData() {
         <div class="shopDescription">${SHOP_DATA.description}</div>
         <div class="bigView"></div>
         <div class="shopItems"></div>
+        <div id="loginWindow"></div>
     `;
     let shopItems = document.getElementsByClassName('shopItems')[0];
 
     for (let i = 0; i < SHOP_DATA.items.length; i++) {
         shopItems.innerHTML += `
             <div class="shopItem">
-                <div class="itemName">${SHOP_DATA.items[i].name}</div>
+                <div class="itemheader">
+                    <img class="shopicon" src=".${SHOP_DATA.items[i].icon}" alt="${SHOP_DATA.items[i].name}">    
+                    <div class="itemName">${SHOP_DATA.items[i].name}</div>
+                </div>
                 <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
                 <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
                 <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
-                </div>
+            </div>
         `;
     }
 
@@ -210,6 +214,21 @@ function userLoggedIn() {
         userData.Username != "" &&
         userData.Password != "" 
     )
+}
+
+function openLoginWindow() {
+    let loginWindow = document.getElementById('loginWindow');
+    loginWindow.innerHTML = `
+        <div class="loginWindow">
+            <div class="loginWindowTitle">Login</div>
+            <div class="loginWindowContent">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <div class="loginButton" onclick="login()">Login</div>
+                <div class="registerButton" onclick="register()">Register</div>
+            </div>
+        </div>
+    `;
 }
 
 // $('.slider-for').slick({
