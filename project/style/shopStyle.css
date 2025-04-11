@@ -5,11 +5,10 @@
 }
 
 .shopItem {
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
     text-align: center;
     margin: 1rem;
     background-color: var(--secondary-color);
@@ -41,11 +40,22 @@
 .itemName {
     font-size: 1.5rem;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7px;
 }
 
 .itemPrice {
     font-size: 1.2rem;
     margin: 1rem 0 0 0;
+}
+
+.shopicon {
+    filter: var(--invert);
+    width: 9%;
+    transition: var(--transitions);
+    margin-right: 1rem;
 }
 
 .itemDescription {
@@ -61,6 +71,7 @@
     background-color: var(--extra-highlight);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
     margin: 1em 0 0 0;
+    cursor: pointer;
 }
 
 .buyButton p {

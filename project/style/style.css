@@ -36,6 +36,7 @@
     --accent-color: #d96cbf;
     --border-radius: 15px;
     --extra-highlight: #f9abd7;
+    --invert: invert(0);
 }
 
 * {
@@ -422,13 +423,6 @@ hr {
     transition: var(--transitions);
 }
 
-.shopicon {
-    width: 34px;
-    filter: grayscale(100%);
-    transition: var(--transitions);
-    margin-right: 1rem;
-}
-
 .itemName p {
     display: block;
     margin-top: auto;
@@ -445,6 +439,10 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+}   
+
+.loginGuy {
+    filter: var(--invert);
 }   
 
 /* hover alle so hinzufügen, dass ich sie später bei 
@@ -484,6 +482,7 @@ hr {
 
     .logo img:hover {
         transform: translateY(-2px);
-        filter: brightness(0.8);
+        filter: brightness(0.8) var(--invert);
     }
 }
+
