@@ -48,7 +48,8 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
         root.style.setProperty('--extra-highlight', '#f9abd7');
-        root.style.setProperty('--invert', 'invert(1)');
+        root.style.setProperty('--invert', 'invert(0)');
+
 
         localStorage.setItem('theme', 'WhiteMode');
 
@@ -61,7 +62,7 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
         root.style.setProperty('--extra-highlight', '#51213c');
-        root.style.setProperty('--invert', 'invert(0)');
+        root.style.setProperty('--invert', 'invert(1)');
 
 
         localStorage.setItem('theme', 'DarkMode');
@@ -81,8 +82,9 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
         root.style.setProperty('--extra-highlight', '#f9abd7');
-        root.style.setProperty('--invert', 'invert(0)');
-        
+        root.style.setProperty('--invert', 'invert(1)');
+
+
         localStorage.setItem('theme', 'DarkMode');
 
         document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
@@ -94,7 +96,7 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
         root.style.setProperty('--extra-highlight', '#51213c');
-        root.style.setProperty('--invert', 'invert(1)');
+        root.style.setProperty('--invert', 'invert(0)');
 
 
         localStorage.setItem('theme', 'WhiteMode');
@@ -113,7 +115,7 @@ let nav = document.querySelector('nav');
 
 function loadNav() {
     nav.innerHTML = `
-        <div class="logo"><img class="loginGuy" src="${MUST_HAVE_DATA.nav[1].link}"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+        <div class="logo"><img onclick="openLoginWindow()" class="loginGuy" src="${MUST_HAVE_DATA.nav[1].link}"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
         <div class="nav"></div>
     `;
 
@@ -204,16 +206,22 @@ function loadStartpageBricks() {
         <h2>Musikquiz</h2>
         <div class="musikquiz"></div>
         <div class="bottomNav"></div>
+        <div id="loginWindow"></div></div>
+        <div id="registerWindow"></div></div>
     `;
 }
 
 function loadStartpageData() {
     console.log('STARTPAGE_DATA:', STARTPAGE_DATA);
+
+
+
     // Overview
-    let overview = document.getElementsByClassName('overview')[0];
-    if (typeof STARTPAGE_DATA !== 'undefined' && STARTPAGE_DATA.overview) {
-        for (let i = 0; i < STARTPAGE_DATA.overview.length; i++) {
-            overview.innerHTML += `
+    if (true) {
+        let overview = document.getElementsByClassName('overview')[0];
+        if (typeof STARTPAGE_DATA !== 'undefined' && STARTPAGE_DATA.overview) {
+            for (let i = 0; i < STARTPAGE_DATA.overview.length; i++) {
+                overview.innerHTML += `
             <div class="flex">
                 <img src="${STARTPAGE_DATA.overview[i].imgSRC}">
                 <div>
@@ -222,21 +230,25 @@ function loadStartpageData() {
                 </div>
             </div>
         `;
+            }
         }
     }
 
     //Flaggenquiz
-    let flaggenquiz = document.getElementsByClassName('flaggenquiz')[0];
-    let brick = `<div class="flaggenquizInfos">`;
-    for (let i = 0; i < STARTPAGE_DATA.flaggenquiz.length; i++) {
-        brick += `
+    if (true) {
+        let flaggenquiz = document.getElementsByClassName('flaggenquiz')[0];
+        let brick = `<div class="flaggenquizInfos">`;
+        for (let i = 0; i < STARTPAGE_DATA.flaggenquiz.length; i++) {
+            brick += `
                 <h3>${STARTPAGE_DATA.flaggenquiz[i].headline}</h3>
                 <p>${STARTPAGE_DATA.flaggenquiz[i].information}</p>
         `;
+        }
+        brick += `</div>`;
+        flaggenquiz.innerHTML = brick;
+        flaggenquiz.innerHTML += `<img style="border-radius: 10px" src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
+
     }
-    brick += `</div>`;
-    flaggenquiz.innerHTML = brick;
-    flaggenquiz.innerHTML += `<img style="border-radius: 10px" src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
 
     //Länderquiz
     let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
@@ -269,10 +281,41 @@ function loadStartpageData() {
     bottomNav.innerHTML += `
         <div class="bottomNavButtons">
             <a href="#">Back2Top</a>
-            <a href="${MUST_HAVE_DATA.nav[1].link}">Spielerklärung</a>
+            <a href="${MUST_HAVE_DATA.nav[2].link}">Spielerklärung</a>
             
         </div>
 `;
+
+    //LoginWindow
+    let loginWindow = document.getElementById('loginWindow');
+    loginWindow.innerHTML += `
+        <div class="loginWindowContent">
+            <h2>${MUST_HAVE_DATA.loginWindow[0].name}</h2>
+            <div class="infoItem"></div>
+            ${MUST_HAVE_DATA.loginWindow[0].inputUsername}
+            ${MUST_HAVE_DATA.loginWindow[0].inputPassword}
+            <div id='registerButton' onclick='login()'>${MUST_HAVE_DATA.loginWindow[0].button}</div>
+            <div id="register"> 
+                <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
+                <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
+            </div>
+            <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
+
+        </div>
+    `;
+
+    //RegisterWindow
+    let registerWindow = document.getElementById('registerWindow');
+    registerWindow.innerHTML += `
+        <div class="registerWindowContent">
+            <h2>${MUST_HAVE_DATA.registerWindow[0].name}</h2>
+            <div class="infoItem"></div>
+            ${MUST_HAVE_DATA.registerWindow[0].inputUsername}
+            ${MUST_HAVE_DATA.registerWindow[0].inputPassword}
+            <div id='registerButton' onclick='register()'>${MUST_HAVE_DATA.registerWindow[0].button}</div>
+            <div id='closeButton' onclick='closeRegisterWindow()'>${MUST_HAVE_DATA.registerWindow[0].closeButton}</div>
+        </div>
+    `;
 }
 
 function animateMusikQuizData(index) {
@@ -305,4 +348,96 @@ function animateMusikQuizData(index) {
             if (otherContent) otherContent.style.opacity = '0';
         }
     });
+
+}
+
+/******************* Login *******************/
+
+function openLoginWindow() {
+    if (document.getElementById('registerWindow').style.display === 'block') {
+        closeRegisterWindow();
+        return;
+    }
+
+    let loginWindow = document.getElementById('loginWindow');
+    loginWindow.style.display = 'block';
+
+    setTimeout(() => { loginWindow.style.opacity = '1'; }, 10);
+}
+
+function closeLoginWindow() {
+    let loginWindow = document.getElementById('loginWindow');
+    loginWindow.style.opacity = '0';
+
+    setTimeout(() => { loginWindow.style.display = 'none'; }, 300);
+}
+
+function login() {
+    if (document.getElementById('username').value === '' || document.getElementById('password').value === '') {
+        console.log('Bitte Username und Passwort eingeben!');
+        document.getElementsByClassName('infoItem')[0].innerHTML = 'Bitte Username und Passwort eingeben!';
+        return;
+    }
+
+    let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
+
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].username == document.getElementById('username').value && players[i].password == document.getElementById('password').value) {
+            console.log('Login erfolgreich!');
+            PLAYER_DATA = players[i];
+            return;
+        }
+    }
+
+    // EXCEPTION HANDLING
+    console.log('Login fehlgeschlagen! - kein Account gefunden!');
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('username').focus();
+}
+
+/***************** Register *******************/
+
+function openRegisterWindow() {
+
+    if (document.getElementById('loginWindow').style.display === 'block') {
+        closeLoginWindow();
+    }
+
+    let registerWindow = document.getElementById('registerWindow');
+    registerWindow.style.display = 'block';
+
+    setTimeout(() => { registerWindow.style.opacity = '1'; }, 10);
+}
+
+function closeRegisterWindow() {
+    let registerWindow = document.getElementById('registerWindow');
+    registerWindow.style.opacity = '0';
+
+    setTimeout(() => { registerWindow.style.display = 'none'; }, 300);
+}
+
+function register() {
+    let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
+
+    if (document.getElementById('registerUsername').value === '' || document.getElementById('registerPassword').value === '') {
+        console.log('Bitte Username und Passwort eingeben!');
+document.getElementsByClassName('infoItem')[1].innerHTML = 'Bitte Username und Passwort eingeben!';
+        return;
+    }
+
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].username == document.getElementById('registerUsername').value) {
+            console.log('Username bereits vergeben!');
+            // EXCEPTION HANDLING
+            return;
+        }
+    }
+
+    PLAYER_DATA.username = document.getElementById('registerUsername').value;
+    PLAYER_DATA.password = document.getElementById('registerPassword').value;
+
+
+
+    localStorage.setItem('playerData', JSON.stringify(players));
 }

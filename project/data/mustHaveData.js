@@ -76,5 +76,28 @@ const MUST_HAVE_DATA = {
                 }
             ]
         }
+    ],
+    "loginWindow": [
+        {
+            name: "Login",
+            inputUsername: "<input type='text' id='username' placeholder='Username'>",
+            inputPassword: "<input type='password' id='password' placeholder='Password'>",
+            button: "<div id='loginButton' onclick='login()'>Login</div>",
+            info: "Noch keinen Account?",
+            registerButton: "Registrieren",
+            closeButton: "X",
+        }
+    ],
+    "registerWindow": [
+        {
+            name: "Registrieren",
+            inputUsername: "<input type='text' id='username' placeholder='Username'>",
+            inputPassword: "<input type='password' id='password' placeholder='Password'>",
+            inputPasswordRepeat: "<input type='password' id='passwordRepeat' placeholder='Password wiederholen'>",
+            button: "<div id='registerButton' onclick='register()'>Registrieren</div>",
+            info: "Bereits einen Account?",
+            loginButton: "Einloggen",
+            closeButton: "X",
+        }
     ]
 }

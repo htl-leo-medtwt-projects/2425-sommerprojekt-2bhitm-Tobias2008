@@ -43,6 +43,16 @@
     box-sizing: border-box;
 }
 
+input:focus {
+    outline: none;
+}
+
+#register {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -403,6 +413,8 @@ hr {
     border-radius: var(--border-radius);
     box-shadow: 1px 1px 5px black;
     display: none;
+    opacity: 0;
+    transition: var(--transitions);
 }
 
 #loginWindow h2 {
