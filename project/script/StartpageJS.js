@@ -375,7 +375,6 @@ function animateMusikQuizData(index) {
 function openLoginWindow() {
     if (document.getElementById('registerWindow').style.display === 'block') {
         closeRegisterWindow();
-        return;
     }
 
     let loginWindow = document.getElementById('loginWindow');
@@ -392,27 +391,63 @@ function closeLoginWindow() {
 }
 
 function login() {
-    if (document.getElementById('username').value === '' || document.getElementById('password').value === '') {
+    if (document.getElementById('usernameLogin').value == '' || document.getElementById('passwordLogin').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
         document.getElementsByClassName('infoItem')[0].innerHTML = 'Bitte Username und Passwort eingeben!';
+        document.getElementsByClassName('infoItem')[0].style.opacity = '1';
+        document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
+
+        setTimeout(() => {
+            document.getElementsByClassName('infoItem')[0].style.opacity = '0';
+            document.getElementsByClassName('infoItem')[0].style.padding = '0';
+
+            setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
+        }, 3000);
+
         return;
     }
 
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
 
     for (let i = 0; i < players.length; i++) {
-        if (players[i].username == document.getElementById('username').value && players[i].password == document.getElementById('password').value) {
+        if (players[i].username == document.getElementById('usernameLogin').value && players[i].password == document.getElementById('passwordLogin').value) {
             console.log('Login erfolgreich!');
             PLAYER_DATA = players[i];
+            return;
+        } else if (players[i].username == document.getElementById('usernameLogin').value && players[i].password != document.getElementById('passwordLogin').value) {
+            console.log('Login fehlgeschlagen! - falsches Passwort!');
+            document.getElementsByClassName('infoItem')[0].innerHTML = 'Login fehlgeschlagen! - falsches Passwort!';
+            document.getElementsByClassName('infoItem')[0].style.opacity = '1';
+            document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
+
+            setTimeout(() => {
+                document.getElementsByClassName('infoItem')[0].style.opacity = '0';
+                document.getElementsByClassName('infoItem')[0].style.padding = '0';
+
+                setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
+            }, 3000);
             return;
         }
     }
 
-    // EXCEPTION HANDLING
     console.log('Login fehlgeschlagen! - kein Account gefunden!');
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('username').focus();
+    document.getElementById('usernameLogin').focus();
+
+    setTimeout(() => {
+        document.getElementById('usernameLogin').value = '';
+        document.getElementById('passwordLogin').value = '';
+    }, 100);
+
+    document.getElementsByClassName('infoItem')[0].innerHTML = 'Login fehlgeschlagen! - kein Account gefunden!';
+    document.getElementsByClassName('infoItem')[0].style.opacity = '1';
+    document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
+
+    setTimeout(() => {
+        document.getElementsByClassName('infoItem')[0].style.opacity = '0';
+        document.getElementsByClassName('infoItem')[0].style.padding = '0';
+
+        setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
+    }, 3000);
 }
 
 /***************** Register *******************/
@@ -439,7 +474,7 @@ function closeRegisterWindow() {
 function register() {
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
 
-    if (document.getElementById('registerUsername').value === '' || document.getElementById('registerPassword').value === '') {
+    if (document.getElementById('usernameRegister').value == '' || document.getElementById('passwordRegister').value == '' || document.getElementById('passwordRepeatRegister').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
         document.getElementsByClassName('infoItem')[1].innerHTML = 'Bitte Username und Passwort eingeben!';
         return;

@@ -398,7 +398,8 @@ hr {
     cursor: default;
 }
 
-#loginWindow, #registerWindow {
+#loginWindow,
+#registerWindow {
     position: fixed;
     top: 10vh;
     left: 30vw;
@@ -413,17 +414,19 @@ hr {
     transition: var(--transitions);
 }
 
-#loginWindow h2, #registerWindow h2 {
+#loginWindow h2,
+#registerWindow h2 {
     text-align: center;
     font-weight: 900;
-}   
+}
 
-#loginWindow input, #registerWindow input {
+#loginWindow input,
+#registerWindow input {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
     border: none;
-    border-bottom: var(--color) 2px solid; 
+    border-bottom: var(--color) 2px solid;
     background-color: var(--secondary-color);
     color: var(--color);
     font-size: 1.1rem;
@@ -431,7 +434,8 @@ hr {
     transition: var(--transitions);
 }
 
-.itemName p, #registerWindow p {
+.itemName p,
+#registerWindow p {
     display: block;
     margin-top: auto;
     margin-bottom: auto;
@@ -451,6 +455,7 @@ hr {
     text-align: center;
     cursor: pointer;
     user-select: none;
+    transition: var(--transitions);
 }
 
 #register {
@@ -461,12 +466,16 @@ hr {
     gap: 0.5em;
     justify-content: center;
 }
+
 /* 
 #noAccountInfo {
 } */
 
 #noAccountButton {
     font-style: italic;
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transitions);
 }
 
 #closeButton {
@@ -479,6 +488,7 @@ hr {
     width: max-content;
     margin-left: auto;
     margin-right: auto;
+    transition: var(--transitions);
 }
 
 
@@ -487,15 +497,30 @@ hr {
     font-weight: 900;
     text-align: center;
     margin: 0 1rem 1rem 1rem;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
-}   
+}
+
+.infoItem {
+    background-color: var(--secondary-color);
+    font-size: 1.3rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 5vh;
+    color: var(--lighter-color);
+    font-style: italic;
+    opacity: 0;
+    transition: var(--transitions);
+}
 
 .loginGuy {
     filter: var(--invert);
-}   
+}
 
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
@@ -536,5 +561,18 @@ hr {
         transform: translateY(-2px);
         filter: brightness(0.8) var(--invert);
     }
-}
 
+    #loginButton:hover {
+        transform: translateY(-2px);
+        color: var(--lighter-color);
+    }
+
+    #noAccountButton:hover {
+        transform: translateY(-2px);
+    }
+
+    #closeButton:hover {
+        transform: translateY(-2px);
+        color: var(--lighter-color);
+    }
+}
