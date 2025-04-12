@@ -481,17 +481,18 @@ function register() {
     }
 
     for (let i = 0; i < players.length; i++) {
-        if (players[i].username == document.getElementById('registerUsername').value) {
+        if (players[i].username == document.getElementById('usernameRegister').value) {
             console.log('Username bereits vergeben!');
             // EXCEPTION HANDLING
             return;
         }
     }
 
-    PLAYER_DATA.username = document.getElementById('registerUsername').value;
-    PLAYER_DATA.password = document.getElementById('registerPassword').value;
+    PLAYER_DATA.username = document.getElementById('usernameRegister').value;
+    PLAYER_DATA.password = document.getElementById('passwordRegister').value;
 
-
+    players.push(PLAYER_DATA);
+    console.log('Account erfolgreich erstellt!');
 
     localStorage.setItem('playerData', JSON.stringify(players));
 }
