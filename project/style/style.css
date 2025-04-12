@@ -47,11 +47,7 @@ input:focus {
     outline: none;
 }
 
-#register {
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-}
+
 
 body {
     margin: 0;
@@ -402,7 +398,7 @@ hr {
     cursor: default;
 }
 
-#loginWindow {
+#loginWindow, #registerWindow {
     position: fixed;
     top: 10vh;
     left: 30vw;
@@ -417,12 +413,12 @@ hr {
     transition: var(--transitions);
 }
 
-#loginWindow h2 {
+#loginWindow h2, #registerWindow h2 {
     text-align: center;
     font-weight: 900;
 }   
 
-#loginWindow input {
+#loginWindow input, #registerWindow input {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
@@ -435,12 +431,56 @@ hr {
     transition: var(--transitions);
 }
 
-.itemName p {
+.itemName p, #registerWindow p {
     display: block;
     margin-top: auto;
     margin-bottom: auto;
     height: max-content
 }
+
+#loginButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 1em 1.2em 0.8em 1.2em;
+    background-color: var(--extra-highlight);
+    width: max-content;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+#register {
+    margin-top: 4%;
+    color: var(--lighter-color);
+    font-size: 1rem;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+}
+/* 
+#noAccountInfo {
+} */
+
+#noAccountButton {
+    font-style: italic;
+}
+
+#closeButton {
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 1em 1.2em 0.8em 1.2em;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .itemheader {
     font-size: 1.5rem;

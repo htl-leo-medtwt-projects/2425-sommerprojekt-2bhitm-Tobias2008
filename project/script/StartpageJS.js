@@ -27,6 +27,8 @@ function load() {
     loadFooterData();
     loadStartpageBricks();
     loadStartpageData();
+
+    openLoginWindow();
 }
 
 /* Script start */
@@ -81,7 +83,7 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--accent-color', '#ff7eb9');
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
-        root.style.setProperty('--extra-highlight', '#f9abd7');
+        root.style.setProperty('--extra-highlight', '#51213c');
         root.style.setProperty('--invert', 'invert(1)');
 
 
@@ -95,7 +97,7 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--accent-color', '#d96cbf');
         root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
         root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
-        root.style.setProperty('--extra-highlight', '#51213c');
+        root.style.setProperty('--extra-highlight', '#f9abd7');
         root.style.setProperty('--invert', 'invert(0)');
 
 
@@ -251,44 +253,53 @@ function loadStartpageData() {
     }
 
     //Länderquiz
-    let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
+    if (true) {
+        let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
 
-    for (let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++) {
-        laenderquiz.innerHTML += `
+        for (let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++) {
+            laenderquiz.innerHTML += `
             <div id="grid-${(i + 1).toString()}">  
             <img src="${STARTPAGE_DATA.laenderquiz[i].imgSRC}">
             <h3>${STARTPAGE_DATA.laenderquiz[i].headline}</h3>
             <p>${STARTPAGE_DATA.laenderquiz[i].information}</p>
             </div>
             `;
+        }
     }
 
     //Musikquiz
-    let musikquiz = document.getElementsByClassName('musikquiz')[0];
+    if (true) {
+        let musikquiz = document.getElementsByClassName('musikquiz')[0];
 
-    for (let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++) {
-        musikquiz.innerHTML += `
+        for (let i = 0; i < STARTPAGE_DATA.musikquiz.length; i++) {
+            musikquiz.innerHTML += `
            <div class="musikinfoItem" id="musikinfoItem${i}" onclick="animateMusikQuizData(${i})"><div class="musikHeadline">${STARTPAGE_DATA.musikquiz[i].headline}</div>
         <div class="content"><p>${STARTPAGE_DATA.musikquiz[i].information}</p></div></div>
             `;
-    }
+        }
 
-    let bottomNav = document.getElementsByClassName('bottomNav')[0];
-    bottomNav.innerHTML = `<h1>Sonstiges...</h1>`;
+
+    }
 
     //Bottomnav
 
-    bottomNav.innerHTML += `
+    if (true) {
+        let bottomNav = document.getElementsByClassName('bottomNav')[0];
+        bottomNav.innerHTML = `<h1>Sonstiges...</h1>`;
+
+        bottomNav.innerHTML += `
         <div class="bottomNavButtons">
             <a href="#">Back2Top</a>
             <a href="${MUST_HAVE_DATA.nav[2].link}">Spielerklärung</a>
             
         </div>
 `;
+    }
 
     //LoginWindow
-    let loginWindow = document.getElementById('loginWindow');
-    loginWindow.innerHTML += `
+    if (true) {
+        let loginWindow = document.getElementById('loginWindow');
+        loginWindow.innerHTML += `
         <div class="loginWindowContent">
             <h2>${MUST_HAVE_DATA.loginWindow[0].name}</h2>
             <div class="infoItem"></div>
@@ -299,23 +310,31 @@ function loadStartpageData() {
                 <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
                 <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
             </div>
-            <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
+                <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
 
         </div>
     `;
+    }
 
     //RegisterWindow
-    let registerWindow = document.getElementById('registerWindow');
-    registerWindow.innerHTML += `
+    if (true) {
+        let registerWindow = document.getElementById('registerWindow');
+        registerWindow.innerHTML += `
         <div class="registerWindowContent">
             <h2>${MUST_HAVE_DATA.registerWindow[0].name}</h2>
             <div class="infoItem"></div>
             ${MUST_HAVE_DATA.registerWindow[0].inputUsername}
             ${MUST_HAVE_DATA.registerWindow[0].inputPassword}
+            ${MUST_HAVE_DATA.registerWindow[0].inputPasswordRepeat}
             <div id='registerButton' onclick='register()'>${MUST_HAVE_DATA.registerWindow[0].button}</div>
+            <div id="login">
+                <div id="haveAccountInfo">${MUST_HAVE_DATA.registerWindow[0].info}</div>
+                <div id="haveAccountButton" onclick="openLoginWindow()">${MUST_HAVE_DATA.registerWindow[0].loginButton}</div>
+            </div>
             <div id='closeButton' onclick='closeRegisterWindow()'>${MUST_HAVE_DATA.registerWindow[0].closeButton}</div>
         </div>
     `;
+    }
 }
 
 function animateMusikQuizData(index) {
@@ -422,7 +441,7 @@ function register() {
 
     if (document.getElementById('registerUsername').value === '' || document.getElementById('registerPassword').value === '') {
         console.log('Bitte Username und Passwort eingeben!');
-document.getElementsByClassName('infoItem')[1].innerHTML = 'Bitte Username und Passwort eingeben!';
+        document.getElementsByClassName('infoItem')[1].innerHTML = 'Bitte Username und Passwort eingeben!';
         return;
     }
 
