@@ -1,4 +1,4 @@
-let PLAYER_DATA = JSON.parse(localStorage.getItem('playerData')) ?? {
+let PLAYER_DATA = {
     "username": "",
     "password": "",
     "avatar": "",

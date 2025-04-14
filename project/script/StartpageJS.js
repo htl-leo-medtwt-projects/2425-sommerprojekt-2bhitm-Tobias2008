@@ -4,6 +4,7 @@ console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
+
 document.addEventListener('DOMContentLoaded', () => {
     load();
 });
@@ -27,8 +28,6 @@ function load() {
     loadFooterData();
     loadStartpageBricks();
     loadStartpageData();
-
-    openLoginWindow();
 }
 
 /* Script start */
@@ -305,7 +304,7 @@ function loadStartpageData() {
             <div class="infoItem"></div>
             ${MUST_HAVE_DATA.loginWindow[0].inputUsername}
             ${MUST_HAVE_DATA.loginWindow[0].inputPassword}
-            <div id='registerButton' onclick='login()'>${MUST_HAVE_DATA.loginWindow[0].button}</div>
+            <div>${MUST_HAVE_DATA.loginWindow[0].button}</div>
             <div id="register"> 
                 <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
                 <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
@@ -413,6 +412,8 @@ function login() {
         if (players[i].username == document.getElementById('usernameLogin').value && players[i].password == document.getElementById('passwordLogin').value) {
             console.log('Login erfolgreich!');
             PLAYER_DATA = players[i];
+            sessionStorage.setItem('login', true);
+            sessionStorage.setItem('loggedPlayer', JSON.stringify(PLAYER_DATA));
             return;
         } else if (players[i].username == document.getElementById('usernameLogin').value && players[i].password != document.getElementById('passwordLogin').value) {
             console.log('Login fehlgeschlagen! - falsches Passwort!');
@@ -474,25 +475,72 @@ function closeRegisterWindow() {
 function register() {
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
 
-    if (document.getElementById('usernameRegister').value == '' || document.getElementById('passwordRegister').value == '' || document.getElementById('passwordRepeatRegister').value == '') {
+    if (document.getElementById('usernameRegister').value == '' || document.getElementById('passwordRegister').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
+        document.getElementsByClassName('infoItem')[1].style.opacity = '1';
+        document.getElementsByClassName('infoItem')[1].style.padding = '1rem';
         document.getElementsByClassName('infoItem')[1].innerHTML = 'Bitte Username und Passwort eingeben!';
+
+        setTimeout(() => {
+            document.getElementsByClassName('infoItem')[1].style.opacity = '0';
+            document.getElementsByClassName('infoItem')[1].style.padding = '0';
+
+            setTimeout(() => { document.getElementsByClassName('infoItem')[1].innerHTML = ''; }, 300);
+        }, 3000);
+        document.getElementById('usernameRegister').focus();
+        return;
+    }
+
+    if (document.getElementById('passwordRegister').value != document.getElementById('passwordRepeatRegister').value) {
+        console.log('Passwörter stimmen nicht überein!');
+        document.getElementsByClassName('infoItem')[1].style.opacity = '1';
+        document.getElementsByClassName('infoItem')[1].style.padding = '1rem';
+        document.getElementsByClassName('infoItem')[1].innerHTML = 'Passwörter stimmen nicht überein!';
+
+        setTimeout(() => {
+            document.getElementsByClassName('infoItem')[1].style.opacity = '0';
+            document.getElementsByClassName('infoItem')[1].style.padding = '0';
+
+            setTimeout(() => { document.getElementsByClassName('infoItem')[1].innerHTML = ''; }, 300);
+        }, 3000);
+        document.getElementById('passwordRegister').focus();
+
         return;
     }
 
     for (let i = 0; i < players.length; i++) {
         if (players[i].username == document.getElementById('usernameRegister').value) {
             console.log('Username bereits vergeben!');
-            // EXCEPTION HANDLING
+
+            document.getElementsByClassName('infoItem')[1].style.opacity = '1';
+            document.getElementsByClassName('infoItem')[1].style.padding = '1rem';
+            document.getElementsByClassName('infoItem')[1].innerHTML = 'Username bereits vergeben!';
+
+            setTimeout(() => {
+                document.getElementsByClassName('infoItem')[1].style.opacity = '0';
+                document.getElementsByClassName('infoItem')[1].style.padding = '0';
+
+                setTimeout(() => { document.getElementsByClassName('infoItem')[1].innerHTML = ''; }, 300);
+            }, 3000);
+            document.getElementById('usernameRegister').focus();
+
             return;
         }
     }
 
-    PLAYER_DATA.username = document.getElementById('usernameRegister').value;
-    PLAYER_DATA.password = document.getElementById('passwordRegister').value;
+    setTimeout(() => {
+        PLAYER_DATA.username = document.getElementById('usernameRegister').value;
+        PLAYER_DATA.password = document.getElementById('passwordRegister').value;
 
-    players.push(PLAYER_DATA);
-    console.log('Account erfolgreich erstellt!');
+        players.push(PLAYER_DATA);
+        console.log('Account erfolgreich erstellt!');
 
-    localStorage.setItem('playerData', JSON.stringify(players));
+        localStorage.setItem('playerData', JSON.stringify(players));
+
+    }, 10);
+
+    setTimeout(() => {
+        closeRegisterWindow();
+        openLoginWindow();
+    }, 3000);
 }
