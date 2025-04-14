@@ -423,6 +423,20 @@ function login() {
             PLAYER_DATA = players[i];
             sessionStorage.setItem('login', true);
             sessionStorage.setItem('loggedPlayer', JSON.stringify(PLAYER_DATA));
+
+            document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.username + '!';
+            document.getElementsByClassName('infoItem')[0].style.opacity = '1';
+            document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
+
+            setTimeout(() => {
+                document.getElementsByClassName('infoItem')[0].style.opacity = '0';
+                document.getElementsByClassName('infoItem')[0].style.padding = '0';
+
+                setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 500);
+            }, 1500);
+
+            setTimeout(() => { closeLoginWindow(); }, 2000);
+            
             return;
         } else if (players[i].username == document.getElementById('usernameLogin').value && players[i].password != document.getElementById('passwordLogin').value) {
             console.log('Login fehlgeschlagen! - falsches Passwort!');
@@ -559,47 +573,10 @@ function register() {
 function loadPlayerDataOverview() {
     console.log('loadPlayerDataOverview()');
     let playerData = document.getElementsByClassName('playerData')[0];
-    playerData.innerHTML = `
-        <div class="playerDataContent">
-            <h1>${PLAYER_DATA.username}</h1>
-            <h2>Level: ${PLAYER_DATA.level}</h2>
-            <h2>XP: ${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</h2>
-            <h2>Coins: ${PLAYER_DATA.coins}</h2>
-            <div class="inventory"></div>
-            <div class="achievements"></div>
-            <div class="quests"></div>
-        </div>`;
-    let inventory = document.getElementsByClassName('inventory')[0];
-    let achievements = document.getElementsByClassName('achievements')[0];
-    let quests = document.getElementsByClassName('quests')[0];
+    playerData.innerHTML += `
+    <div class="blurryBackground">Penis
+    </div>`;
 
-    inventory.innerHTML = `<h3>Inventar</h3>`;
-    achievements.innerHTML = `<h3>Erfolge</h3>`;
-    quests.innerHTML = `<h3>Quests</h3>`;
-
-    for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
-        inventory.innerHTML += `
-            <div class="inventoryItem">${PLAYER_DATA.inventory[i]}</div>
-        `;
-    }
-
-    for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
-        achievements.innerHTML += `
-            <div class="achievementItem">${PLAYER_DATA.achievements[i]}</div>
-        `;
-    }
-
-    for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
-        quests.innerHTML += `
-            <div class="questItem">${PLAYER_DATA.quests[i]}</div>
-        `;
-    }
-
-    setTimeout(() => {
-        playerData.style.opacity = '1';
-        playerData.style.display = 'block';
-        document.getElementsByClassName('playerData')[0].style.opacity = '1';
-        document.getElementsByClassName('playerData')[0].style.display = 'block';
-    }, 10);
-
+    playerData.style.display = 'block';
+    playerData.style.opacity = '1';
 }
