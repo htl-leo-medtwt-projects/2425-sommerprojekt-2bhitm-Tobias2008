@@ -14,9 +14,9 @@ function load() {
     loadFooterData();
     loadData();
 
-    if(localStorage.getItem('User') === null || localStorage.getItem('User') === undefined) {
-        localStorage.setItem('User', JSON.stringify(PLAYER_DATA));
-    }
+    // if(localStorage.getItem('User') === null || localStorage.getItem('User') === undefined) {
+    //     localStorage.setItem('User', JSON.stringify(PLAYER_DATA));
+    // }
 }
 load();
 
@@ -195,32 +195,32 @@ function loadData() {
 
 }
 
-function buyPowerUp(index) {
-    if(userLoggedIn()) {
-        let userData = JSON.parse(localStorage.getItem('User'));
-        let shopData = SHOP_DATA.items[index];
+// function buyPowerUp(index) {
+//     if(userLoggedIn()) {
+//         let userData = JSON.parse(localStorage.getItem('loggedUser'));
+//         let shopData = SHOP_DATA.items[index];
 
-        if (userData.Coins >= shopData.price) {
-            userData.Coins -= shopData.price;
-            userData.Inventory.push(shopData);
-            localStorage.setItem('User', JSON.stringify(userData));
-            // item gekauft
-        } else {
-            // nicht genug Coins
-            console.log('Nicht genug Coins!');
-        }
-    } else {
-        console.log('kein User eingeloggt');
-    }
-}
+//         if (userData.Coins >= shopData.price) {
+//             userData.Coins -= shopData.price;
+//             userData.Inventory.push(shopData);
+//             localStorage.setItem('User', JSON.stringify(userData));
+//             // item gekauft
+//         } else {
+//             // nicht genug Coins
+//             console.log('Nicht genug Coins!');
+//         }
+//     } else {
+//         console.log('kein User eingeloggt');
+//     }
+// }
 
-function userLoggedIn() {
-    let userData = PLAYER_DATA;
-    return (
-        userData.Username != "" &&
-        userData.Password != "" 
-    )
-}
+// function userLoggedIn() {
+//     let userData = PLAYER_DATA;
+//     return (
+//         userData.Username != "" &&
+//         userData.Password != "" 
+//     )
+// }
 
 function openLoginWindow() {
     let loginWindow = document.getElementById('loginWindow');

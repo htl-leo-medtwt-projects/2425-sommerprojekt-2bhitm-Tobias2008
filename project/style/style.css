@@ -442,7 +442,7 @@ hr {
     height: max-content
 }
 
-#loginButton {
+#loginButton, #registerButton {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -458,7 +458,7 @@ hr {
     transition: var(--transitions);
 }
 
-#register {
+#register , #login{
     margin-top: 4%;
     color: var(--lighter-color);
     font-size: 1rem;
@@ -471,7 +471,7 @@ hr {
 #noAccountInfo {
 } */
 
-#noAccountButton {
+#noAccountButton, #haveAccountButton {
     font-style: italic;
     cursor: pointer;
     user-select: none;
@@ -521,6 +521,46 @@ hr {
     filter: var(--invert);
 }
 
+.blurryBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 9999999;
+    transition: var(--transitions);
+}
+
+.loginWindowContent, .registerWindowContent {
+    background-color: var(--secondary-color);
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+    border-radius: var(--border-radius);
+    padding: 2rem; 
+}
+
+.playerData {
+    position: fixed;
+    left: 5vw;
+    bottom: 5vh;
+    right: 5vw;
+    top: 5vh;
+    background-color: var(--secondary-color);
+    display: none;
+    opacity: 0;
+    z-index: 5;
+}
+
+.playerDataContent {
+    opacity: 0;
+    z-index: 1000000;
+    color: var(--color)
+}
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -561,12 +601,12 @@ hr {
         filter: brightness(0.8) var(--invert);
     }
 
-    #loginButton:hover {
+    #loginButton:hover, #registerButton:hover {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }
 
-    #noAccountButton:hover {
+    #noAccountButton:hover, #haveAccountButton:hover {
         transform: translateY(-2px);
     }
 
@@ -574,4 +614,4 @@ hr {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }
-}
+}   

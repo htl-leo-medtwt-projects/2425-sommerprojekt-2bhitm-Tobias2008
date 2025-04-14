@@ -209,6 +209,7 @@ function loadStartpageBricks() {
         <div class="bottomNav"></div>
         <div id="loginWindow"></div></div>
         <div id="registerWindow"></div></div>
+        <div class="playerData"></div>
     `;
 }
 
@@ -299,40 +300,42 @@ function loadStartpageData() {
     if (true) {
         let loginWindow = document.getElementById('loginWindow');
         loginWindow.innerHTML += `
-        <div class="loginWindowContent">
-            <h2>${MUST_HAVE_DATA.loginWindow[0].name}</h2>
-            <div class="infoItem"></div>
-            ${MUST_HAVE_DATA.loginWindow[0].inputUsername}
-            ${MUST_HAVE_DATA.loginWindow[0].inputPassword}
-            <div>${MUST_HAVE_DATA.loginWindow[0].button}</div>
-            <div id="register"> 
-                <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
-                <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
-            </div>
-                <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
+            <div class="blurryBackground">
+                <div class="loginWindowContent">
+                    <h2>${MUST_HAVE_DATA.loginWindow[0].name}</h2>
+                    <div class="infoItem"></div>
+                    ${MUST_HAVE_DATA.loginWindow[0].inputUsername}
+                    ${MUST_HAVE_DATA.loginWindow[0].inputPassword}
+                    <div>${MUST_HAVE_DATA.loginWindow[0].button}</div>
+                    <div id="register"> 
+                        <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
+                        <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
+                    </div>
+                    <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
+                </div>
+            </div>`;
 
-        </div>
-    `;
     }
 
     //RegisterWindow
     if (true) {
         let registerWindow = document.getElementById('registerWindow');
         registerWindow.innerHTML += `
-        <div class="registerWindowContent">
-            <h2>${MUST_HAVE_DATA.registerWindow[0].name}</h2>
-            <div class="infoItem"></div>
-            ${MUST_HAVE_DATA.registerWindow[0].inputUsername}
-            ${MUST_HAVE_DATA.registerWindow[0].inputPassword}
-            ${MUST_HAVE_DATA.registerWindow[0].inputPasswordRepeat}
-            <div id='registerButton' onclick='register()'>${MUST_HAVE_DATA.registerWindow[0].button}</div>
-            <div id="login">
-                <div id="haveAccountInfo">${MUST_HAVE_DATA.registerWindow[0].info}</div>
-                <div id="haveAccountButton" onclick="openLoginWindow()">${MUST_HAVE_DATA.registerWindow[0].loginButton}</div>
+        <div class="blurryBackground">
+            <div class="registerWindowContent">
+                <h2>${MUST_HAVE_DATA.registerWindow[0].name}</h2>
+                <div class="infoItem"></div>
+                ${MUST_HAVE_DATA.registerWindow[0].inputUsername}
+                ${MUST_HAVE_DATA.registerWindow[0].inputPassword}
+                ${MUST_HAVE_DATA.registerWindow[0].inputPasswordRepeat}
+                <div onclick='register()'>${MUST_HAVE_DATA.registerWindow[0].button}</div>
+                <div id="login">
+                    <div id="haveAccountInfo">${MUST_HAVE_DATA.registerWindow[0].info}</div>
+                    <div id="haveAccountButton" onclick="openLoginWindow()">${MUST_HAVE_DATA.registerWindow[0].loginButton}</div>
+                </div>
+                <div id='closeButton' onclick='closeRegisterWindow()'>${MUST_HAVE_DATA.registerWindow[0].closeButton}</div>
             </div>
-            <div id='closeButton' onclick='closeRegisterWindow()'>${MUST_HAVE_DATA.registerWindow[0].closeButton}</div>
-        </div>
-    `;
+        </div>`;
     }
 }
 
@@ -376,6 +379,11 @@ function openLoginWindow() {
         closeRegisterWindow();
     }
 
+    if (JSON.parse(sessionStorage.getItem('login')) == true) {
+        loadPlayerDataOverview();
+        return;
+    }
+
     let loginWindow = document.getElementById('loginWindow');
     loginWindow.style.display = 'block';
 
@@ -390,6 +398,7 @@ function closeLoginWindow() {
 }
 
 function login() {
+
     if (document.getElementById('usernameLogin').value == '' || document.getElementById('passwordLogin').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
         document.getElementsByClassName('infoItem')[0].innerHTML = 'Bitte Username und Passwort eingeben!';
@@ -543,4 +552,54 @@ function register() {
         closeRegisterWindow();
         openLoginWindow();
     }, 3000);
+}
+
+/***************** PlayerData *****************/
+
+function loadPlayerDataOverview() {
+    console.log('loadPlayerDataOverview()');
+    let playerData = document.getElementsByClassName('playerData')[0];
+    playerData.innerHTML = `
+        <div class="playerDataContent">
+            <h1>${PLAYER_DATA.username}</h1>
+            <h2>Level: ${PLAYER_DATA.level}</h2>
+            <h2>XP: ${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</h2>
+            <h2>Coins: ${PLAYER_DATA.coins}</h2>
+            <div class="inventory"></div>
+            <div class="achievements"></div>
+            <div class="quests"></div>
+        </div>`;
+    let inventory = document.getElementsByClassName('inventory')[0];
+    let achievements = document.getElementsByClassName('achievements')[0];
+    let quests = document.getElementsByClassName('quests')[0];
+
+    inventory.innerHTML = `<h3>Inventar</h3>`;
+    achievements.innerHTML = `<h3>Erfolge</h3>`;
+    quests.innerHTML = `<h3>Quests</h3>`;
+
+    for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
+        inventory.innerHTML += `
+            <div class="inventoryItem">${PLAYER_DATA.inventory[i]}</div>
+        `;
+    }
+
+    for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
+        achievements.innerHTML += `
+            <div class="achievementItem">${PLAYER_DATA.achievements[i]}</div>
+        `;
+    }
+
+    for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
+        quests.innerHTML += `
+            <div class="questItem">${PLAYER_DATA.quests[i]}</div>
+        `;
+    }
+
+    setTimeout(() => {
+        playerData.style.opacity = '1';
+        playerData.style.display = 'block';
+        document.getElementsByClassName('playerData')[0].style.opacity = '1';
+        document.getElementsByClassName('playerData')[0].style.display = 'block';
+    }, 10);
+
 }
