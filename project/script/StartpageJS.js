@@ -571,16 +571,24 @@ function register() {
 /***************** PlayerData *****************/
 
 function loadPlayerDataOverview() {
+
+    if (PLAYER_DATA.username == "") {
+        PLAYER_DATA = JSON.parse(sessionStorage.getItem('loggedPlayer'));
+    }
+
     let playerData = document.getElementsByClassName('playerData')[0];
 
     playerData.innerHTML = `
         <div class="blurryBackground">
             <div class="playerDataContent">
                 <h1>Spielerprofil</h1>
+                <h1 style="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
                 <div class="playerDataInfos"></div>
-                <div class="playerDataInventory"></div>
-                <div class="playerDataAchievements"></div>
-                <div class="playerDataQuests"></div>
+                <div class="playerDataGrid"> 
+                    <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
+                    <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
+                    <div class="playerDataQuestsHeadline"><h3>Quests</h3><div class="playerDataQuests"></div></div>
+                </div>
             </div>
         </div>`;
 
@@ -588,33 +596,48 @@ function loadPlayerDataOverview() {
     let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
 
     playerDataInfos.innerHTML = `
-        <div class="playerDataItem"><h3>Username:</h3><p>${PLAYER_DATA.username}</p></div>
-        <div class="playerDataItem"><h3>Coins:</h3><p>${PLAYER_DATA.coins}</p></div>
-        <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.level}</p></div>
-        <div class="playerDataItem"><h3>XP:</h3><p>${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</p></div>
+        <div class="playerDataItem"><h3>Username:</h3>${PLAYER_DATA.username}</div>
+        <div class="playerDataItem"><h3>Coins:</h3>${PLAYER_DATA.coins}</div>
+        <div class="playerDataItem"><h3>Level:</h3>${PLAYER_DATA.level}</div>
+        <div class="playerDataItem"><h3>XP:</h3>${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</div>
     `;
 
     let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
-    playerDataInventory.innerHTML = `<h3>Inventar:</h3>`;
     for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
         playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.inventory[i]}</p></div>`;
     }
 
     let playerDataAchievements = document.getElementsByClassName('playerDataAchievements')[0];
-    playerDataAchievements.innerHTML = `<h3>Erfolge:</h3>`;
     for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
         playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.achievements[i]}</p></div>`;
     }
 
     let playerDataQuests = document.getElementsByClassName('playerDataQuests')[0];
-    playerDataQuests.innerHTML = `<h3>Quests:</h3>`;
     for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
         playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.quests[i]}</p></div>`;
     }
 
+    if (PLAYER_DATA.achievements.length == 0) {
+        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>Keine Erfolge</p></div>`;
+    }
+
+    if (PLAYER_DATA.inventory.length == 0) {
+        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>Inventar ist leer</p></div>`;
+    }
+
+    if (PLAYER_DATA.quests.length == 0) {
+        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>Keine Quests</p></div>`;
+    }
 
     setTimeout(() => {
         playerData.style.display = 'block';
         playerData.style.opacity = '1';
     }, 10);
+}
+
+function closePlayerOverview() {
+    let playerData = document.getElementsByClassName('playerData')[0];
+    playerData.style.opacity = '0';
+
+    setTimeout(() => { playerData.style.display = 'none'; }, 300);
 }
