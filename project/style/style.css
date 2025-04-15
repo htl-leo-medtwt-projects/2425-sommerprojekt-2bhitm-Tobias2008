@@ -543,7 +543,7 @@ hr {
     padding: 2rem; 
 }
 
-.playerData  {
+.playerDataContent  {
     position: fixed;
     top: 10vh;
     left: 5vw;
@@ -551,8 +551,11 @@ hr {
     bottom: 5vh;
     background-color: red;
     border-radius: var(--border-radius);
-    display: none;
-    opacity: 0;
+    transition: var(--transitions);
+    color: cyan;
+}
+
+.playerData {
     transition: var(--transitions);
 }
 

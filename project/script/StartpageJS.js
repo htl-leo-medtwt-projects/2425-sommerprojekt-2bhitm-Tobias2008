@@ -436,7 +436,7 @@ function login() {
             }, 1500);
 
             setTimeout(() => { closeLoginWindow(); }, 2000);
-            
+
             return;
         } else if (players[i].username == document.getElementById('usernameLogin').value && players[i].password != document.getElementById('passwordLogin').value) {
             console.log('Login fehlgeschlagen! - falsches Passwort!');
@@ -571,12 +571,50 @@ function register() {
 /***************** PlayerData *****************/
 
 function loadPlayerDataOverview() {
-    console.log('loadPlayerDataOverview()');
     let playerData = document.getElementsByClassName('playerData')[0];
-    playerData.innerHTML += `
-    <div class="blurryBackground">Penis
-    </div>`;
 
-    playerData.style.display = 'block';
-    playerData.style.opacity = '1';
+    playerData.innerHTML = `
+        <div class="blurryBackground">
+            <div class="playerDataContent">
+                <h1>Spielerprofil</h1>
+                <div class="playerDataInfos"></div>
+                <div class="playerDataInventory"></div>
+                <div class="playerDataAchievements"></div>
+                <div class="playerDataQuests"></div>
+            </div>
+        </div>`;
+
+
+    let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
+
+    playerDataInfos.innerHTML = `
+        <div class="playerDataItem"><h3>Username:</h3><p>${PLAYER_DATA.username}</p></div>
+        <div class="playerDataItem"><h3>Coins:</h3><p>${PLAYER_DATA.coins}</p></div>
+        <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.level}</p></div>
+        <div class="playerDataItem"><h3>XP:</h3><p>${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</p></div>
+    `;
+
+    let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
+    playerDataInventory.innerHTML = `<h3>Inventar:</h3>`;
+    for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
+        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.inventory[i]}</p></div>`;
+    }
+
+    let playerDataAchievements = document.getElementsByClassName('playerDataAchievements')[0];
+    playerDataAchievements.innerHTML = `<h3>Erfolge:</h3>`;
+    for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
+        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.achievements[i]}</p></div>`;
+    }
+
+    let playerDataQuests = document.getElementsByClassName('playerDataQuests')[0];
+    playerDataQuests.innerHTML = `<h3>Quests:</h3>`;
+    for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
+        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.quests[i]}</p></div>`;
+    }
+
+
+    setTimeout(() => {
+        playerData.style.display = 'block';
+        playerData.style.opacity = '1';
+    }, 10);
 }
