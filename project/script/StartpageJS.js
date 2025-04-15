@@ -582,7 +582,7 @@ function loadPlayerDataOverview() {
         <div class="blurryBackground">
             <div class="playerDataContent">
                 <h1>Spielerprofil</h1>
-                <h1 style="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
+                <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
                 <div class="playerDataInfos"></div>
                 <div class="playerDataGrid"> 
                     <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
@@ -629,10 +629,10 @@ function loadPlayerDataOverview() {
         playerDataQuests.innerHTML += `<div class="playerDataItem"><p>Keine Quests</p></div>`;
     }
 
+    playerData.style.display = 'block';
     setTimeout(() => {
-        playerData.style.display = 'block';
         playerData.style.opacity = '1';
-    }, 10);
+    }, 50);
 }
 
 function closePlayerOverview() {

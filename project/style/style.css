@@ -585,13 +585,25 @@ hr {
 }
 
 .playerDataInventoryHeadline, .playerDataAchievementsHeadline, .playerDataQuestsHeadline {
-    box-shadow: 3px 3px 3px var(--lighter-color);
     border-bottom-right-radius: var(--border-radius);
+    border-right: 2px solid var(--color);
+    border-bottom: 2px solid var(--color);
     padding: 0 1rem;
 }
 
 .playerDataItem  h3{
     margin: 0;
+}
+
+.closePlayerOverview {
+    position: fixed;
+    top: 10vh;
+    right: 6.5vw;
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    color: var(--color);
+    transition: var(--transitions);
 }
 
 /* hover alle so hinzufügen, dass ich sie später bei 
@@ -644,6 +656,11 @@ hr {
     }
 
     #closeButton:hover {
+        transform: translateY(-2px);
+        color: var(--lighter-color);
+    }
+
+    .closePlayerOverview:hover {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }
