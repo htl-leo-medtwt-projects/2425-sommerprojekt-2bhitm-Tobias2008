@@ -175,5 +175,26 @@ function loadData() {
     <h1>${GAME_EXPLANATION_DATA.headline}</h1>
     <h2>${GAME_EXPLANATION_DATA.headtext}</h2>`;
 
-    
+
 }
+
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    spaceBetween: 30,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    allowTouchMove: true,
+    grabCursor: true,
+});

@@ -6,20 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/explanationStyle.css">
     <link rel="icon" href="../media/Images/favionicon.png" type="image/x-icon">
+
+    <!-- Import Library -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Import Data -->
 
     <script src="../data/playerData.js" defer></script>
     <script src="../data/mustHaveData.js" defer></script>
     <script src="../data/gameExplanationData.js" defer></script>
-    
+
+    <!-- Import Script -->
+
     <script src="../script/ExplanationJS.js" defer></script>
+
+
+
 </head>
 
 <body>
     <nav></nav>
-    <div id="gameExplanation">
-        
-    </div>
+    <div id="gameExplanation"></div>
+
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+        </div>
+      
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      
+      </div>
+
     <footer></footer>
 </body>
 
