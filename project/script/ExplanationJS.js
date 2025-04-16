@@ -182,9 +182,10 @@ function loadData() {
             for(let i = 0; i < GAME_EXPLANATION_DATA.slider.content.length; i++) {
                 brick += `
                     <div class="swiper-slide">
-                        <img src=".${GAME_EXPLANATION_DATA.slider.content[i].image}">
                         <h3>${GAME_EXPLANATION_DATA.slider.content[i].headline}</h3>
                         <p>${GAME_EXPLANATION_DATA.slider.content[i].text}</p>
+
+                        <img class="swiperImage" src=".${GAME_EXPLANATION_DATA.slider.content[i].image}">
                     </div>`;
             }
 

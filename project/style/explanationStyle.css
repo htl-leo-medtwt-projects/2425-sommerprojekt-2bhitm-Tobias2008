@@ -1,27 +1,44 @@
 .swiper-container {
     width: 80vw;
-    height: 70vh;
+    height: 71vh;
     overflow: hidden;
     margin: 2rem auto;
-  }
-  
+}
 
-  .swiper-slide {
-    background: purple;
+
+.swiper-slide {
+    background: var(--secondary-color);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
-    color: #fff;
+    color: var(--color);
     text-align: center;
     width: 100%;
     height: 100%;
     cursor: grab;
-    border-radius: var(--border-radius);
-  }
+    border-radius: var(--border-radius) !important;
+}
 
-  .swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
     color: var(--lighter-color);
     font-size: 2rem;
     transition: var(--transitions);
-  }
+}
+
+.swiperImage {
+    border-radius: 16px;
+    overflow: hidden;
+    display: block;
+    height: 50vh;
+    margin: 1rem auto;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.swiper-container p {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+}
