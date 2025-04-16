@@ -4,6 +4,11 @@ console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
+// let checkPlayer = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLogged: false, user: [], time: new Date};
+
+// let date = new Date;
+
+// console.log(checkPlayer.time)
 
 document.addEventListener('DOMContentLoaded', () => {
     load();
@@ -337,6 +342,26 @@ function loadStartpageData() {
             </div>
         </div>`;
     }
+
+    //Overview
+    if (true) {
+
+        let playerData = document.getElementsByClassName('playerData')[0];
+
+        playerData.innerHTML = `
+        <div class="blurryBackground">
+            <div class="playerDataContent">
+                <h1>Spielerprofil</h1>
+                <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
+                <div class="playerDataInfos"></div>
+                <div class="playerDataGrid"> 
+                    <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
+                    <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
+                    <div class="playerDataQuestsHeadline"><h3>Quests</h3><div class="playerDataQuests"></div></div>
+                </div>
+            </div>
+        </div>`;
+    }
 }
 
 function animateMusikQuizData(index) {
@@ -421,8 +446,8 @@ function login() {
         if (players[i].username == document.getElementById('usernameLogin').value && players[i].password == document.getElementById('passwordLogin').value) {
             console.log('Login erfolgreich!');
             PLAYER_DATA = players[i];
-            sessionStorage.setItem('login', true);
-            sessionStorage.setItem('loggedPlayer', JSON.stringify(PLAYER_DATA));
+
+            localStorage.setItem('loggedPlayer', JSON.stringify({isLoggedIn: true, user: PLAYER_DATA, time: new Date}));
 
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.username + '!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
@@ -576,24 +601,15 @@ function loadPlayerDataOverview() {
         PLAYER_DATA = JSON.parse(sessionStorage.getItem('loggedPlayer'));
     }
 
-    let playerData = document.getElementsByClassName('playerData')[0];
-
-    playerData.innerHTML = `
-        <div class="blurryBackground">
-            <div class="playerDataContent">
-                <h1>Spielerprofil</h1>
-                <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
-                <div class="playerDataInfos"></div>
-                <div class="playerDataGrid"> 
-                    <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
-                    <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
-                    <div class="playerDataQuestsHeadline"><h3>Quests</h3><div class="playerDataQuests"></div></div>
-                </div>
-            </div>
-        </div>`;
-
-
     let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
+    let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
+    let playerDataAchievements = document.getElementsByClassName('playerDataAchievements')[0];
+    let playerDataQuests = document.getElementsByClassName('playerDataQuests')[0];
+
+    playerDataInfos.innerHTML = '';
+    playerDataInventory.innerHTML = '';
+    playerDataAchievements.innerHTML = '';
+    playerDataQuests.innerHTML = '';
 
     playerDataInfos.innerHTML = `
         <div class="playerDataItem"><h3>Username:</h3>${PLAYER_DATA.username}</div>
@@ -602,17 +618,14 @@ function loadPlayerDataOverview() {
         <div class="playerDataItem"><h3>XP:</h3>${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</div>
     `;
 
-    let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
     for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
         playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.inventory[i]}</p></div>`;
     }
 
-    let playerDataAchievements = document.getElementsByClassName('playerDataAchievements')[0];
     for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
         playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.achievements[i]}</p></div>`;
     }
 
-    let playerDataQuests = document.getElementsByClassName('playerDataQuests')[0];
     for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
         playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.quests[i]}</p></div>`;
     }
@@ -629,10 +642,10 @@ function loadPlayerDataOverview() {
         playerDataQuests.innerHTML += `<div class="playerDataItem"><p>Keine Quests</p></div>`;
     }
 
+    let playerData = document.getElementsByClassName('playerData')[0];
+
     playerData.style.display = 'block';
-    setTimeout(() => {
-        playerData.style.opacity = '1';
-    }, 50);
+    setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
 
 function closePlayerOverview() {
@@ -641,3 +654,17 @@ function closePlayerOverview() {
 
     setTimeout(() => { playerData.style.display = 'none'; }, 300);
 }
+
+// function checkIfPlayerLoggedIn()  {
+//     if(checkPlayer.isLogged == false) {
+//         return false;
+//     }
+
+//     console.log('checkPlayer.time:', checkPlayer.time.getTime(), 'date:', date.getTime())
+
+//     if(checkPlayer.time.getTime() + 1000 * 60 * 60 * 24 < date.getTime()) {
+//         return false;
+//     }
+// }
+
+// console.log(checkIfPlayerLoggedIn())
