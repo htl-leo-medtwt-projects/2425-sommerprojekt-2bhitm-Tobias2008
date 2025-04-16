@@ -175,10 +175,31 @@ function loadData() {
     <h1>${GAME_EXPLANATION_DATA.headline}</h1>
     <h2>${GAME_EXPLANATION_DATA.headtext}</h2>`;
 
+    let brick = `
+        <div class="swiper-container">
+            <div class="swiper-wrapper">`;
+      
+            for(let i = 0; i < GAME_EXPLANATION_DATA.slider.content.length; i++) {
+                brick += `
+                    <div class="swiper-slide">
+                        <img src=".${GAME_EXPLANATION_DATA.slider.content[i].image}">
+                        <h3>${GAME_EXPLANATION_DATA.slider.content[i].headline}</h3>
+                        <p>${GAME_EXPLANATION_DATA.slider.content[i].text}</p>
+                    </div>`;
+            }
 
+        brick += `
+            </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      
+      </div>
+    `;
+
+    gameExplanation.innerHTML += brick;
 }
 
-const swiper = new Swiper('.swiper', {
+const swiper = new Swiper('.swiper-container', {
     // Optional parameters
     direction: 'horizontal',
     loop: true,
@@ -197,4 +218,15 @@ const swiper = new Swiper('.swiper', {
 
     allowTouchMove: true,
     grabCursor: true,
+    
+    effect: 'coverflow',
+    coverflowEffect: {
+        depth: 500,
+        modifier: 1,
+        rotate: 45,
+        scale: 0.5,
+        slideShadows: true,
+        stretch: 100,
+    },
+    
 });
