@@ -555,8 +555,7 @@ hr {
     transition: var(--transitions);
     color: var(--color);
     padding: 2rem;
-    height: max-content
-}
+    }
 
 .playerData {
     transition: var(--transitions);
@@ -575,6 +574,11 @@ hr {
     gap: 1rem;
     font-weight: 900;
     font-size: 1.1rem;
+    
+}
+
+.playerDataItem p {
+    margin: 0;
 }
 
 .playerDataGrid {
@@ -590,9 +594,36 @@ hr {
     border-right: 2px solid var(--color);
     border-bottom: 2px solid var(--color);
     padding: 0 1rem;
+    
 }
 
+.playerDataInventory, .playerDataAchievements, .playerDataQuests {
+    
+    padding: 1rem;
+    overflow-y: scroll;
+    height: 30vh;
+}
+
+
 .playerDataItem  h3{
+    margin: 0;
+}
+
+.playerDataItem p {
+    margin: 0;
+     font-size: 1.3rem;
+}
+
+.playerDataItemTwo {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    gap: 1rem;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
+
+.playerDataItemTwo p {
     margin: 0;
 }
 
@@ -605,6 +636,11 @@ hr {
     cursor: pointer;
     color: var(--color);
     transition: var(--transitions);
+}
+
+.line {
+    width: 80%;
+    margin: 1rem auto;
 }
 
 /* hover alle so hinzufügen, dass ich sie später bei 

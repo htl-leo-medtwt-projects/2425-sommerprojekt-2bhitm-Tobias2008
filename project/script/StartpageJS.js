@@ -350,6 +350,7 @@ function loadStartpageData() {
                 <h1>Spielerprofil</h1>
                 <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
                 <div class="playerDataInfos"></div>
+                <hr class="line">
                 <div class="playerDataGrid"> 
                     <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
                     <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
@@ -609,34 +610,34 @@ function loadPlayerDataOverview() {
     playerDataQuests.innerHTML = '';
 
     playerDataInfos.innerHTML = `
-        <div class="playerDataItem"><h3>Username:</h3>${PLAYER_DATA.user.username}</div>
-        <div class="playerDataItem"><h3>Coins:</h3>${PLAYER_DATA.user.coins}</div>
-        <div class="playerDataItem"><h3>Level:</h3>${PLAYER_DATA.user.level}</div>
-        <div class="playerDataItem"><h3>XP:</h3>${PLAYER_DATA.user.XP}/${PLAYER_DATA.user.XPToLevelUp}</div>
+        <div class="playerDataItem"><h3>Username:</h3><p>${PLAYER_DATA.user.username}</p></div>
+        <div class="playerDataItem"><h3>Coins:</h3><p>${PLAYER_DATA.user.coins}</p></div>
+        <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.user.level}</p></div>
+        <div class="playerDataItem"><h3>XP:</h3><p>${PLAYER_DATA.user.XP}/${PLAYER_DATA.user.XPToLevelUp}</p></div>
     `;
 
     for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
-        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.inventory[i]}</p></div>`;
+        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i]}</p></div>`;
     }
 
     for (let i = 0; i < PLAYER_DATA.user.achievements.length; i++) {
-        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.achievements[i]}</p></div>`;
+        playerDataAchievements.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.achievements[i]}</p></div>`;
     }
 
     for (let i = 0; i < PLAYER_DATA.user.quests.length; i++) {
-        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.quests[i]}</p></div>`;
+        playerDataQuests.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.quests[i]}</p></div>`;
     }
 
     if (PLAYER_DATA.user.achievements.length == 0) {
-        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>Keine Erfolge</p></div>`;
+        playerDataAchievements.innerHTML += `<div class="playerDataItemTwo"><p>Keine Erfolge</p></div>`;
     }
 
     if (PLAYER_DATA.user.inventory.length == 0) {
-        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>Inventar ist leer</p></div>`;
+        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>Inventar ist leer</p></div>`;
     }
 
     if (PLAYER_DATA.user.quests.length == 0) {
-        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>Keine Quests</p></div>`;
+        playerDataQuests.innerHTML += `<div class="playerDataItemTwo"><p>Keine Quests</p></div>`;
     }
 
     let playerData = document.getElementsByClassName('playerData')[0];
