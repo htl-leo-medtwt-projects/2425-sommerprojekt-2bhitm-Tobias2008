@@ -22,9 +22,9 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-    color: var(--lighter-color);
-    font-size: 2rem;
-    transition: var(--transitions);
+
+    --swiper-navigation-color: var(--color);
+    padding: 2rem;
 }
 
 .swiperImage {
@@ -41,4 +41,13 @@
     margin: 0 auto;
     text-align: center;
     font-size: 1.2rem;
+}
+
+#gameExplanation h1 {
+    margin-left: 2rem;
+}
+
+#gameExplanation h2 {
+    margin-left: 2.5rem;
+    font-size: 1.5rem;
 }

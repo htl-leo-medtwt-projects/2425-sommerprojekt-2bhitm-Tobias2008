@@ -17,7 +17,7 @@ let GAME_EXPLANATION_DATA = {
             },
             {
                 headline: "Die Level",
-                text: "Es gibt insgesamt 10 Level, die du erreichen kannst. Jedes Level hat seine eigenen Anforderungen und Belohnungen. Je höher dein Level, desto mehr XP brauchst du, um das nächste Level zu erreichen.",
+                text: "Es gibt viele Quizze die du spielen kannst um ein hohes Level zu erreichen. Jedes Level hat seine eigenen Anforderungen und Belohnungen. Je höher dein Level, desto mehr XP brauchst du, um das nächste Level zu erreichen.",
                 image: "./media/Images/LEVELUP.png"
             },
             {

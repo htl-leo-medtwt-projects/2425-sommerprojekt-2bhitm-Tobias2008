@@ -400,11 +400,14 @@ function animateMusikQuizData(index) {
 /******************* Login *******************/
 
 function openLoginWindow() {
+
+    let temp = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
+
     if (document.getElementById('registerWindow').style.display === 'block') {
         closeRegisterWindow();
     }
 
-    if (JSON.parse(sessionStorage.getItem('login')) == true) {
+    if (temp.isLoggedIn == true) {
         loadPlayerDataOverview();
         return;
     }
@@ -447,7 +450,7 @@ function login() {
             console.log('Login erfolgreich!');
             PLAYER_DATA = players[i];
 
-            localStorage.setItem('loggedPlayer', JSON.stringify({isLoggedIn: true, user: PLAYER_DATA, time: new Date}));
+            localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: true, user: PLAYER_DATA, time: new Date }));
 
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.username + '!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
@@ -597,8 +600,9 @@ function register() {
 
 function loadPlayerDataOverview() {
 
-    if (PLAYER_DATA.username == "") {
-        PLAYER_DATA = JSON.parse(sessionStorage.getItem('loggedPlayer'));
+    if (PLAYER_DATA.username == "" || PLAYER_DATA.username == undefined || PLAYER_DATA.username == null) {
+        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer'));
+
     }
 
     let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
@@ -612,33 +616,33 @@ function loadPlayerDataOverview() {
     playerDataQuests.innerHTML = '';
 
     playerDataInfos.innerHTML = `
-        <div class="playerDataItem"><h3>Username:</h3>${PLAYER_DATA.username}</div>
-        <div class="playerDataItem"><h3>Coins:</h3>${PLAYER_DATA.coins}</div>
-        <div class="playerDataItem"><h3>Level:</h3>${PLAYER_DATA.level}</div>
-        <div class="playerDataItem"><h3>XP:</h3>${PLAYER_DATA.XP}/${PLAYER_DATA.XPToLevelUp}</div>
+        <div class="playerDataItem"><h3>Username:</h3>${PLAYER_DATA.user.username}</div>
+        <div class="playerDataItem"><h3>Coins:</h3>${PLAYER_DATA.user.coins}</div>
+        <div class="playerDataItem"><h3>Level:</h3>${PLAYER_DATA.user.level}</div>
+        <div class="playerDataItem"><h3>XP:</h3>${PLAYER_DATA.user.XP}/${PLAYER_DATA.user.XPToLevelUp}</div>
     `;
 
-    for (let i = 0; i < PLAYER_DATA.inventory.length; i++) {
-        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.inventory[i]}</p></div>`;
+    for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
+        playerDataInventory.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.inventory[i]}</p></div>`;
     }
 
-    for (let i = 0; i < PLAYER_DATA.achievements.length; i++) {
-        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.achievements[i]}</p></div>`;
+    for (let i = 0; i < PLAYER_DATA.user.achievements.length; i++) {
+        playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.achievements[i]}</p></div>`;
     }
 
-    for (let i = 0; i < PLAYER_DATA.quests.length; i++) {
-        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.quests[i]}</p></div>`;
+    for (let i = 0; i < PLAYER_DATA.user.quests.length; i++) {
+        playerDataQuests.innerHTML += `<div class="playerDataItem"><p>${PLAYER_DATA.user.quests[i]}</p></div>`;
     }
 
-    if (PLAYER_DATA.achievements.length == 0) {
+    if (PLAYER_DATA.user.achievements.length == 0) {
         playerDataAchievements.innerHTML += `<div class="playerDataItem"><p>Keine Erfolge</p></div>`;
     }
 
-    if (PLAYER_DATA.inventory.length == 0) {
+    if (PLAYER_DATA.user.inventory.length == 0) {
         playerDataInventory.innerHTML += `<div class="playerDataItem"><p>Inventar ist leer</p></div>`;
     }
 
-    if (PLAYER_DATA.quests.length == 0) {
+    if (PLAYER_DATA.user.quests.length == 0) {
         playerDataQuests.innerHTML += `<div class="playerDataItem"><p>Keine Quests</p></div>`;
     }
 
