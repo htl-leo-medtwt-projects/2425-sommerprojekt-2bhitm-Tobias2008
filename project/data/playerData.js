@@ -9,4 +9,5 @@ let PLAYER_DATA = {
     "inventory": [],
     "achievements": [],
     "quests": [],
+    "time": new Date,
 }

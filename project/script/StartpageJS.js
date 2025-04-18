@@ -4,11 +4,7 @@ console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
-// let checkPlayer = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLogged: false, user: [], time: new Date};
-
-// let date = new Date;
-
-// console.log(checkPlayer.time)
+let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date};
 
 document.addEventListener('DOMContentLoaded', () => {
     load();
@@ -400,14 +396,11 @@ function animateMusikQuizData(index) {
 /******************* Login *******************/
 
 function openLoginWindow() {
-
-    let temp = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
-
     if (document.getElementById('registerWindow').style.display === 'block') {
         closeRegisterWindow();
     }
 
-    if (temp.isLoggedIn == true) {
+    if (checkIfPlayerLoggedIn()) {
         loadPlayerDataOverview();
         return;
     }
@@ -446,7 +439,7 @@ function login() {
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
 
     for (let i = 0; i < players.length; i++) {
-        if (players[i].username == document.getElementById('usernameLogin').value && players[i].password == document.getElementById('passwordLogin').value) {
+        if (players[i].username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].password == document.getElementById('passwordLogin').value) {
             console.log('Login erfolgreich!');
             PLAYER_DATA = players[i];
 
@@ -466,7 +459,7 @@ function login() {
             setTimeout(() => { closeLoginWindow(); }, 2000);
 
             return;
-        } else if (players[i].username == document.getElementById('usernameLogin').value && players[i].password != document.getElementById('passwordLogin').value) {
+        } else if (players[i].username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].password != document.getElementById('passwordLogin').value) {
             console.log('Login fehlgeschlagen! - falsches Passwort!');
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login fehlgeschlagen! - falsches Passwort!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
@@ -659,16 +652,19 @@ function closePlayerOverview() {
     setTimeout(() => { playerData.style.display = 'none'; }, 300);
 }
 
-// function checkIfPlayerLoggedIn()  {
-//     if(checkPlayer.isLogged == false) {
-//         return false;
-//     }
+function checkIfPlayerLoggedIn() {
+    if (checkIfPlayerLogged.isLoggedIn == false) {
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: [], time: new Date }));
+        return false;
+    }
 
-//     console.log('checkPlayer.time:', checkPlayer.time.getTime(), 'date:', date.getTime())
+    let now = new Date;
+    if(((new Date(now).getTime() - new Date(checkIfPlayerLogged.time).getTime()) / 1000 / 60 / 60) > 24) {
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: [], time: new Date }));
+        return false;
+    }
 
-//     if(checkPlayer.time.getTime() + 1000 * 60 * 60 * 24 < date.getTime()) {
-//         return false;
-//     }
-// }
+    return true;
+}
 
 // console.log(checkIfPlayerLoggedIn())
