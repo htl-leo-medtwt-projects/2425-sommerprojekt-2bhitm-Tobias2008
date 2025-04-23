@@ -1,5 +1,3 @@
-let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
-
 /******************* Login *******************/
 
 function openLoginWindow() {
@@ -44,14 +42,16 @@ function login() {
     }
 
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
+    console.log(players)
 
     for (let i = 0; i < players.length; i++) {
-        if (players[i].username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].password == document.getElementById('passwordLogin').value) {
+        if (players[i].user.username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].user.password == document.getElementById('passwordLogin').value) {
             console.log('Login erfolgreich!');
-            PLAYER_DATA = {isLoggedIn: true, user: players[i], time: new Date};
+            players[i].isLoggedIn = true;
+            PLAYER_DATA = players[i];
             localStorage.setItem('loggedPlayer', JSON.stringify({ PLAYER_DATA }));
 
-            document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.username + '!';
+            document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.user.username + '!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
             document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
 
@@ -125,6 +125,7 @@ function closeRegisterWindow() {
 function register() {
 
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
+    console.log(players);
 
     if (document.getElementById('usernameRegister').value == '' || document.getElementById('passwordRegister').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
@@ -209,7 +210,7 @@ function closePlayerOverview() {
 }
 
 function checkIfPlayerLoggedIn() {
-    checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
+    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
     if (checkIfPlayerLogged.isLoggedIn == false) {
         localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: [], time: new Date }));
         return false;

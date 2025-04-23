@@ -394,12 +394,17 @@ function animateMusikQuizData(index) {
 
 function loadPlayerDataOverview() {
 
+    console.log('PLAYER_DATA:', PLAYER_DATA);
+    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA)
+
+
     if (PLAYER_DATA.user.username == "" || PLAYER_DATA.user.username == undefined || PLAYER_DATA.user.username == null) {
-        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer'));
+        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA;
 
     }
 
-    console.log('PLAYER_DATA:', PLAYER_DATA);
+    console.log(PLAYER_DATA)
+
 
     let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
     let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
@@ -447,6 +452,3 @@ function loadPlayerDataOverview() {
     playerData.style.display = 'block';
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
-
-
-// console.log(checkIfPlayerLoggedIn())

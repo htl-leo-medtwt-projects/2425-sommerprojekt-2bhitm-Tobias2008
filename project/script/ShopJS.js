@@ -193,6 +193,69 @@ function loadData() {
         `;
     }
 
+    // LoginWindow
+    if (true) {
+        let loginWindow = document.getElementById('loginWindow');
+        loginWindow.innerHTML += `
+            <div class="blurryBackground">
+                <div class="loginWindowContent">
+                    <h2>${MUST_HAVE_DATA.loginWindow[0].name}</h2>
+                    <div class="infoItem"></div>
+                    ${MUST_HAVE_DATA.loginWindow[0].inputUsername}
+                    ${MUST_HAVE_DATA.loginWindow[0].inputPassword}
+                    <div>${MUST_HAVE_DATA.loginWindow[0].button}</div>
+                    <div id="register"> 
+                        <div id="noAccountInfo">${MUST_HAVE_DATA.loginWindow[0].info}</div>
+                        <div id="noAccountButton" onclick="openRegisterWindow()">${MUST_HAVE_DATA.loginWindow[0].registerButton}</div>
+                    </div>
+                    <div id='closeButton' onclick='closeLoginWindow()'>${MUST_HAVE_DATA.loginWindow[0].closeButton}</div>
+                </div>
+            </div>`;
+
+    }
+
+    //RegisterWindow
+    if (true) {
+        let registerWindow = document.getElementById('registerWindow');
+        registerWindow.innerHTML += `
+        <div class="blurryBackground">
+            <div class="registerWindowContent">
+                <h2>${MUST_HAVE_DATA.registerWindow[0].name}</h2>
+                <div class="infoItem"></div>
+                ${MUST_HAVE_DATA.registerWindow[0].inputUsername}
+                ${MUST_HAVE_DATA.registerWindow[0].inputPassword}
+                ${MUST_HAVE_DATA.registerWindow[0].inputPasswordRepeat}
+                <div onclick='register()'>${MUST_HAVE_DATA.registerWindow[0].button}</div>
+                <div id="login">
+                    <div id="haveAccountInfo">${MUST_HAVE_DATA.registerWindow[0].info}</div>
+                    <div id="haveAccountButton" onclick="openLoginWindow()">${MUST_HAVE_DATA.registerWindow[0].loginButton}</div>
+                </div>
+                <div id='closeButton' onclick='closeRegisterWindow()'>${MUST_HAVE_DATA.registerWindow[0].closeButton}</div>
+            </div>
+        </div>`;
+    }
+
+    //Overview
+    if (true) {
+
+        let playerData = document.getElementsByClassName('playerData')[0];
+
+        playerData.innerHTML = `
+        <div class="blurryBackground">
+            <div class="playerDataContent">
+                <h1>Spielerprofil</h1>
+                <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
+                <div class="playerDataInfos"></div>
+                <hr class="line">
+                <div class="playerDataGrid"> 
+                    <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
+                    <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
+                    <div class="playerDataQuestsHeadline"><h3>Quests</h3><div class="playerDataQuests"></div></div>
+                </div>
+            </div>
+        </div>`;
+    }
+
 }
 
 // function buyPowerUp(index) {
@@ -222,19 +285,67 @@ function loadData() {
 //     )
 // }
 
-function openLoginWindow() {
-    let loginWindow = document.getElementById('loginWindow');
-    loginWindow.innerHTML = `
-        <div class="loginWindow">
-            <div class="loginWindowTitle">Login</div>
-            <div class="loginWindowContent">
-                <input type="text" id="username" placeholder="Username">
-                <input type="password" id="password" placeholder="Password">
-                <div class="loginButton" onclick="login()">Login</div>
-                <div class="registerButton" onclick="register()">Register</div>
-            </div>
-        </div>
+
+
+function loadPlayerDataOverview() {
+
+    console.log('PLAYER_DATA:', PLAYER_DATA);
+    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA)
+
+
+    if (PLAYER_DATA.user.username == "" || PLAYER_DATA.user.username == undefined || PLAYER_DATA.user.username == null) {
+        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA;
+
+    }
+
+    console.log(PLAYER_DATA)
+
+
+    let playerDataInfos = document.getElementsByClassName('playerDataInfos')[0];
+    let playerDataInventory = document.getElementsByClassName('playerDataInventory')[0];
+    let playerDataAchievements = document.getElementsByClassName('playerDataAchievements')[0];
+    let playerDataQuests = document.getElementsByClassName('playerDataQuests')[0];
+
+    playerDataInfos.innerHTML = '';
+    playerDataInventory.innerHTML = '';
+    playerDataAchievements.innerHTML = '';
+    playerDataQuests.innerHTML = '';
+
+    playerDataInfos.innerHTML = `
+        <div class="playerDataItem"><h3>Username:</h3><p>${PLAYER_DATA.user.username}</p></div>
+        <div class="playerDataItem"><h3>Coins:</h3><p>${PLAYER_DATA.user.coins}</p></div>
+        <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.user.level}</p></div>
+        <div class="playerDataItem"><h3>XP:</h3><p>${PLAYER_DATA.user.XP}/${PLAYER_DATA.user.XPToLevelUp}</p></div>
     `;
+
+    for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
+        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i]}</p></div>`;
+    }
+
+    for (let i = 0; i < PLAYER_DATA.user.achievements.length; i++) {
+        playerDataAchievements.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.achievements[i]}</p></div>`;
+    }
+
+    for (let i = 0; i < PLAYER_DATA.user.quests.length; i++) {
+        playerDataQuests.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.quests[i]}</p></div>`;
+    }
+
+    if (PLAYER_DATA.user.achievements.length == 0) {
+        playerDataAchievements.innerHTML += `<div class="playerDataItemTwo"><p>Keine Erfolge</p></div>`;
+    }
+
+    if (PLAYER_DATA.user.inventory.length == 0) {
+        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>Inventar ist leer</p></div>`;
+    }
+
+    if (PLAYER_DATA.user.quests.length == 0) {
+        playerDataQuests.innerHTML += `<div class="playerDataItemTwo"><p>Keine Quests</p></div>`;
+    }
+
+    let playerData = document.getElementsByClassName('playerData')[0];
+
+    playerData.style.display = 'block';
+    setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
 
 // $('.slider-for').slick({
