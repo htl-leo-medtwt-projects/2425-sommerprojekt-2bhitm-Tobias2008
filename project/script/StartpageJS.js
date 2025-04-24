@@ -346,7 +346,8 @@ function loadStartpageData() {
         <div class="blurryBackground">
             <div class="playerDataContent">
                 <h1>Spielerprofil</h1>
-                <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
+               
+                <div class="playerDataNav"><img onclick="checkIfPlayerReallyWantsToLogout()" src="./media/Images/logoutICON.webp"><h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1></div>
                 <div class="playerDataInfos"></div>
                 <hr class="line">
                 <div class="playerDataGrid"> 

@@ -160,9 +160,10 @@ function register() {
 
         return;
     }
+    console.log(players)
 
     for (let i = 0; i < players.length; i++) {
-        if (players[i].username == document.getElementById('usernameRegister').value) {
+        if (players[i].user.username.toLowerCase() == document.getElementById('usernameRegister').value.toLowerCase()) {
             console.log('Username bereits vergeben!');
 
             document.getElementsByClassName('infoItem')[1].style.opacity = '1';
@@ -186,10 +187,22 @@ function register() {
         PLAYER_DATA.user.password = document.getElementById('passwordRegister').value;
 
         console.log("PW:" + document.getElementById('passwordRegister').value)
-        console.log("User:" + PLAYER_DATA)
+        console.log(PLAYER_DATA)
 
         players.push(PLAYER_DATA);
         console.log('Account erfolgreich erstellt!');
+
+        document.getElementsByClassName('infoItem')[1].innerHTML = 'Account erfolgreich erstellt!';
+        document.getElementsByClassName('infoItem')[1].style.opacity = '1';
+        document.getElementsByClassName('infoItem')[1].style.padding = '1rem';
+
+        setTimeout(() => {
+            document.getElementsByClassName('infoItem')[1].style.opacity = '0';
+            document.getElementsByClassName('infoItem')[1].style.padding = '0';
+
+            setTimeout(() => { document.getElementsByClassName('infoItem')[1].innerHTML = ''; }, 300);
+        }
+            , 3000);
 
         localStorage.setItem('playerData', JSON.stringify(players));
 
@@ -211,17 +224,74 @@ function closePlayerOverview() {
 }
 
 function checkIfPlayerLoggedIn() {
-    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: [], time: new Date };
+    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: {}, time: new Date };
     if (checkIfPlayerLogged.isLoggedIn == false) {
-        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: [], time: new Date }));
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
         return false;
     }
 
     let now = new Date;
     if (((new Date(now).getTime() - new Date(checkIfPlayerLogged.time).getTime()) / 1000 / 60 / 60) > 24) {
-        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: [], time: new Date }));
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
         return false;
     }
 
     return true;
 }
+
+
+function logout() {
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].user.username.toLowerCase() == PLAYER_DATA.user.username.toLowerCase()) {
+            players[i].isLoggedIn = false;
+            localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
+            localStorage.setItem('playerData', JSON.stringify(players));
+            console.log('Logout erfolgreich!');
+            PLAYER_DATA = { user: {}, coins: 0, xp: 0, level: 0, powerUps: [], achievements: [] };
+            document.getElementsByClassName('infoItem')[0].innerHTML = 'Logout erfolgreich!';
+            document.getElementsByClassName('infoItem')[0].style.opacity = '1';
+            document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
+    
+            setTimeout(() => {
+                document.getElementsByClassName('infoItem')[0].style.opacity = '0';
+                document.getElementsByClassName('infoItem')[0].style.padding = '0';
+    
+                setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
+                
+                closeLoginWindow();
+            }, 2000);
+    
+    
+            return;
+        }
+    }
+}
+
+function checkIfPlayerReallyWantsToLogout() {
+    console.log('Logout?');
+
+    if(document.getElementsByClassName('confirmBox')[0] == undefined || document.getElementsByClassName('confirmBox')[0] == null) {
+        document.body.innerHTML += "<div class='confirmBox'></div>"; 
+    }
+
+    let box = document.getElementsByClassName('confirmBox')[0];
+    box.innerHTML = `
+        <div class="confirmBoxContent">
+            <h2>Logout</h2>
+            <p>Bist du sicher, dass du dich ausloggen möchtest?</p>
+            <button class="confirmButton" onclick="logout()">Ja</button>
+            <button class="cancelButton" onclick="closeLogout()">Nein</button>
+        </div>`;
+
+    box.style.display = 'block';
+    box.style.opacity = '1';
+
+    }
+
+
+    function closeLogout() {
+        let box = document.getElementsByClassName('confirmBox')[0];
+        box.style.opacity = '0';
+
+        setTimeout(() => { box.remove(); }, 300);
+    }

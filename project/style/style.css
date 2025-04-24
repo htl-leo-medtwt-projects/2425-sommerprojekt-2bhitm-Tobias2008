@@ -655,6 +655,23 @@ hr {
     width: 5%;
 }
 
+.playerDataNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.playerDataNav img {
+    width: 2%;
+    filter: var(--invert);
+    transition: var(--transitions);
+    position: fixed;
+    top: 12.35vh;
+    right: 9vw;
+    cursor: pointer;
+}
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -714,5 +731,10 @@ hr {
     .closePlayerOverview:hover {
         transform: translateY(-2px);
         color: var(--lighter-color);
+    }
+
+    .playerDataNav img:hover {
+        transform: translateY(-2px);
+        filter: brightness(0.8) var(--invert);
     }
 }
