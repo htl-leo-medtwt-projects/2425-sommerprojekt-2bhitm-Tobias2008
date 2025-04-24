@@ -223,6 +223,7 @@ function loadData() {
       </div>
     `;
 
+        brick += "<hr class='line'>";
         bigView.innerHTML += brick;
     }
 

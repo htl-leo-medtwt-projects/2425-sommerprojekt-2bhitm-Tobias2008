@@ -80,17 +80,21 @@
     transition: var(--transitions);
 }
 
+.swiper-container {
+    width: 80vw;
+    height: 33vh;
+    overflow: hidden;
+    margin: 5rem auto 0 auto;
+}
+
 .slideItem {
     background: var(--secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 18px;
     color: var(--color);
     text-align: center;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--border-radius) !important;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+
 }
 .swiper-button-prev,
 .swiper-button-next {
@@ -99,7 +103,7 @@
     padding: 2rem;
 }
 
-.swiperImage {
+/* .swiperImage {
     border-radius: 16px;
     overflow: hidden;
     display: block;
@@ -113,7 +117,7 @@
     margin: 0 auto;
     text-align: center;
     font-size: 1.2rem;
-}
+} */
 
 
 .slideItem .buyButton {

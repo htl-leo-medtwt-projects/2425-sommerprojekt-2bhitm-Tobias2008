@@ -648,7 +648,11 @@ hr {
 
 .line {
     width: 80%;
-    margin: 1rem auto;
+    margin: 5rem auto;
+}
+
+.slideItem .shopicon {
+    width: 5%;
 }
 
 /* hover alle so hinzufügen, dass ich sie später bei 
