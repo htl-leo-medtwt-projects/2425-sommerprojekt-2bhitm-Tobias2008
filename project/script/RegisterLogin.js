@@ -241,6 +241,8 @@ function checkIfPlayerLoggedIn() {
 
 
 function logout() {
+    let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
+
     for (let i = 0; i < players.length; i++) {
         if (players[i].user.username.toLowerCase() == PLAYER_DATA.user.username.toLowerCase()) {
             players[i].isLoggedIn = false;
@@ -258,7 +260,7 @@ function logout() {
 
                 setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
 
-                closeLoginWindow();
+                closeLogout();
             }, 2000);
 
 
