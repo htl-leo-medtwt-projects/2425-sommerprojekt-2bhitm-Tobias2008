@@ -564,7 +564,7 @@ hr {
 .playerData {
     transition: var(--transitions);
     opacity: 0;
-    z-index: -20;
+    display: none;
 }
 
 .playerDataInfos {

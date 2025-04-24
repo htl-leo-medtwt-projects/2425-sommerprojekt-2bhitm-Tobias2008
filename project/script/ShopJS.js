@@ -193,6 +193,36 @@ function loadData() {
         `;
     }
 
+    // Slider
+    if (true) {
+        let bigView = document.getElementsByClassName('bigView')[0];
+        let brick = "";
+
+        brick = `<div class="swiper-container">
+        <div class="swiper-wrapper">`;
+
+        for (let i = 0; i < SHOP_DATA.items.length; i++) {
+            brick += `
+            <div class="swiper-slide">
+                <div class="itemheader">
+                    <img class="shopicon" src=".${SHOP_DATA.items[i].icon}" alt="${SHOP_DATA.items[i].name}">    
+                    <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
+                </div>
+                <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
+                <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
+                <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
+            </div>`;
+        }
+        brick += `
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>`
+
+        bigView.innerHTML = brick;
+    }
+
+
     // LoginWindow
     if (true) {
         let loginWindow = document.getElementById('loginWindow');
@@ -246,7 +276,7 @@ function loadData() {
                 <h1>Spielerprofil</h1>
                 <h1 class="closePlayerOverview" onclick="closePlayerOverview()">X</h1>
                 <div class="playerDataInfos"></div>
-                <hr class="line">
+                <div class="shopSlider"></div>
                 <div class="playerDataGrid"> 
                     <div class="playerDataInventoryHeadline"><h3>Inventar</h3><div class="playerDataInventory"></div></div>
                     <div class="playerDataAchievementsHeadline"><h3>Erfolge</h3><div class="playerDataAchievements"></div></div>
@@ -344,22 +374,38 @@ function loadPlayerDataOverview() {
 
     let playerData = document.getElementsByClassName('playerData')[0];
 
-    playerData.style.zindex = 4000;
+    playerData.style.display = 'block';
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
 
-// $('.slider-for').slick({
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     arrows: false,
-//     fade: true,
-//     asNavFor: '.slider-nav'
-//   });
-//   $('.slider-nav').slick({
-//     slidesToShow: 3,
-//     slidesToScroll: 1,
-//     asNavFor: '.slider-for',
-//     dots: true,
-//     centerMode: true,
-//     focusOnSelect: true
-//   });
+const swiper = new Swiper('.shopSlider', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    spaceBetween: 30,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    allowTouchMove: true,
+    grabCursor: true,
+
+    effect: 'coverflow',
+    coverflowEffect: {
+        depth: 500,
+        modifier: 1,
+        rotate: 45,
+        scale: 0.5,
+        slideShadows: true,
+        stretch: 100,
+    },
+
+});

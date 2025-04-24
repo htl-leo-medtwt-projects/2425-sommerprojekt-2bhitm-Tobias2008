@@ -207,7 +207,7 @@ function closePlayerOverview() {
     let playerData = document.getElementsByClassName('playerData')[0];
     playerData.style.opacity = '0';
 
-    setTimeout(() => { playerData.style.zindex = -20; }, 300);
+    setTimeout(() => { playerData.style.display = 'none'; }, 300);
 }
 
 function checkIfPlayerLoggedIn() {

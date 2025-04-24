@@ -449,6 +449,6 @@ function loadPlayerDataOverview() {
 
     let playerData = document.getElementsByClassName('playerData')[0];
 
-    playerData.style.zindex = 4000;
+    playerData.style.display = 'none';
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }

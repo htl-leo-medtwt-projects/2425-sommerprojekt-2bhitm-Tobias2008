@@ -178,18 +178,18 @@ function loadData() {
     let brick = `
         <div class="swiper-container">
             <div class="swiper-wrapper">`;
-      
-            for(let i = 0; i < GAME_EXPLANATION_DATA.slider.content.length; i++) {
-                brick += `
+
+    for (let i = 0; i < GAME_EXPLANATION_DATA.slider.content.length; i++) {
+        brick += `
                     <div class="swiper-slide">
                         <h3>${GAME_EXPLANATION_DATA.slider.content[i].headline}</h3>
                         <p>${GAME_EXPLANATION_DATA.slider.content[i].text}</p>
 
                         <img class="swiperImage" src=".${GAME_EXPLANATION_DATA.slider.content[i].image}">
                     </div>`;
-            }
+    }
 
-        brick += `
+    brick += `
             </div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
@@ -320,7 +320,7 @@ function loadPlayerDataOverview() {
 
     let playerData = document.getElementsByClassName('playerData')[0];
 
-    playerData.style.zindex = 4000;
+    playerData.style.display = 'block';
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
 
@@ -343,7 +343,7 @@ const swiper = new Swiper('.swiper-container', {
 
     allowTouchMove: true,
     grabCursor: true,
-    
+
     effect: 'coverflow',
     coverflowEffect: {
         depth: 500,
@@ -353,6 +353,5 @@ const swiper = new Swiper('.swiper-container', {
         slideShadows: true,
         stretch: 100,
     },
-    
-});
 
+});
