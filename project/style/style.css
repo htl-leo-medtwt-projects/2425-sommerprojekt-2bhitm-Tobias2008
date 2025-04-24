@@ -444,7 +444,8 @@ hr {
     height: max-content
 }
 
-#loginButton, #registerButton {
+#loginButton,
+#registerButton {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -460,7 +461,8 @@ hr {
     transition: var(--transitions);
 }
 
-#register , #login{
+#register,
+#login {
     margin-top: 4%;
     color: var(--lighter-color);
     font-size: 1rem;
@@ -473,7 +475,8 @@ hr {
 #noAccountInfo {
 } */
 
-#noAccountButton, #haveAccountButton {
+#noAccountButton,
+#haveAccountButton {
     font-style: italic;
     cursor: pointer;
     user-select: none;
@@ -535,17 +538,18 @@ hr {
     transition: var(--transitions);
 }
 
-.loginWindowContent, .registerWindowContent {
+.loginWindowContent,
+.registerWindowContent {
     background-color: var(--secondary-color);
     width: 40%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 4%;
     border-radius: var(--border-radius);
-    padding: 2rem; 
+    padding: 2rem;
 }
 
-.playerDataContent  {
+.playerDataContent {
     position: fixed;
     top: 10vh;
     left: 5vw;
@@ -555,12 +559,12 @@ hr {
     transition: var(--transitions);
     color: var(--color);
     padding: 2rem;
-    }
+}
 
 .playerData {
     transition: var(--transitions);
     opacity: 0;
-    display: none;
+    z-index: -20;
 }
 
 .playerDataInfos {
@@ -574,7 +578,7 @@ hr {
     gap: 1rem;
     font-weight: 900;
     font-size: 1.1rem;
-    
+
 }
 
 .playerDataItem p {
@@ -589,29 +593,33 @@ hr {
     margin-top: 3vh;
 }
 
-.playerDataInventoryHeadline, .playerDataAchievementsHeadline, .playerDataQuestsHeadline {
+.playerDataInventoryHeadline,
+.playerDataAchievementsHeadline,
+.playerDataQuestsHeadline {
     border-bottom-right-radius: var(--border-radius);
     border-right: 2px solid var(--color);
     border-bottom: 2px solid var(--color);
     padding: 0 1rem;
-    
+
 }
 
-.playerDataInventory, .playerDataAchievements, .playerDataQuests {
-    
+.playerDataInventory,
+.playerDataAchievements,
+.playerDataQuests {
+
     padding: 1rem;
     overflow-y: scroll;
     height: 30vh;
 }
 
 
-.playerDataItem  h3{
+.playerDataItem h3 {
     margin: 0;
 }
 
 .playerDataItem p {
     margin: 0;
-     font-size: 1.3rem;
+    font-size: 1.3rem;
 }
 
 .playerDataItemTwo {
@@ -683,12 +691,14 @@ hr {
         filter: brightness(0.8) var(--invert);
     }
 
-    #loginButton:hover, #registerButton:hover {
+    #loginButton:hover,
+    #registerButton:hover {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }
 
-    #noAccountButton:hover, #haveAccountButton:hover {
+    #noAccountButton:hover,
+    #haveAccountButton:hover {
         transform: translateY(-2px);
     }
 
@@ -701,4 +711,4 @@ hr {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }
-}   
+}

@@ -50,6 +50,7 @@ function login() {
             players[i].isLoggedIn = true;
             PLAYER_DATA = players[i];
             localStorage.setItem('loggedPlayer', JSON.stringify({ PLAYER_DATA }));
+            localStorage.setItem('playerData', JSON.stringify(players));
 
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.user.username + '!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
@@ -206,7 +207,7 @@ function closePlayerOverview() {
     let playerData = document.getElementsByClassName('playerData')[0];
     playerData.style.opacity = '0';
 
-    setTimeout(() => { playerData.style.display = 'none'; }, 300);
+    setTimeout(() => { playerData.style.zindex = -20; }, 300);
 }
 
 function checkIfPlayerLoggedIn() {

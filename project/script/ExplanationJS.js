@@ -320,7 +320,7 @@ function loadPlayerDataOverview() {
 
     let playerData = document.getElementsByClassName('playerData')[0];
 
-    playerData.style.display = 'block';
+    playerData.style.zindex = 4000;
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
 
