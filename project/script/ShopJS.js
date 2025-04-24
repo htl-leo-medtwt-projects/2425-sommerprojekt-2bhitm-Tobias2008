@@ -197,9 +197,6 @@ function loadData() {
     if (true) {
         let bigView = document.getElementsByClassName('bigView')[0];
 
-        bigView.innerHTML = `
-    <h1>${SHOP_DATA.title}</h1>
-    <h2>${SHOP_DATA.description}</h2>`;
 
         let brick = `
         <div class="swiper-container">
@@ -207,14 +204,14 @@ function loadData() {
 
         for (let i = 0; i < SHOP_DATA.items.length; i++) {
             brick += `
-                    <div class="swiper-slide">
+                    <div class="swiper-slide slideItem">
                         <div class="itemheader">
-                    <img class="shopicon" src=".${SHOP_DATA.items[i].icon}" alt="${SHOP_DATA.items[i].name}">    
-                    <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
-                </div>
-                <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
-                <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
-                <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
+                            <img class="shopicon" src=".${SHOP_DATA.items[i].icon}" alt="${SHOP_DATA.items[i].name}">    
+                            <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
+                        </div>
+                        <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
+                        <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
+                        <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
                     </div>`;
         }
 
