@@ -672,6 +672,46 @@ hr {
     cursor: pointer;
 }
 
+.confirmBox {
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+    right: 10vw;
+    bottom: 30vh;
+    z-index: 30000;
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.confirmButton, 
+.cancelButton {
+    font-size: 1.3rem;
+    transition: var(--transitions);
+    border-radius: var(--border-radius);
+    background-color: var(--extra-highlight);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+    margin: 1em 0 0 0;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    font-weight: 600;
+    color: var(--color);
+}
+
+.flexBox {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-self: center;
+    gap: 2rem;
+}
+
+#temp {
+    transition: var(--transitions);
+}
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -736,5 +776,11 @@ hr {
     .playerDataNav img:hover {
         transform: translateY(-2px);
         filter: brightness(0.8) var(--invert);
+    }
+
+    .confirmButton:hover,
+    .cancelButton:hover {
+        transform: translateY(-2px);
+        color: var(--lighter-color);
     }
 }

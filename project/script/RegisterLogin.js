@@ -251,17 +251,17 @@ function logout() {
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Logout erfolgreich!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
             document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
-    
+
             setTimeout(() => {
                 document.getElementsByClassName('infoItem')[0].style.opacity = '0';
                 document.getElementsByClassName('infoItem')[0].style.padding = '0';
-    
+
                 setTimeout(() => { document.getElementsByClassName('infoItem')[0].innerHTML = ''; }, 300);
-                
+
                 closeLoginWindow();
             }, 2000);
-    
-    
+
+
             return;
         }
     }
@@ -269,9 +269,10 @@ function logout() {
 
 function checkIfPlayerReallyWantsToLogout() {
     console.log('Logout?');
+    closePlayerOverview();
 
-    if(document.getElementsByClassName('confirmBox')[0] == undefined || document.getElementsByClassName('confirmBox')[0] == null) {
-        document.body.innerHTML += "<div class='confirmBox'></div>"; 
+    if (!document.getElementById('temp')) {
+        document.body.innerHTML += "<div id='temp'><div class='blurryBackground'><div class='confirmBox'></div></div></div>";
     }
 
     let box = document.getElementsByClassName('confirmBox')[0];
@@ -279,19 +280,25 @@ function checkIfPlayerReallyWantsToLogout() {
         <div class="confirmBoxContent">
             <h2>Logout</h2>
             <p>Bist du sicher, dass du dich ausloggen möchtest?</p>
-            <button class="confirmButton" onclick="logout()">Ja</button>
-            <button class="cancelButton" onclick="closeLogout()">Nein</button>
+            <div class="flexBox">
+            <div class="confirmButton" onclick="logout()">Ausloggen</div>
+            <div class="cancelButton" onclick="closeLogout()">Angemeldet bleiben</div>
+            </div>
         </div>`;
 
     box.style.display = 'block';
     box.style.opacity = '1';
 
-    }
+}
 
 
-    function closeLogout() {
-        let box = document.getElementsByClassName('confirmBox')[0];
-        box.style.opacity = '0';
+function closeLogout() {
+    let box = document.getElementById('temp');
+    box.style.opacity = '0';
 
-        setTimeout(() => { box.remove(); }, 300);
-    }
+    setTimeout(() => {
+        if (box) {
+            box.remove();
+        }
+    }, 300);
+}

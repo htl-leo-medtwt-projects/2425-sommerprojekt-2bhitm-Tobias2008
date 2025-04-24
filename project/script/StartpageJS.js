@@ -395,7 +395,8 @@ function animateMusikQuizData(index) {
 
 function loadPlayerDataOverview() {
 
-    console.log('PLAYER_DATA:', PLAYER_DATA);
+    console.log('PLAYER_DATA:');
+    console.log(PLAYER_DATA);
     console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA)
 
 
@@ -450,6 +451,6 @@ function loadPlayerDataOverview() {
 
     let playerData = document.getElementsByClassName('playerData')[0];
 
-    playerData.style.display = 'none';
+    playerData.style.display = 'block';
     setTimeout(() => { playerData.style.opacity = '1'; }, 10);
 }
