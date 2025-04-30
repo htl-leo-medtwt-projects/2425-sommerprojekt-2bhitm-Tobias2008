@@ -66,7 +66,7 @@ function login() {
             setTimeout(() => { closeLoginWindow(); }, 2000);
 
             return;
-        } else if (players[i].username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].password != document.getElementById('passwordLogin').value) {
+        } else if (players[i].user.username.toLowerCase() == document.getElementById('usernameLogin').value.toLowerCase() && players[i].password != document.getElementById('passwordLogin').value) {
             console.log('Login fehlgeschlagen! - falsches Passwort!');
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login fehlgeschlagen! - falsches Passwort!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
@@ -224,15 +224,15 @@ function closePlayerOverview() {
 }
 
 function checkIfPlayerLoggedIn() {
-    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: {}, time: new Date };
+    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { PLAYER_DATA: { isLoggedIn: false, user: {}, time: new Date(new Date) } };
     if (checkIfPlayerLogged.isLoggedIn == false) {
-        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
         return false;
     }
 
-    let now = new Date;
-    if (((new Date(now).getTime() - new Date(checkIfPlayerLogged.time).getTime()) / 1000 / 60 / 60) > 24) {
-        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
+    let now = new Date(new Date);
+    if (((new Date(now).getTime() - new Date(checkIfPlayerLogged.PLAYER_DATA.time).getTime()) / 1000 / 60 / 60) > 24) {
+        localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
         return false;
     }
 
@@ -246,7 +246,7 @@ function logout() {
     for (let i = 0; i < players.length; i++) {
         if (players[i].user.username.toLowerCase() == PLAYER_DATA.user.username.toLowerCase()) {
             players[i].isLoggedIn = false;
-            localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date }));
+            localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
             localStorage.setItem('playerData', JSON.stringify(players));
             console.log('Logout erfolgreich!');
             PLAYER_DATA = { user: {}, coins: 0, xp: 0, level: 0, powerUps: [], achievements: [] };

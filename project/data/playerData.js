@@ -12,5 +12,5 @@ let PLAYER_DATA = {
         "achievements": [],
         "quests": [],
     }, 
-    time: new Date
+    time: new Date(new Date)
 }
