@@ -322,7 +322,6 @@ function buyPowerUp(index) {
                 localStorage.setItem('loggedPlayer', JSON.stringify(userData));
                 playerData[playerIndex] = userData;
                 localStorage.setItem('playerData', JSON.stringify(playerData));
-                console.log('Item after add', userData.user.inventory[i]);
                 i = userData.user.inventory.length;
                 bought = true;
                 return;
@@ -337,7 +336,6 @@ function buyPowerUp(index) {
             localStorage.setItem('loggedPlayer', JSON.stringify(userData));
             playerData[playerIndex] = userData;
             localStorage.setItem('playerData', JSON.stringify(playerData));
-            console.log('Item after add', userData.user.inventory);
             bought = true;
         }
 
