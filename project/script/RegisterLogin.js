@@ -49,7 +49,8 @@ function login() {
             console.log('Login erfolgreich!');
             players[i].isLoggedIn = true;
             PLAYER_DATA = players[i];
-            localStorage.setItem('loggedPlayer', JSON.stringify({ PLAYER_DATA }));
+
+            localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER_DATA));
             localStorage.setItem('playerData', JSON.stringify(players));
 
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Login erfolgreich! - Willkommen ' + PLAYER_DATA.user.username + '!';
@@ -224,14 +225,14 @@ function closePlayerOverview() {
 }
 
 function checkIfPlayerLoggedIn() {
-    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { PLAYER_DATA: { isLoggedIn: false, user: {}, time: new Date(new Date) } };
+    let checkIfPlayerLogged = JSON.parse(localStorage.getItem('loggedPlayer')) ?? { isLoggedIn: false, user: {}, time: new Date(new Date) };
     if (checkIfPlayerLogged.isLoggedIn == false) {
         localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
         return false;
     }
 
     let now = new Date(new Date);
-    if (((new Date(now).getTime() - new Date(checkIfPlayerLogged.PLAYER_DATA.time).getTime()) / 1000 / 60 / 60) > 24) {
+    if (((new Date(now).getTime() - new Date(checkIfPlayerLogged.time).getTime()) / 1000 / 60 / 60) > 24) {
         localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
         return false;
     }

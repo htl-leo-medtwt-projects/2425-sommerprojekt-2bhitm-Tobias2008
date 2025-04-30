@@ -1,7 +1,6 @@
 const SHOP_DATA = {
     "title": "Power-Ups",
     "description": "Hier kannst du Power-Ups kaufen, um deine Gewinnchancen zu erhöhen. Jedes Power-Up hat einen bestimmten Preis und eine spezielle Funktion. Wähle weise aus!",
-
     "items": [
         
         {
@@ -10,7 +9,8 @@ const SHOP_DATA = {
             "price": 15,
             "description": "Ein zufälliger Power-Up-Effekt wird ausgelöst",
             "onclick": 2
-        },{
+        },
+        {
             "name": "Hint",
             "icon": "./media/Images/die-gluhbirne.png",
             "price": 10,

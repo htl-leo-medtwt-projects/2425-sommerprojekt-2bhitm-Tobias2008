@@ -294,30 +294,79 @@ function loadData() {
 }
 
 function buyPowerUp(index) {
-    if(userLoggedIn()) {
-        let userData = JSON.parse(localStorage.getItem('loggedUser'));
-        let shopData = SHOP_DATA.items[index];
+    console.log('________________________________________')
+    console.log('buyPowerUp', index);
 
-        if (userData.Coins >= shopData.price) {
-            userData.Coins -= shopData.price;
-            userData.Inventory.push(shopData);
-            localStorage.setItem('User', JSON.stringify(userData));
-            // item gekauft
-        } else {
-            // nicht genug Coins
-            console.log('Nicht genug Coins!');
+    if (!userLoggedIn()) { console.log('User is not logged in'); return }
+
+    let userData = JSON.parse(localStorage.getItem('loggedPlayer'));
+    let playerData = JSON.parse(localStorage.getItem('playerData'));
+
+    let playerIndex = playerData.findIndex(player => player.user.username === userData.user.username);
+
+    let shopData = SHOP_DATA.items[index];
+    let bought = false;
+
+    console.log('shopData', shopData);
+    console.log('userData', userData);
+
+
+    if (userData.user.coins > shopData.price) {
+        for (let i = 0; i < userData.user.inventory.length; i++) {
+            if (userData.user.inventory[i].name == shopData.name) {
+                console.log("1st if");
+
+                console.log('Item added to inventory:', userData.user.inventory);
+                userData.user.coins -= shopData.price;
+                userData.user.inventory[i].quantity += 1;
+                localStorage.setItem('loggedPlayer', JSON.stringify(userData));
+                playerData[playerIndex] = userData;
+                localStorage.setItem('playerData', JSON.stringify(playerData));
+                console.log('Item after add', userData.user.inventory[i]);
+                i = userData.user.inventory.length;
+                bought = true;
+                return;
+            }
         }
+
+        if (!bought) {
+            console.log("2nd if");
+            console.log('Item added to inventory:', userData.user.inventory);
+            userData.user.coins -= shopData.price;
+            userData.user.inventory.push({ name: shopData.name, quantity: 1 });
+            localStorage.setItem('loggedPlayer', JSON.stringify(userData));
+            playerData[playerIndex] = userData;
+            localStorage.setItem('playerData', JSON.stringify(playerData));
+            console.log('Item after add', userData.user.inventory);
+            bought = true;
+        }
+
+        if (!bought) {
+            console.log("Ein Fehler ist aufgetreten, Item konnte nicht gekauft werden");
+        }
+
     } else {
-        console.log('kein User eingeloggt');
+        console.log("Nicht genug Coins", userData.user.coins, shopData.price);
     }
+
+
+
+
 }
 
 function userLoggedIn() {
-    let userData = localStorage.getItem();
-    return (
-        userData.Username != "" &&
-        userData.Password != "" 
-    )
+    let userData = JSON.parse(localStorage.getItem('loggedPlayer') ?? { isLoggedIn: false, user: {}, time: new Date(new Date) });
+    console.log('userLoggedIn', userData);
+
+    if (!userData.isLoggedIn) {
+        return false;
+    }
+
+    if (userData.user.username == "" || userData.user.username == undefined || userData.user.username == null) {
+        return false;
+    }
+
+    return true;
 }
 
 
@@ -325,11 +374,11 @@ function userLoggedIn() {
 function loadPlayerDataOverview() {
 
     console.log('PLAYER_DATA:', PLAYER_DATA);
-    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA)
+    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')))
 
 
     if (PLAYER_DATA.user.username == "" || PLAYER_DATA.user.username == undefined || PLAYER_DATA.user.username == null) {
-        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA;
+        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer'));
 
     }
 
@@ -414,3 +463,9 @@ const swiper = new Swiper('.swiper-container', {
     },
 
 });
+
+function getCoins() {
+    let userData = JSON.parse(localStorage.getItem('loggedPlayer'));
+    userData.user.coins += 1000;
+    localStorage.setItem('loggedPlayer', JSON.stringify(userData));
+}

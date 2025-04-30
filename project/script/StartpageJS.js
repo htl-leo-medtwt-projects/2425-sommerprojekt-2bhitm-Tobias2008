@@ -397,11 +397,11 @@ function loadPlayerDataOverview() {
 
     console.log('PLAYER_DATA:');
     console.log(PLAYER_DATA);
-    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA)
+    console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')))
 
 
-    if (PLAYER_DATA.user.username == "" || PLAYER_DATA.user.username == undefined || PLAYER_DATA.user.username == null) {
-        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer')).PLAYER_DATA;
+    if (PLAYER_DATA == undefined || PLAYER_DATA.user.username == undefined || PLAYER_DATA.user.username == "" || PLAYER_DATA.user.username == null) {
+        PLAYER_DATA = JSON.parse(localStorage.getItem('loggedPlayer'));
 
     }
 
