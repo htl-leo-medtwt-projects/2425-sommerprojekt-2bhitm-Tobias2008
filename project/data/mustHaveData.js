@@ -18,7 +18,7 @@ const MUST_HAVE_DATA = {
         },
         {
             "name": "Quiz Auswahl",
-            "link": ""
+            "link": "./pages/quiz.html"
         },
         {
             "name": "Darkmode",
