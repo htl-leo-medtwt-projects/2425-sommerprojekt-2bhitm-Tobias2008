@@ -18,7 +18,6 @@
 
     <script src="../script/RegisterLogin.js" defer></script>
     <script src="../script/Quiz.js" defer></script>
-    <script src="../script/QuizFlaggen.JS" defer></script>
 
 </head>
 
@@ -27,12 +26,15 @@
     <h1 class="headQuiz">Quiz Auswahl</h1>
     <h2 class="unterHead">... such dir hier ein Quiz aus, dass du spielen möchtest!</h2>
     <div id="data">
+        <div id="loginWindow"></div>
+        <div id="registerWindow"></div>
+        <div class="playerData"></div>
         <h3>Flaggenquiz</h3>
         <p>Hier kannst du dein Wissen über Flaggen testen! Wie viele Flaggen kannst du richtig zuordnen?</p>
         <div id="flaggenQuiz">
             <div id="flagLevelOne">
                 <h3>Level 1</h3>
-                <p>Klicke<p onclick="startQuiz('flag', 'europe')"> hier </p>um das<br>Quiz zu starten!</p>
+                <p>Klicke<p onclick="startQuiz('flag', 'europe', 'easy')"> hier </p>um das<br>Quiz zu starten!</p>
             </div>
         </div>
     </div>

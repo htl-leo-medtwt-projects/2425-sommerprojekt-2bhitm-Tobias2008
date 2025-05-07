@@ -6,6 +6,21 @@ let countryData = {
     "america": [],
     "oceania": [],
 }
+
+let lenght = {
+    "easy": 5,
+    "medium": 10,
+    "hard": 15
+}
+
+let matchData = {
+    "lenght": 0,
+    "correct": 0,
+    "correctCountries": [],
+    "wrong": 0,
+    "wrongCountries": [],
+};
+
 let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
 console.log(PLAYER);
 
@@ -14,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     getPlayerData();
     load();
     getGameData();
+    if (!game.type || !game.level || !game.difficulty) {
+        window.location.href = './quiz.html'
+    }
 });
 
 let urlTemp = new URLSearchParams(window.location.search)
@@ -21,7 +39,8 @@ let urlTemp = new URLSearchParams(window.location.search)
 let game = {
     url: new URLSearchParams(window.location.search),
     type: urlTemp.get('type'),
-    level: urlTemp.get('level')
+    level: urlTemp.get('level'),
+    difficulty: urlTemp.get('difficulty'),
 }
 console.log(game)
 
@@ -114,13 +133,14 @@ function getGameData() {
         });
 }
 
+let answers = [];
+
 function startGame() {
-    let answers = [];
     let correctAnswerIndex;
     let correctFlag;
 
     correctAnswerIndex = Math.floor(Math.random() * 4);
-    console.log(game)
+    console.log(game);
 
     for (let i = 0; i < 4; i++) {
         let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
@@ -134,13 +154,68 @@ function startGame() {
 
     correctFlag = `<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">`;
 
+    matchData.flag = `"<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">"`;
+    matchData.country = answers[correctAnswerIndex];
+
     document.getElementById('image').innerHTML = correctFlag;
 
     let brick = '<div class="answers">'
 
-    for(let i = 0; i < answers.length; i++) {
+    for (let i = 0; i < answers.length; i++) {
         brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
     }
     brick += '</div>'
     document.getElementById('answers').innerHTML = brick;
+}
+
+function checkAnswer(index, correctIndex) {
+    matchData.lenght++;
+
+    if (index === correctIndex) {
+        matchData.correct++;
+        matchData.correctCountries.push(answers[index]);
+        document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+
+            if (matchData.lenght < lenght[game.difficulty]) {
+                answers = [];
+                startGame();
+            } else {
+                // Save matchData to localStorage or send it to the server
+                PLAYER.user.coins += matchData.correct * 3;
+                PLAYER.user.XP += matchData.correct * (89/71);
+                let players = JSON.parse(localStorage.getItem('players')) ?? [];
+                let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
+                players[playerIndex] = PLAYER;
+                localStorage.setItem('players', JSON.stringify(players));
+                localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
+                window.location.href = './quiz.html';
+            }
+        }, 2000);
+
+        console.log(matchData);
+        console.log('Round finished!');
+
+    } else {
+        matchData.wrong++;
+        matchData.wrongCountries.push(answers[index]);
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+
+            if (matchData.lenght < lenght[game.difficulty]) {
+                answers = [];
+                startGame();
+            }
+        }, 2000);
+
+        console.log(matchData);
+        console.log('Round finished!');
+    }
+
 }

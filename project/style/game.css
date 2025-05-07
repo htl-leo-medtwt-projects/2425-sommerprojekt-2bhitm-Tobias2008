@@ -3,6 +3,7 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     overflow: hidden;
+    margin-bottom: 1em;
 }
 
 nav {
@@ -38,7 +39,7 @@ nav {
     font-weight: bolder;
     font-size: 2rem;
     gap: 0.5rem;
-    margin: 7em 10em;
+    margin: 4em 10em;
 }
 
 .answer {
@@ -51,8 +52,25 @@ nav {
 }
 
 #image {
-    display: block
-    margin: 0 auto;
+    height: 20vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+#image img {
+    border-radius: 5px;
+}
+
+#result {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-top: 2em;
+    height: 5vh;
+    position: relative;
+    top: 8vh;
+    text-align: center;
+    opacity: 0;
+    transition: var(--transitions);
 }
 
 @media screen and (min-width: 1000px) {
