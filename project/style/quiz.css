@@ -5,13 +5,25 @@
     overflow-x: scroll;
 }
 
+#flaggenQuiz::-webkit-scrollbar {
+    display: none;
+}
+
 #flaggenQuiz div {
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
-    margin: 0.5em 2em;
+    margin: 1.3em 2em;
     padding: 0.5em;
-    min-width: 30vw;
+    min-width: 27vw;
+    min-height: 20vh;
 }
+
+
+#flaggenQuiz h3 {
+    margin-bottom: 2em;
+}
+
+#flaggenQuiz div p {color: red;}
 
 #flaggenQuiz p, #flaggenQuiz div {
     display: inline;
