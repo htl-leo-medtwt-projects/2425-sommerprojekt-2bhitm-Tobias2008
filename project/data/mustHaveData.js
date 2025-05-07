@@ -99,5 +99,25 @@ const MUST_HAVE_DATA = {
             loginButton: "Einloggen",
             closeButton: "X",
         }
+    ],
+    "gameNavigation": [
+        {
+            "name": "Coins",
+            "link": "../media/Images/Coins.png",
+        },
+        {
+            "name": "Hint",
+            "link": "../media/Images/Hint.png",
+        },
+        {
+            "name": "XP-Bar",
+        },
+        {
+            "name": "Level",
+        },
+        {
+            "name": "Aufgeben",
+            "link": "./quiz.html"
+        },
     ]
 }

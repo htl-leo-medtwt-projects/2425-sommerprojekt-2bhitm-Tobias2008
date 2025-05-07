@@ -25,7 +25,7 @@ function load() {
     loadFooterBricks();
     socials = document.getElementsByClassName('socials')[0];
     loadFooterData();
-    
+
 }
 
 /* Script start */
@@ -185,5 +185,19 @@ function loadFooterData() {
                 break;
 
         }
+    }
+}
+
+function loadGameNavigation() {
+    document.querySelector('nav').innerHTML = `
+        <div class="">${MUST_HAVE_DATA.nav[0].name}</div>
+    `
+}
+ 
+function startQuiz(type, level) { 
+    switch (type) {
+        case 'flag': 
+            window.location.href = `./game.html?type=${type}&level=${level}`;
+        break;
     }
 }
