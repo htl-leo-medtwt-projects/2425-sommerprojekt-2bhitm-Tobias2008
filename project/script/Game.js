@@ -179,40 +179,6 @@ function checkAnswer(index, correctIndex) {
 
         setTimeout(() => {
             document.getElementById('result').style.opacity = '0';
-
-            if (matchData.lenght < lenght[game.difficulty]) {
-                answers = [];
-                startGame();
-            } else {
-                // Save matchData to localStorage or send it to the server
-
-                document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
-                document.getElementById('result').innerHTML += `<div class="correct">Correct: ${matchData.correct}</div>`;
-                document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${matchData.wrong}</div>`;
-                document.getElementById('result').style.opacity = '1';
-
-                PLAYER.user.coins += matchData.correct * 3;
-                PLAYER.user.XP += matchData.correct * (89 / 71);
-
-                if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
-                    PLAYER.user.level++;
-                    PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
-                    PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
-                }
-
-                let players = JSON.parse(localStorage.getItem('players')) ?? [];
-                let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
-                players[playerIndex] = PLAYER;
-                localStorage.setItem('players', JSON.stringify(players));
-                localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
-
-                setTimeout(() => {
-                    document.getElementById('result').style.opacity = '0';
-                    setTimeout(() => {
-                        window.location.href = `../quiz.html`;
-                    }, 300);
-                }, 2000);
-            }
         }, 2000);
 
         console.log(matchData);
@@ -226,15 +192,47 @@ function checkAnswer(index, correctIndex) {
 
         setTimeout(() => {
             document.getElementById('result').style.opacity = '0';
-
-            if (matchData.lenght < lenght[game.difficulty]) {
-                answers = [];
-                startGame();
-            }
         }, 2000);
 
         console.log(matchData);
         console.log('Round finished!');
+    }
+
+    if (matchData.lenght < lenght[game.difficulty]) {
+        answers = [];
+        setTimeout(() => {
+            startGame();
+        }, 2300);
+    } else {
+        document.getElementById('image').innerHTML = ``;
+        document.getElementById('answers').innerHTML = ``;
+        document.getElementById('result').innerHTML = ``;
+        document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+        document.getElementById('result').innerHTML += `<div class="correct">Correct: ${matchData.correct}</div>`;
+        document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${matchData.wrong}</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        PLAYER.user.coins += matchData.correct * 3;
+        PLAYER.user.XP += matchData.correct * (89 / 71);
+
+        if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
+            PLAYER.user.level++;
+            PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
+            PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
+        }
+
+        let players = JSON.parse(localStorage.getItem('players')) ?? [];
+        let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
+        players[playerIndex] = PLAYER;
+        localStorage.setItem('players', JSON.stringify(players));
+        localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = `./quiz.html`;
+            }, 300);
+        }, 2000);
     }
 
 }
