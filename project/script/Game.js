@@ -1,5 +1,10 @@
+let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
+console.log(PLAYER);
+
 document.addEventListener('DOMContentLoaded', () => {
     loadDarkWhiteMode();
+    getPlayerData();
+    load();
 });
 
 let urlTemp = new URLSearchParams(window.location.search)
@@ -9,6 +14,7 @@ let game = {
     type: urlTemp.get('type'),
     level: urlTemp.get('level')
 }
+console.log(game)
 
 let root = document.querySelector(':root');
 
@@ -44,4 +50,28 @@ function loadDarkWhiteMode() {
     }
 }
 
-console.log(game)
+function load() {
+    getPlayerData();
+    document.querySelector('nav').innerHTML = `
+        <div class="nav-container">
+            <div id="nav-coins">${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon"></div>
+            <div id="nav-hints">${getHints()} H</div>
+        </div>
+        <div class="nav-container">
+            <div id="nav-level">Level ${PLAYER.user.level}</div>
+            <div id="nav-logout" onclick="leave()">Leave</div>
+        </div>
+    `;
+}
+
+function getPlayerData() { PLAYER = JSON.parse(localStorage.getItem('loggedPlayer'));}
+
+function getHints() {
+    getPlayerData();
+    for (let i = 0; i < PLAYER.user.inventory.length; i++) {
+        if (PLAYER.user.inventory[i].name === 'Random hilfe') {
+            return PLAYER.user.inventory[i].quantity;
+        }
+    }
+    return 0;
+}
