@@ -1,5 +1,3 @@
-// Autor: Tobias Payreder
-
 console.log('script.js loaded');
 
 let theme = localStorage.getItem('theme') ?? 'WhiteMode';

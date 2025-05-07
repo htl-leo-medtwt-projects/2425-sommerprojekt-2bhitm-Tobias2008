@@ -1,3 +1,11 @@
+let countryData = {
+    "all": [],
+    "europe": [],
+    "africa": [],
+    "asia": [],
+    "america": [],
+    "oceania": [],
+}
 let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
 console.log(PLAYER);
 
@@ -5,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDarkWhiteMode();
     getPlayerData();
     load();
+    getGameData();
 });
 
 let urlTemp = new URLSearchParams(window.location.search)
@@ -55,7 +64,7 @@ function load() {
     document.querySelector('nav').innerHTML = `
         <div class="nav-container">
             <div id="nav-coins">${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon"></div>
-            <div id="nav-hints">${getHints()} H</div>
+            <div id="nav-hints">${getHints()} <img src="../media/Images/hint.png" class="hint-icon"></div>
         </div>
         <div class="nav-container">
             <div id="nav-level">Level ${PLAYER.user.level}</div>
@@ -64,7 +73,7 @@ function load() {
     `;
 }
 
-function getPlayerData() { PLAYER = JSON.parse(localStorage.getItem('loggedPlayer'));}
+function getPlayerData() { PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')); }
 
 function getHints() {
     getPlayerData();
@@ -74,4 +83,64 @@ function getHints() {
         }
     }
     return 0;
+}
+
+function leave() {
+    window.location.href = '../index.html';
+}
+
+function getGameData() {
+    fetch(`https://restcountries.com/v3.1/independent?status=true`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            countryData.all = data;
+            countryData.europe = data.filter((country) => country.region === 'Europe');
+            countryData.africa = data.filter((country) => country.region === 'Africa');
+            countryData.asia = data.filter((country) => country.region === 'Asia');
+            countryData.america = data.filter((country) => country.region === 'Americas');
+            countryData.oceania = data.filter((country) => country.region === 'Oceania');
+
+            console.log(data);
+            console.log(countryData);
+
+            startGame();
+
+            // document.getElementById("data").innerHTML = `<img src="https://flagcdn.com/256x192/${data[0].cca2.toLowerCase()}.png">`
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
+
+function startGame() {
+    let answers = [];
+    let correctAnswerIndex;
+    let correctFlag;
+
+    correctAnswerIndex = Math.floor(Math.random() * 4);
+    console.log(game)
+
+    for (let i = 0; i < 4; i++) {
+        let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
+
+        if (answers.includes(randomCountry)) {
+            i--;
+        } else {
+            answers.push(randomCountry);
+        }
+    }
+
+    correctFlag = `<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">`;
+
+    document.getElementById('image').innerHTML = correctFlag;
+
+    let brick = '<div class="answers">'
+
+    for(let i = 0; i < answers.length; i++) {
+        brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
+    }
+    brick += '</div>'
+    document.getElementById('answers').innerHTML = brick;
 }
