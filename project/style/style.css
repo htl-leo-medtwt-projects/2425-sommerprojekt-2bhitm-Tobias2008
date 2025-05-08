@@ -600,16 +600,20 @@ hr {
     border-right: 2px solid var(--color);
     border-bottom: 2px solid var(--color);
     padding: 0 1rem;
-
 }
 
 .playerDataInventory,
 .playerDataAchievements,
 .playerDataQuests {
-
     padding: 1rem;
     overflow-y: scroll;
     height: 30vh;
+}
+
+.playerDataInventory::-webkit-scrollbar,
+.playerDataAchievements::-webkit-scrollbar,
+.playerDataQuests::-webkit-scrollbar {
+    display: none;
 }
 
 

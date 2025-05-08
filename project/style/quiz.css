@@ -1,22 +1,17 @@
 #flaggenQuiz {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    text-align: center;
-    overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
 }
 
 #flaggenQuiz::-webkit-scrollbar {
     display: none;
 }
 
-#flaggenQuiz div {
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-    margin: 1.3em 2em;
-    padding: 0.5em;
-    min-width: 27vw;
-    min-height: 20vh;
-}
+/* #flaggenQuiz div div {
+    margin: 0 auto;
+    padding: 0;
+} */
 
 
 #flaggenQuiz h3 {
@@ -25,7 +20,7 @@
 
 #flaggenQuiz div p {color: red;}
 
-#flaggenQuiz p, #flaggenQuiz div {
+#flaggenQuiz p{
     display: inline;
 }
 
@@ -40,3 +35,44 @@
     margin: 0 1em;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 23vw);
+    overflow-x: scroll;
+    text-align: center;
+    gap: 0;
+}
+
+.grid div {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    width: 20vw;    
+    padding: 2em;
+    margin: 2em;
+}
+
+.grid::-webkit-scrollbar {
+    display: none;
+}
+
+.grid div div {
+    background-color: rgba(0,0,0,0);
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    color: var(--primary-color);
+    border-radius: 0;
+    width: max-content;
+    height: max-content;
+
+}
+
+.headh3 {
+    margin: 1.6em 0 0 2em ;
+    font-size: 1.6em
+}
+.headInfo {
+    font-size: 1.2em;
+    margin: 0.5em 2.5em;
+}
