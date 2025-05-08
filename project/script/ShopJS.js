@@ -401,7 +401,7 @@ function loadPlayerDataOverview() {
     `;
 
     for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
-        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i]}</p></div>`;
+        playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i].name} ${PLAYER_DATA.user.inventory[i].quantity}x</p></div>`;
     }
 
     for (let i = 0; i < PLAYER_DATA.user.achievements.length; i++) {
