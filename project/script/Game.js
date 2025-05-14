@@ -23,7 +23,7 @@ let matchData = {
 };
 
 let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
-console.log(PLAYER);
+console.log("PLAYER", PLAYER);
 
 document.addEventListener('DOMContentLoaded', () => {
     loadDarkWhiteMode();
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             getGameDataFlag();
             break;
         case 'music':
-            // getGameDataMusic();
+            getGameDataMusic();
             break;
 
     }
@@ -53,7 +53,7 @@ let game = {
     level: urlTemp.get('level'),
     difficulty: urlTemp.get('difficulty'),
 }
-console.log(game)
+console.log("Game", game)
 
 let root = document.querySelector(':root');
 
@@ -132,8 +132,8 @@ function getGameDataFlag() {
             countryData.america = data.filter((country) => country.region === 'Americas');
             countryData.oceania = data.filter((country) => country.region === 'Oceania');
 
-            console.log(data);
-            console.log(countryData);
+            console.log("COUNTRIES", data);
+            console.log("COUNTRIES sorted", countryData);
 
             startGame();
 
@@ -151,25 +151,25 @@ function getGameDataMusic() {
         return;
     }
 
-    console.log(MUSIKQUIZDATA);
     startGame();
 }
 
 let answers = [];
 
 function startGame() {
+    let brick = "";
     switch (game.type) {
         case 'flag':
             let correctAnswerIndex;
             let correctFlag;
 
             correctAnswerIndex = Math.floor(Math.random() * 4);
-            console.log(game);
+            console.log("URL", game);
 
             for (let i = 0; i < 4; i++) {
                 let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
 
-                if(answers.includes(randomCountry)) {
+                if (answers.includes(randomCountry)) {
                     i--;
                     continue;
                 }
@@ -191,7 +191,7 @@ function startGame() {
 
             document.getElementById('image').innerHTML = correctFlag;
 
-            let brick = '<div class="answers">'
+            brick = '<div class="answers">'
 
             for (let i = 0; i < answers.length; i++) {
                 brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
@@ -199,7 +199,31 @@ function startGame() {
             brick += '</div>'
             document.getElementById('answers').innerHTML = brick;
 
+            break;
+
         case 'music':
+            console.log("MUSIKQUIZDATA", MUSIKQUIZDATA);
+            let question = Math.floor(Math.random() * 2000) + 1;
+
+            if (question <= 1000) {
+                document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Music[question].question}`;
+                for (let i = 0; i < answers.length; i++) {
+                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question][i]}</div>`
+                }
+                document.getElementById('answers').innerHTML = brick;
+
+            } else {
+                question -= 1000;
+                document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Artist[question].question}`;
+                for (let i = 0; i < answers.length; i++) {
+                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
+                }
+                document.getElementById('answers').innerHTML = brick;
+
+            }
+
+
+            break;
 
     }
 }
@@ -217,7 +241,7 @@ function checkAnswer(index, correctIndex) {
             document.getElementById('result').style.opacity = '0';
         }, 2000);
 
-        console.log(matchData);
+        console.log("MatchData", matchData);
         console.log('Round finished!');
 
     } else {
@@ -230,7 +254,7 @@ function checkAnswer(index, correctIndex) {
             document.getElementById('result').style.opacity = '0';
         }, 2000);
 
-        console.log(matchData);
+        console.log("MatchData", matchData);
         console.log('Round finished!');
     }
 

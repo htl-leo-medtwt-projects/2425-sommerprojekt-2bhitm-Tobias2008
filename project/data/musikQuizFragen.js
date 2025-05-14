@@ -1,7 +1,7 @@
 /* Von ChatGPT generiert */
 
 const MUSIKQUIZDATA = {
-    "Musik allgemein": [
+    "Music": [
         {
             "question": "Wie viele Saiten hat eine typische Violine?",
             "options": [
@@ -10003,7 +10003,7 @@ const MUSIKQUIZDATA = {
             "answer": "2 Geigen, 1 Bratsche, 1 Cello"
         }
     ],
-    "Künstler": [
+    "Artist": [
         {
             "question": "Welcher Künstler veröffentlichte das Album 'Thriller'?",
             "options": [
