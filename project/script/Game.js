@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!game.type || !game.level || !game.difficulty) {
         window.location.href = './quiz.html'
-    } 
+    }
 
     switch (game.type) {
         case 'flag':
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'music':
             // getGameDataMusic();
             break;
-            
+
     }
 });
 
@@ -145,41 +145,63 @@ function getGameDataFlag() {
 }
 
 function getGameDataMusic() {
+    if (!MUSIKQUIZDATA) {
+        console.log('No data found');
+        MUSIKQUIZDATA = {};
+        return;
+    }
+
+    console.log(MUSIKQUIZDATA);
+    startGame();
 }
 
 let answers = [];
 
 function startGame() {
-    let correctAnswerIndex;
-    let correctFlag;
+    switch (game.type) {
+        case 'flag':
+            let correctAnswerIndex;
+            let correctFlag;
 
-    correctAnswerIndex = Math.floor(Math.random() * 4);
-    console.log(game);
+            correctAnswerIndex = Math.floor(Math.random() * 4);
+            console.log(game);
 
-    for (let i = 0; i < 4; i++) {
-        let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
+            for (let i = 0; i < 4; i++) {
+                let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
 
-        if (answers.includes(randomCountry) || matchData.countrys.includes(randomCountry)) {
-            i--;
-        } else {
-            answers.push(randomCountry);
-        }
+                if(answers.includes(randomCountry)) {
+                    i--;
+                    continue;
+                }
+                answers[i] = (randomCountry);
+
+                if (i === correctAnswerIndex && matchData.countrys.includes(answers[correctAnswerIndex])) {
+                    i--;
+                    continue;
+                }
+
+                matchData.countrys.push(answers[i]);
+
+
+            }
+
+            correctFlag = `<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">`;
+
+            matchData.flag = `"<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">"`;
+
+            document.getElementById('image').innerHTML = correctFlag;
+
+            let brick = '<div class="answers">'
+
+            for (let i = 0; i < answers.length; i++) {
+                brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
+            }
+            brick += '</div>'
+            document.getElementById('answers').innerHTML = brick;
+
+        case 'music':
+
     }
-
-    correctFlag = `<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">`;
-
-    matchData.flag = `"<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">"`;
-    matchData.country = answers[correctAnswerIndex];
-
-    document.getElementById('image').innerHTML = correctFlag;
-
-    let brick = '<div class="answers">'
-
-    for (let i = 0; i < answers.length; i++) {
-        brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
-    }
-    brick += '</div>'
-    document.getElementById('answers').innerHTML = brick;
 }
 
 function checkAnswer(index, correctIndex) {
@@ -188,7 +210,6 @@ function checkAnswer(index, correctIndex) {
     if (index === correctIndex) {
         matchData.correct++;
         matchData.correctCountries.push(answers[index]);
-        matchData.countrys.push(answers[index].name.common);
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -202,7 +223,6 @@ function checkAnswer(index, correctIndex) {
     } else {
         matchData.wrong++;
         matchData.wrongCountries.push(answers[index]);
-        matchData.countrys.push(answers[index].name.common);
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
         document.getElementById('result').style.opacity = '1';
 
