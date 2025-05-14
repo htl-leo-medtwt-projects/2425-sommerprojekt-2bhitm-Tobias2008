@@ -32,12 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!game.type || !game.level || !game.difficulty) {
         window.location.href = './quiz.html'
-    }
+    } 
 
     switch (game.type) {
         case 'flag':
             getGameDataFlag();
             break;
+        case 'music':
+            // getGameDataMusic();
+            break;
+            
     }
 });
 
@@ -138,6 +142,9 @@ function getGameDataFlag() {
         .catch((error) => {
             throw error;
         });
+}
+
+function getGameDataMusic() {
 }
 
 let answers = [];
