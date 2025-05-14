@@ -15,6 +15,7 @@ let lenght = {
 
 let matchData = {
     "lenght": 0,
+    "countrys": [],
     "correct": 0,
     "correctCountries": [],
     "wrong": 0,
@@ -28,9 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDarkWhiteMode();
     getPlayerData();
     load();
-    getGameData();
+
     if (!game.type || !game.level || !game.difficulty) {
         window.location.href = './quiz.html'
+    }
+
+    switch (game.type) {
+        case 'flag':
+            getGameDataFlag();
+            break;
     }
 });
 
@@ -108,7 +115,7 @@ function leave() {
     window.location.href = '../index.html';
 }
 
-function getGameData() {
+function getGameDataFlag() {
     fetch(`https://restcountries.com/v3.1/independent?status=true`)
         .then((response) => {
             return response.json();
@@ -145,7 +152,7 @@ function startGame() {
     for (let i = 0; i < 4; i++) {
         let randomCountry = countryData[game.level][Math.floor(Math.random() * countryData[game.level].length)];
 
-        if (answers.includes(randomCountry)) {
+        if (answers.includes(randomCountry) || matchData.countrys.includes(randomCountry)) {
             i--;
         } else {
             answers.push(randomCountry);
@@ -174,6 +181,7 @@ function checkAnswer(index, correctIndex) {
     if (index === correctIndex) {
         matchData.correct++;
         matchData.correctCountries.push(answers[index]);
+        matchData.countrys.push(answers[index].name.common);
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -187,6 +195,7 @@ function checkAnswer(index, correctIndex) {
     } else {
         matchData.wrong++;
         matchData.wrongCountries.push(answers[index]);
+        matchData.countrys.push(answers[index].name.common);
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -204,35 +213,36 @@ function checkAnswer(index, correctIndex) {
             startGame();
         }, 2300);
     } else {
-        document.getElementById('image').innerHTML = ``;
-        document.getElementById('answers').innerHTML = ``;
-        document.getElementById('result').innerHTML = ``;
-        document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
-        document.getElementById('result').innerHTML += `<div class="correct">Correct: ${matchData.correct}</div>`;
-        document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${matchData.wrong}</div>`;
-        document.getElementById('result').style.opacity = '1';
-
-        PLAYER.user.coins += matchData.correct * 3;
-        PLAYER.user.XP += matchData.correct * (89 / 71);
-
-        if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
-            PLAYER.user.level++;
-            PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
-            PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
-        }
-
-        let players = JSON.parse(localStorage.getItem('players')) ?? [];
-        let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
-        players[playerIndex] = PLAYER;
-        localStorage.setItem('players', JSON.stringify(players));
-        localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
-
         setTimeout(() => {
-            document.getElementById('result').style.opacity = '0';
-            setTimeout(() => {
-                window.location.href = `./quiz.html`;
-            }, 300);
-        }, 2000);
-    }
+            document.getElementById('image').innerHTML = ``;
+            document.getElementById('answers').innerHTML = ``;
+            document.getElementById('result').innerHTML = ``;
+            document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${matchData.correct}</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${matchData.wrong}</div>`;
+            document.getElementById('result').style.opacity = '1';
 
+            PLAYER.user.coins += matchData.correct * 3;
+            PLAYER.user.XP += matchData.correct * (89 / 71);
+
+            if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
+                PLAYER.user.level++;
+                PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
+                PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
+            }
+
+            let players = JSON.parse(localStorage.getItem('players')) ?? [];
+            let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
+            players[playerIndex] = PLAYER;
+            localStorage.setItem('players', JSON.stringify(players));
+            localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
+
+            setTimeout(() => {
+                document.getElementById('result').style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = `./quiz.html`;
+                }, 300);
+            }, 2000);
+        }, 2300);
+    }
 }

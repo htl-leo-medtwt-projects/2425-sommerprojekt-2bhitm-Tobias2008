@@ -18,7 +18,10 @@
     margin-bottom: 2em;
 }
 
-#flaggenQuiz div p {color: red;}
+#flaggenQuiz div p {
+    cursor: pointer;
+    transition: var(--transitions);
+}
 
 #flaggenQuiz p{
     display: inline;
@@ -75,4 +78,16 @@
 .headInfo {
     font-size: 1.2em;
     margin: 0.5em 2.5em;
+}
+
+#flagLevelSix {
+    margin-right: 4em;
+}
+
+
+@media screen and (min-width: 1000px) {
+    #flaggenQuiz div p:hover {
+        transform: translateY(-2px);
+        color: var(--lighter-color);
+    }    
 }

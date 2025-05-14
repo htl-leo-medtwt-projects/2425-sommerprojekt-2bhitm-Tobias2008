@@ -259,6 +259,11 @@ function loadGameNavigation() {
 
  
 function startQuiz(type, level, difficulty) { 
+    if(!checkIfPlayerLoggedIn()) {
+        openLoginWindow();
+        return;
+        
+    }
     switch (type) {
         case 'flag': 
             window.location.href = `./game.html?type=${type}&level=${level}&difficulty=${difficulty}`;
