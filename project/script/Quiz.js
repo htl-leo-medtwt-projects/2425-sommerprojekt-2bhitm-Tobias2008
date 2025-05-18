@@ -268,6 +268,8 @@ function startQuiz(type, level, difficulty) {
         case 'flag': 
             window.location.href = `./game.html?type=${type}&level=${level}&difficulty=${difficulty}`;
         break;
+        case 'music':
+            window.location.href = `./game.html?type=${type}&level=${level}`;
     }
 }
 

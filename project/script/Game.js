@@ -7,14 +7,14 @@ let countryData = {
     "oceania": [],
 }
 
-let lenght = {
+let length = {
     "easy": 5,
     "medium": 10,
     "hard": 15
 }
 
 let matchData = {
-    "lenght": 0,
+    "length": 0,
     "countrys": [],
     "correct": 0,
     "correctCountries": [],
@@ -26,11 +26,13 @@ let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
 console.log("PLAYER", PLAYER);
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded");
+
     loadDarkWhiteMode();
     getPlayerData();
     load();
 
-    if (!game.type || !game.level || !game.difficulty) {
+    if (!game.type || !game.level) {
         window.location.href = './quiz.html'
     }
 
@@ -39,9 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
             getGameDataFlag();
             break;
         case 'music':
+            console.log("getGameDataMusic 40");
             getGameDataMusic();
             break;
-
+        default:
+            window.location.href = './quiz.html'
+            break;
     }
 });
 
@@ -116,7 +121,7 @@ function getHints() {
 }
 
 function leave() {
-    window.location.href = '../index.html';
+    window.location.href = './quiz.html';
 }
 
 function getGameDataFlag() {
@@ -145,6 +150,8 @@ function getGameDataFlag() {
 }
 
 function getGameDataMusic() {
+    console.log("getGameDataMusic");
+
     if (!MUSIKQUIZDATA) {
         console.log('No data found');
         MUSIKQUIZDATA = {};
@@ -158,9 +165,9 @@ let answers = [];
 
 function startGame() {
     let brick = "";
+    let correctAnswerIndex = 0;
     switch (game.type) {
         case 'flag':
-            let correctAnswerIndex;
             let correctFlag;
 
             correctAnswerIndex = Math.floor(Math.random() * 4);
@@ -202,20 +209,34 @@ function startGame() {
             break;
 
         case 'music':
+            console.log("Music");
+
+            cutMusicData();
+
             console.log("MUSIKQUIZDATA", MUSIKQUIZDATA);
             let question = Math.floor(Math.random() * 2000) + 1;
 
             if (question <= 1000) {
                 document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Music[question].question}`;
-                for (let i = 0; i < answers.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question][i]}</div>`
+                for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
+                    if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
+                        correctAnswerIndex = i;
+                    }
+                }
+                for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
+                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
                 }
                 document.getElementById('answers').innerHTML = brick;
 
             } else {
                 question -= 1000;
                 document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Artist[question].question}`;
-                for (let i = 0; i < answers.length; i++) {
+                for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
+                    if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
+                        correctAnswerIndex = i;
+                    }
+                }
+                for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
                     brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
                 }
                 document.getElementById('answers').innerHTML = brick;
@@ -229,7 +250,7 @@ function startGame() {
 }
 
 function checkAnswer(index, correctIndex) {
-    matchData.lenght++;
+    matchData.length++;
 
     if (index === correctIndex) {
         matchData.correct++;
@@ -258,7 +279,7 @@ function checkAnswer(index, correctIndex) {
         console.log('Round finished!');
     }
 
-    if (matchData.lenght < lenght[game.difficulty]) {
+    if (matchData.length < length[game.difficulty]) {
         answers = [];
         setTimeout(() => {
             startGame();
@@ -296,4 +317,15 @@ function checkAnswer(index, correctIndex) {
             }, 2000);
         }, 2300);
     }
+}
+
+function cutMusicData() {
+    let cutData = [];
+    for (let i = 0; i < MUSIKQUIZDATA.Music.length; i++) {
+        if (!cutData.includes(MUSIKQUIZDATA.Music[i])) {
+            cutData.push(MUSIKQUIZDATA.Music[i]);
+        }
+    }
+    console.log("cutData", cutData);
+
 }
