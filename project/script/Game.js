@@ -1,3 +1,5 @@
+console.log(document.body)
+
 let countryData = {
     "all": [],
     "europe": [],
@@ -7,13 +9,13 @@ let countryData = {
     "oceania": [],
 }
 
-let length = {
+let flagLength = {
     "easy": 5,
     "medium": 10,
     "hard": 15
 }
 
-let matchData = {
+let flagMatchData = {
     "length": 0,
     "countrys": [],
     "correct": 0,
@@ -182,26 +184,26 @@ function startGame() {
                 }
                 answers[i] = (randomCountry);
 
-                if (i === correctAnswerIndex && matchData.countrys.includes(answers[correctAnswerIndex])) {
+                if (i === correctAnswerIndex && flagMatchData.countrys.includes(answers[correctAnswerIndex])) {
                     i--;
                     continue;
                 }
 
-                matchData.countrys.push(answers[i]);
+                flagMatchData.countrys.push(answers[i]);
 
 
             }
 
             correctFlag = `<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">`;
 
-            matchData.flag = `"<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">"`;
+            flagMatchData.flag = `"<img src="https://flagcdn.com/w320/${answers[correctAnswerIndex].cca2.toLowerCase()}.png">"`;
 
             document.getElementById('image').innerHTML = correctFlag;
 
             brick = '<div class="answers">'
 
             for (let i = 0; i < answers.length; i++) {
-                brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
+                brick += `<div class="answer" onclick="checkAnswerFlag(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
             }
             brick += '</div>'
             document.getElementById('answers').innerHTML = brick;
@@ -224,7 +226,7 @@ function startGame() {
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
+                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
                 }
                 document.getElementById('answers').innerHTML = brick;
 
@@ -237,7 +239,7 @@ function startGame() {
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswer(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
+                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
                 }
                 document.getElementById('answers').innerHTML = brick;
 
@@ -249,12 +251,12 @@ function startGame() {
     }
 }
 
-function checkAnswer(index, correctIndex) {
-    matchData.length++;
+function checkAnswerFlag(index, correctIndex) {
+    flagMatchData.length++;
 
     if (index === correctIndex) {
-        matchData.correct++;
-        matchData.correctCountries.push(answers[index]);
+        flagMatchData.correct++;
+        flagMatchData.correctCountries.push(answers[index]);
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -262,12 +264,12 @@ function checkAnswer(index, correctIndex) {
             document.getElementById('result').style.opacity = '0';
         }, 2000);
 
-        console.log("MatchData", matchData);
+        console.log("MatchData", flagMatchData);
         console.log('Round finished!');
 
     } else {
-        matchData.wrong++;
-        matchData.wrongCountries.push(answers[index]);
+        flagMatchData.wrong++;
+        flagMatchData.wrongCountries.push(answers[index]);
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -275,11 +277,11 @@ function checkAnswer(index, correctIndex) {
             document.getElementById('result').style.opacity = '0';
         }, 2000);
 
-        console.log("MatchData", matchData);
+        console.log("MatchData", flagMatchData);
         console.log('Round finished!');
     }
 
-    if (matchData.length < length[game.difficulty]) {
+    if (flagMatchData.length < flagLength[game.difficulty]) {
         answers = [];
         setTimeout(() => {
             startGame();
@@ -290,12 +292,12 @@ function checkAnswer(index, correctIndex) {
             document.getElementById('answers').innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${matchData.correct}</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${matchData.wrong}</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
             document.getElementById('result').style.opacity = '1';
 
-            PLAYER.user.coins += matchData.correct * 3;
-            PLAYER.user.XP += matchData.correct * (89 / 71);
+            PLAYER.user.coins += flagMatchData.correct * 3;
+            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
 
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
                 PLAYER.user.level++;
@@ -317,6 +319,75 @@ function checkAnswer(index, correctIndex) {
             }, 2000);
         }, 2300);
     }
+}
+
+function checkAnswerMusic(index, correctIndex) {
+    console.log("checkAnswerMusic", index, correctIndex);
+    if (index === correctIndex) {
+        flagMatchData.correct++;
+
+        document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+        }, 2000);
+
+        console.log("MatchData", flagMatchData);
+        console.log('Round finished!');
+
+    } else {
+        flagMatchData.wrong++;
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+        }, 2000);
+
+        console.log("MatchData", flagMatchData);
+        console.log('Round finished!');
+    }
+
+    if (flagMatchData.length < flagLength[game.difficulty]) {
+        answers = [];
+        setTimeout(() => {
+            startGame();
+        }, 2300);
+    } else {
+        setTimeout(() => {
+            document.getElementById('image').innerHTML = ``;
+            document.getElementById('answers').innerHTML = ``;
+            document.getElementById('result').innerHTML = ``;
+            document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
+            document.getElementById('result').style.opacity = '1';
+
+            PLAYER.user.coins += flagMatchData.correct * 3;
+            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
+
+            if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
+                PLAYER.user.level++;
+                PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
+                PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
+            }
+
+            let players = JSON.parse(localStorage.getItem('players')) ?? [];
+            let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
+            players[playerIndex] = PLAYER;
+            localStorage.setItem('players', JSON.stringify(players));
+            localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
+
+            setTimeout(() => {
+                document.getElementById('result').style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = `./quiz.html`;
+                }, 300);
+            }, 2000);
+        }, 2300);
+    }
+    
 }
 
 function cutMusicData() {
