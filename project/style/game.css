@@ -57,6 +57,14 @@ nav {
     padding: 2rem;
 }
 
+#image p {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 0.5em 1em;
+    
+    
+}
+
 #image img {
     border-radius: 5px;
 }

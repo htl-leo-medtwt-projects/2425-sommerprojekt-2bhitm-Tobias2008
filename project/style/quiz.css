@@ -23,8 +23,10 @@
     transition: var(--transitions);
 }
 
-#flaggenQuiz p{
+#flaggenQuiz p, #musikQuiz p{
     display: inline;
+    cursor: pointer;
+    transition: var(--transitions);
 }
 
 .headQuiz {
@@ -86,7 +88,7 @@
 
 
 @media screen and (min-width: 1000px) {
-    #flaggenQuiz div p:hover {
+    #flaggenQuiz p:hover, #musikQuiz p:hover {
         transform: translateY(-2px);
         color: var(--lighter-color);
     }    

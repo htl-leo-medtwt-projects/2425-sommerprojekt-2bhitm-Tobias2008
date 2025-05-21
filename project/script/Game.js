@@ -200,13 +200,11 @@ function startGame() {
 
             document.getElementById('image').innerHTML = correctFlag;
 
-            brick = '<div class="answers">'
 
             for (let i = 0; i < answers.length; i++) {
                 brick += `<div class="answer" onclick="checkAnswerFlag(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
             }
-            brick += '</div>'
-            document.getElementById('answers').innerHTML = brick;
+            document.getElementsByClassName('answers')[0].innerHTML = brick;
 
             break;
 
@@ -219,29 +217,38 @@ function startGame() {
             let question = Math.floor(Math.random() * 2000) + 1;
 
             if (question <= 1000) {
-                document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Music[question].question}`;
+                document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Music[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
+                        console.log("MUSIKQUIZDATA.Music[question].options[i]", MUSIKQUIZDATA.Music[question].options[i]);
+                        console.log("MUSIKQUIZDATA.Music[question].answer", MUSIKQUIZDATA.Music[question].answer);
+                        console.log("MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer", MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer);
+                        console.log("i", i);
+                        
                         correctAnswerIndex = i;
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                     brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
                 }
-                document.getElementById('answers').innerHTML = brick;
+                document.getElementsByClassName('answers')[0].innerHTML = brick;
 
             } else {
                 question -= 1000;
-                document.getElementById('image').innerHTML = `${MUSIKQUIZDATA.Artist[question].question}`;
+                document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Artist[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
+                        console.log("MUSIKQUIZDATA.Artist[question].options[i]", MUSIKQUIZDATA.Artist[question].options[i]);
+                        console.log("MUSIKQUIZDATA.Artist[question].answer", MUSIKQUIZDATA.Artist[question].answer);
+                        console.log("MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer", MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer);
+                        console.log("i", i);
                         correctAnswerIndex = i;
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
                     brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
                 }
-                document.getElementById('answers').innerHTML = brick;
+                document.getElementsByClassName('answers')[0].innerHTML = brick;
 
             }
 
@@ -289,7 +296,7 @@ function checkAnswerFlag(index, correctIndex) {
     } else {
         setTimeout(() => {
             document.getElementById('image').innerHTML = ``;
-            document.getElementById('answers').innerHTML = ``;
+            document.getElementsByClassName('answers')[0].innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
@@ -322,6 +329,7 @@ function checkAnswerFlag(index, correctIndex) {
 }
 
 function checkAnswerMusic(index, correctIndex) {
+    flagMatchData.length++;
     console.log("checkAnswerMusic", index, correctIndex);
     if (index === correctIndex) {
         flagMatchData.correct++;
@@ -349,6 +357,12 @@ function checkAnswerMusic(index, correctIndex) {
         console.log('Round finished!');
     }
 
+    console.log("flagMatchData length", flagMatchData.length);
+    console.log("flagLength", flagLength[game.difficulty]);
+    console.log("flagL", flagLength);
+    console.log("gameDiff", game.difficulty);
+    
+
     if (flagMatchData.length < flagLength[game.difficulty]) {
         answers = [];
         setTimeout(() => {
@@ -357,7 +371,7 @@ function checkAnswerMusic(index, correctIndex) {
     } else {
         setTimeout(() => {
             document.getElementById('image').innerHTML = ``;
-            document.getElementById('answers').innerHTML = ``;
+            document.getElementsByClassName('answers')[0].innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;

@@ -269,7 +269,7 @@ function startQuiz(type, level, difficulty) {
             window.location.href = `./game.html?type=${type}&level=${level}&difficulty=${difficulty}`;
         break;
         case 'music':
-            window.location.href = `./game.html?type=${type}&level=${level}`;
+            window.location.href = `./game.html?type=${type}&level=${difficulty}&difficulty=${level}`;
     }
 }
 
