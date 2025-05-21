@@ -24,6 +24,8 @@ let flagMatchData = {
     "wrongCountries": [],
 };
 
+let musicLength = [7, 15]
+
 let PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')) ?? {};
 console.log("PLAYER", PLAYER);
 
@@ -239,15 +241,30 @@ function startGame() {
         case 'music':
             console.log("Music");
 
-            cutMusicData();
+            switch (game.difficulty) {
+                case 'easy':
+                    randomPercent = false;
+                    break;
+                case 'medium':
+                    randomPercent = Math.ceil(Math.random() * 100) > 50;
+                    break;
+                case 'hard':
+                    randomPercent = true;
+                    break;
+                default:
+                    randomPercent = false;
+                    break;
+            }
+
 
             console.log("MUSIKQUIZDATA", MUSIKQUIZDATA);
-            let question = Math.floor(Math.random() * 10);
 
-            console.log("question", question);
+            let boolean = Math.floor(Math.random() * 2) == 0;
+            let question;
 
-
-            if (question < 5) {
+            if (boolean) {
+                question = Math.floor(Math.random() * MUSIKQUIZDATA.Music.length);
+                console.log("question", question);
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Music[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
@@ -265,7 +282,8 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
 
             } else {
-                question -= 5;
+                question = Math.floor(Math.random() * MUSIKQUIZDATA.Artist.length);
+                console.log("question", question);
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Artist[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer) {
@@ -435,16 +453,16 @@ function checkAnswerMusic(index, correctIndex) {
 
 }
 
-function cutMusicData() {
-    let cutData = [];
-    for (let i = 0; i < MUSIKQUIZDATA.Music.length; i++) {
-        if (!cutData.includes(MUSIKQUIZDATA.Music[i])) {
-            cutData.push(MUSIKQUIZDATA.Music[i]);
-        }
-    }
-    console.log("cutData", cutData);
+// function cutMusicData() {
+//     let cutData = [];
+//     for (let i = 0; i < MUSIKQUIZDATA.Music.length; i++) {
+//         if (!cutData.includes(MUSIKQUIZDATA.Music[i])) {
+//             cutData.push(MUSIKQUIZDATA.Music[i]);
+//         }
+//     }
+//     console.log("cutData", cutData);
 
-}
+// }
 
 function checkAnswerFlagInput(answer) {
     flagMatchData.length++;
