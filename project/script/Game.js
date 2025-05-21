@@ -166,6 +166,29 @@ function getGameDataMusic() {
 let answers = [];
 
 function startGame() {
+    let randomPercent;
+
+    switch (game.difficulty) {
+        case 'easy':
+            randomPercent = false;
+            break;
+        case 'medium':
+            randomPercent = Math.ceil(Math.random() * 100) > 50;
+            break;
+        case 'hard':
+            randomPercent = true;
+            break;
+        default:
+            randomPercent = false;
+            break;
+    }
+
+    console.log("radomPercent", randomPercent);
+
+
+    console.log("radomPercent", randomPercent);
+    console.log("game.level", game.level);
+
     let brick = "";
     let correctAnswerIndex = 0;
     switch (game.type) {
@@ -201,11 +224,16 @@ function startGame() {
             document.getElementById('image').innerHTML = correctFlag;
 
 
-            for (let i = 0; i < answers.length; i++) {
-                brick += `<div class="answer" onclick="checkAnswerFlag(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
+            if (!randomPercent) {
+                for (let i = 0; i < answers.length; i++) {
+                    brick += `<div class="answer" onclick="checkAnswerFlag(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
+                }
+
+            } else {
+                brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
             }
             document.getElementsByClassName('answers')[0].innerHTML = brick;
-
             break;
 
         case 'music':
@@ -217,7 +245,7 @@ function startGame() {
             let question = Math.floor(Math.random() * 10);
 
             console.log("question", question);
-            
+
 
             if (question < 5) {
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Music[question].question}</p>`;
@@ -227,7 +255,7 @@ function startGame() {
                         console.log("MUSIKQUIZDATA.Music[question].answer", MUSIKQUIZDATA.Music[question].answer);
                         console.log("MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer", MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer);
                         console.log("i", i);
-                        
+
                         correctAnswerIndex = i;
                     }
                 }
@@ -364,7 +392,7 @@ function checkAnswerMusic(index, correctIndex) {
     console.log("flagLength", flagLength[game.difficulty]);
     console.log("flagL", flagLength);
     console.log("gameDiff", game.difficulty);
-    
+
 
     if (flagMatchData.length < flagLength[game.difficulty]) {
         answers = [];
@@ -404,7 +432,7 @@ function checkAnswerMusic(index, correctIndex) {
             }, 2000);
         }, 2300);
     }
-    
+
 }
 
 function cutMusicData() {
@@ -416,4 +444,75 @@ function cutMusicData() {
     }
     console.log("cutData", cutData);
 
+}
+
+function checkAnswerFlagInput(answer) {
+    flagMatchData.length++;
+    let input = document.getElementById('answer').value;
+
+    if (input.toLowerCase() == answer.toLowerCase()) {
+        flagMatchData.correct++;
+        flagMatchData.correctCountries.push(answer);
+        document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+        }, 2000);
+
+        console.log("MatchData", flagMatchData);
+        console.log('Round finished!');
+
+    } else {
+        flagMatchData.wrong++;
+        flagMatchData.wrongCountries.push(answer);
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
+        document.getElementById('result').style.opacity = '1';
+
+        setTimeout(() => {
+            document.getElementById('result').style.opacity = '0';
+        }, 2000);
+
+        console.log("MatchData", flagMatchData);
+        console.log('Round finished!');
+    }
+
+    if (flagMatchData.length < flagLength[game.difficulty]) {
+        answers = [];
+        setTimeout(() => {
+            startGame();
+        }, 2300);
+    } else {
+        setTimeout(() => {
+            document.getElementById('image').innerHTML = ``;
+            document.getElementsByClassName('answers')[0].innerHTML = ``;
+            document.getElementById('result').innerHTML = ``;
+            document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
+            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
+            document.getElementById('result').style.opacity = '1';
+
+            PLAYER.user.coins += flagMatchData.correct * 3;
+            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
+
+            if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
+                PLAYER.user.level++;
+                PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
+                PLAYER.user.XPToLevelUp = Math.floor(PLAYER.user.XPToLevelUp * 1.2);
+            }
+
+            let players = JSON.parse(localStorage.getItem('players')) ?? [];
+            let playerIndex = players.findIndex(player => player.username === PLAYER.user.username);
+            players[playerIndex] = PLAYER;
+            localStorage.setItem('players', JSON.stringify(players));
+            localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
+
+            setTimeout(() => {
+                document.getElementById('result').style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = `./quiz.html`;
+                }, 300);
+            }, 2000);
+        }, 2300);
+    }
 }

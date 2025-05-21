@@ -20,6 +20,10 @@ nav {
     align-items: center;
 }
 
+#nav-logout {
+    cursor: pointer;
+}
+
 .coin-icon, .hint-icon {
     width: 1.8rem;
     height: 1.8rem;
@@ -52,7 +56,7 @@ nav {
 }
 
 #image {
-    height: 20vh;
+    max-height: 20vh;
     text-align: center;
     padding: 2rem;
 }
@@ -67,6 +71,7 @@ nav {
 
 #image img {
     border-radius: 5px;
+    max-height: 20vh;
 }
 
 #result {
