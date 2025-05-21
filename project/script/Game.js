@@ -236,11 +236,11 @@ function startGame() {
             } else {
                 question -= 1000;
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Artist[question].question}</p>`;
-                for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
-                    if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
+                for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
+                    if (MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer) {
                         console.log("MUSIKQUIZDATA.Artist[question].options[i]", MUSIKQUIZDATA.Artist[question].options[i]);
                         console.log("MUSIKQUIZDATA.Artist[question].answer", MUSIKQUIZDATA.Artist[question].answer);
-                        console.log("MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer", MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer);
+                        console.log("MUSIKQUIZDATA.Artist[question].options[i] == MUSIKQUIZDATA.Artist[question].answer", MUSIKQUIZDATA.Artist[question].options[i] == MUSIKQUIZDATA.Music[question].answer);
                         console.log("i", i);
                         correctAnswerIndex = i;
                     }
