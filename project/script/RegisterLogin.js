@@ -184,6 +184,9 @@ function register() {
     }
 
     setTimeout(() => {
+        console.log(PLAYER_DATA);
+        console.log(players)
+        
         PLAYER_DATA.user.username = document.getElementById('usernameRegister').value;
         PLAYER_DATA.user.password = document.getElementById('passwordRegister').value;
 

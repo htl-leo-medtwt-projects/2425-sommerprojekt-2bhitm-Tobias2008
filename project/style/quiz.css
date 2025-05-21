@@ -26,6 +26,7 @@
 #flaggenQuiz p, #musikQuiz p{
     display: inline;
     cursor: pointer;
+    font-weight: bolder;
     transition: var(--transitions);
 }
 

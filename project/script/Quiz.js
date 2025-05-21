@@ -303,6 +303,7 @@ function loadPlayerDataOverview() {
         <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.user.level}</p></div>
         <div class="playerDataItem"><h3>XP:</h3><p>${Math.floor(PLAYER_DATA.user.XP)}/${PLAYER_DATA.user.XPToLevelUp}</p></div>
     `;
+console.log(PLAYER_DATA);
 
     for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
         playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i].name} ${PLAYER_DATA.user.inventory[i].quantity}x</p></div>`;

@@ -214,9 +214,12 @@ function startGame() {
             cutMusicData();
 
             console.log("MUSIKQUIZDATA", MUSIKQUIZDATA);
-            let question = Math.floor(Math.random() * 2000) + 1;
+            let question = Math.floor(Math.random() * 10);
 
-            if (question <= 1000) {
+            console.log("question", question);
+            
+
+            if (question < 5) {
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Music[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Music[question].options[i] === MUSIKQUIZDATA.Music[question].answer) {
@@ -234,7 +237,7 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
 
             } else {
-                question -= 1000;
+                question -= 5;
                 document.getElementById('image').innerHTML = `<p>${MUSIKQUIZDATA.Artist[question].question}</p>`;
                 for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
                     if (MUSIKQUIZDATA.Artist[question].options[i] === MUSIKQUIZDATA.Artist[question].answer) {
