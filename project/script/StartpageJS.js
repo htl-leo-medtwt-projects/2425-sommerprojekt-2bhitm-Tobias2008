@@ -367,15 +367,15 @@ function animateMusikQuizData(index) {
         let content = item.querySelector('.content');
 
         if (i === index) {
-            let isExpanded = item.style.maxHeight === '27em';
+            let isExpanded = item.style.maxHeight === '26em';
 
             if (isExpanded) {
                 item.style.maxHeight = '4em';
                 item.style.padding = '1em';
                 if (content) content.style.opacity = '0';
             } else {
-                item.style.maxHeight = '27em';
-                item.style.padding = '2em';
+                item.style.maxHeight = '26em';
+                item.style.padding = '1em';
                 item.onclick = () => animateMusikQuizData(index, -1);
                 if (content) {
                     setTimeout(() => {

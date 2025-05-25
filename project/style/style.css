@@ -286,7 +286,7 @@ hr {
 
 .musikinfoItem {
     background-color: var(--secondary-color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border-radius: 14px;
     font-weight: 500;
     overflow: hidden;
@@ -302,6 +302,7 @@ hr {
 .musikinfoItem .content {
     opacity: 0;
     transition: opacity 0.3s ease;
+    text-align: justify;
 }
 
 .musikinfoItem.expanded {
@@ -806,6 +807,10 @@ hr {
         text-align: center;
     }
 
+    .body h2 {
+        margin: 10% auto 6% auto;
+    }
+
     .flaggenquiz {
         display: flex;
         flex-direction: column-reverse;
@@ -851,9 +856,59 @@ hr {
     .laenderquiz p, .laenderquiz h3 {
         margin: 0 auto;
         width: 90%;
+        text-align: justify;
     }
 
     .laenderquiz h3 {
         margin: 10% auto 2% auto;
     }
+
+    .bottomNav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer .left,
+    footer .right {
+        width: 100%;
+        text-align: center;
+    }
+    footer .right {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    footer .left {
+        gap: 1rem;
+    }
+
+    .socials {
+        grid-template-columns: repeat(3, 1fr);
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .footerLogo {
+        width: 100%;
+    }
+
+    .footerLogo a {
+        font-weight: bolder;
+        font-size: 1.5rem;
+        margin-bottom: 5%;
+    }
+
+    .ContactData,
+    .ContactSocials {
+        width: 70%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
 }
