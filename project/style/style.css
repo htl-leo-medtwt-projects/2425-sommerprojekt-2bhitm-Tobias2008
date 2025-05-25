@@ -788,3 +788,72 @@ hr {
         color: var(--lighter-color);
     }
 }
+
+
+@media screen and (max-width: 500px) {
+    .overview {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: justify;
+        margin: 0 auto;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .body h1, .body h2 {
+        text-align: center;
+    }
+
+    .flaggenquiz {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .flaggenquiz img {
+        width: 90%;
+        height: auto;
+        position: relative;
+        left: 0;
+        margin: 0 auto;
+    }
+
+    
+    .flaggenquiz p, .flaggenquiz h3 {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .flaggenquiz h3 {
+        margin: 10% auto 2% auto;
+    }
+
+    .flaggenquizInfos {
+        width: 90%;
+        text-align: justify;
+        margin: 0 auto;
+    }
+
+    .laenderquiz {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .laenderquiz img {
+        width: 90%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .laenderquiz p, .laenderquiz h3 {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .laenderquiz h3 {
+        margin: 10% auto 2% auto;
+    }
+}

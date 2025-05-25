@@ -235,7 +235,7 @@ function startGame() {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
             }
-            document.getElementsByClassName('answers')[0].innerHTML = brick;
+            document.getElementsByClassName('answersInput')[0].innerHTML = brick;
             break;
 
         case 'music':
@@ -395,7 +395,7 @@ function checkAnswerMusic(index, correctIndex) {
 
     } else {
         flagMatchData.wrong++;
-        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>${correctIndex}</div>`;
         document.getElementById('result').style.opacity = '1';
 
         setTimeout(() => {
