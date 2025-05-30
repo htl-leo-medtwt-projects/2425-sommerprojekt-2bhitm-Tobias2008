@@ -802,6 +802,7 @@ hr {
     }
 
     body {
+        max-width: 91.5vw;
         overflow-x: hidden;
     }
 

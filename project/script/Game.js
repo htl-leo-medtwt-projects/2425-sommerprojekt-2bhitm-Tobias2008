@@ -230,12 +230,16 @@ function startGame() {
                 for (let i = 0; i < answers.length; i++) {
                     brick += `<div class="answer" onclick="checkAnswerFlag(${i}, ${correctAnswerIndex})">${answers[i].name.common}</div>`
                 }
+                document.getElementsByClassName('answers')[0].innerHTML = brick;
+                document.getElementsByClassName('answersInput')[0].innerHTML = ``;
 
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
+                document.getElementsByClassName('answersInput')[0].innerHTML = brick;
+                document.getElementsByClassName('answers')[0].innerHTML = ``;
+
             }
-            document.getElementsByClassName('answersInput')[0].innerHTML = brick;
             break;
 
         case 'music':
@@ -277,7 +281,7 @@ function startGame() {
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
+                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Music[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
                 }
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
 
@@ -295,7 +299,7 @@ function startGame() {
                     }
                 }
                 for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex})">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
+                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
                 }
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
 
@@ -308,6 +312,12 @@ function startGame() {
 }
 
 function checkAnswerFlag(index, correctIndex) {
+    let answers = document.getElementsByClassName('answer');
+
+    for (let i = 0; i < answers.length; i++) {
+        answers[i].onclick = null; // Disable further clicks on answers
+    }
+
     flagMatchData.length++;
 
     if (index === correctIndex) {
@@ -377,7 +387,7 @@ function checkAnswerFlag(index, correctIndex) {
     }
 }
 
-function checkAnswerMusic(index, correctIndex) {
+function checkAnswerMusic(index, correctIndex, correctAnswer) {
     flagMatchData.length++;
     console.log("checkAnswerMusic", index, correctIndex);
     if (index === correctIndex) {
@@ -395,7 +405,7 @@ function checkAnswerMusic(index, correctIndex) {
 
     } else {
         flagMatchData.wrong++;
-        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>${correctIndex}</div>`;
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct Answer: ${correctAnswer}</div>`;
         document.getElementById('result').style.opacity = '1';
 
         setTimeout(() => {

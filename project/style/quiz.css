@@ -1,4 +1,4 @@
-#flaggenQuiz {
+#flaggenQuiz, #musikQuiz {
     display: flex;
     flex-direction: column;
     gap: 3em;
@@ -48,8 +48,7 @@
     overflow-x: scroll;
     text-align: center;
     gap: 0;
-    min-width: max-content;
-    min-height: max-content;
+    
 }
 
 .grid div {
@@ -110,7 +109,7 @@
     }
 
     .grid div {
-        width: 100%;
+        width: 70vw;
         padding: 1em;
         margin: 0.5em;
     };

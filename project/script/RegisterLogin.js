@@ -50,6 +50,8 @@ function login() {
             players[i].isLoggedIn = true;
             PLAYER_DATA = players[i];
 
+            console.log(players);
+            
             localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER_DATA));
             localStorage.setItem('playerData', JSON.stringify(players));
 
@@ -127,8 +129,6 @@ function closeRegisterWindow() {
 function register() {
 
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
-    console.log(players);
-
     if (document.getElementById('usernameRegister').value == '' || document.getElementById('passwordRegister').value == '') {
         console.log('Bitte Username und Passwort eingeben!');
         document.getElementsByClassName('infoItem')[1].style.opacity = '1';
@@ -243,6 +243,7 @@ function checkIfPlayerLoggedIn() {
                 player.time = new Date(new Date);
             }
         });
+        console.log(players);
         localStorage.setItem('playerData', JSON.stringify(players));
         localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
         return false;
@@ -262,9 +263,10 @@ function logout() {
         if (players[i].user.username.toLowerCase() == PLAYER_DATA.user.username.toLowerCase()) {
             players[i].isLoggedIn = false;
             localStorage.setItem('loggedPlayer', JSON.stringify({ isLoggedIn: false, user: {}, time: new Date(new Date) }));
+            console.log(players);
             localStorage.setItem('playerData', JSON.stringify(players));
             console.log('Logout erfolgreich!');
-            PLAYER_DATA = { user: {}, coins: 0, xp: 0, level: 0, powerUps: [], achievements: [] };
+            PLAYER_DATA = { isLoggedIn: false, user: {}, time: new Date(new Date) };
             document.getElementsByClassName('infoItem')[0].innerHTML = 'Logout erfolgreich!';
             document.getElementsByClassName('infoItem')[0].style.opacity = '1';
             document.getElementsByClassName('infoItem')[0].style.padding = '1rem';
