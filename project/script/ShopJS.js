@@ -1,4 +1,5 @@
 function load() {
+    loadNav();
     // Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
     const style = document.createElement('link');
     style.rel = 'stylesheet';
@@ -9,7 +10,7 @@ function load() {
     };
     document.head.appendChild(style);
 
-    loadNav();
+    
     loadFooterBricks();
     loadFooterData();
     loadData();
@@ -28,15 +29,60 @@ function loadNav() {
         <div class="nav"></div>
     `;
 
-    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 2; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
             <a href=".${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
 
     document.getElementsByClassName('nav')[0].innerHTML += `
-        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
+        document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
+
+function openResponsiveNav() {
+    let nav = document.querySelector('nav');
+
+    nav.innerHTML += `<div id="responsiveNav" class="responsiveNav"></div>`;
+    
+    let responsiveNav = document.getElementById('responsiveNav');
+
+    responsiveNav.innerHTML = `
+        <div class="responsiveNavContent">
+            <div class="responsiveNavLogo"><a href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>
+            <div class="responsiveNavLinks"></div>
+        </div>
+    `;
+
+    let responsiveNavLinks = document.querySelector('.responsiveNavLinks');
+
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 2; i++) {
+        responsiveNavLinks.innerHTML += `
+            <a href=".${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
+        `;
+    }
+
+    theme = localStorage.getItem('theme') ?? 'WhiteMode';
+    let temp;
+    if (theme === 'WhiteMode') {
+        temp = 'DarkMode';
+    } else if (theme === 'DarkMode') {
+        temp = 'WhiteMode';
+    }
+
+    responsiveNavLinks.innerHTML += `
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${temp}</div>
+    `;
+    responsiveNavLinks.innerHTML += `
+        <div class="responsiveNavClose" onclick="closeResponsiveNav()">X</div>
+    `;
+
+    document.getElementsByClassName('respsonsiveImg')[0].onclick = 'closeResponsiveNav()';
+    console.log("YIPPIEEEE");
+    
+
+}
+
 
 /******************** Footer ********************/
 
@@ -115,7 +161,9 @@ function loadDarkWhiteMode() {
 
         localStorage.setItem('theme', 'WhiteMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
+        }
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#fce4f1');
         root.style.setProperty('--lighter-color', '#cfa8c3');
@@ -129,8 +177,12 @@ function loadDarkWhiteMode() {
 
         localStorage.setItem('theme', 'DarkMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
+        }
     }
+
+    console.log(document.getElementsByClassName('DarkWhiteMode'));
 }
 
 function changeDarkWhiteMode() {
@@ -149,7 +201,9 @@ function changeDarkWhiteMode() {
 
         localStorage.setItem('theme', 'DarkMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
+        }
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#351829');
         root.style.setProperty('--lighter-color', '#7e3d64');
@@ -162,7 +216,9 @@ function changeDarkWhiteMode() {
 
         localStorage.setItem('theme', 'WhiteMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
+        }
     }
 }
 

@@ -727,6 +727,30 @@ hr {
     margin-left: auto;
 }
 
+.responsiveNavLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 10000000;
+}
+
+.responsiveNavLogo a, .responsiveNavLinks a {
+    text-decoration: none;
+    color: var(--color);
+    font-weight: bolder;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: var(--border-radius);
+}
+
+.responsiveNavLogo {
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+}
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -843,6 +867,10 @@ hr {
 
     .flaggenquiz h3 {
         margin: 10% auto 2% auto;
+    }
+
+    .DarkWhiteMode {
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .flaggenquizInfos {

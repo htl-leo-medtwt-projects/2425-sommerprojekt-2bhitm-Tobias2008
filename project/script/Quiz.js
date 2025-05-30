@@ -116,16 +116,16 @@ function loadNav() {
         <div class="nav"></div>
     `;
 
-    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 2; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
             <a href=".${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
     document.getElementsByClassName('nav')[0].innerHTML += `
-        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
+    document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 
-    
-        // LoginWindow
+    // LoginWindow
     if (true) {
         let loginWindow = document.getElementById('loginWindow');
         loginWindow.innerHTML += `
@@ -187,7 +187,7 @@ function loadNav() {
             </div>
         </div>`;
     }
-    }
+}
 
 /******************** Footer ********************/
 
@@ -257,17 +257,17 @@ function loadGameNavigation() {
 }
 
 
- 
-function startQuiz(type, level, difficulty) { 
-    if(!checkIfPlayerLoggedIn()) {
+
+function startQuiz(type, level, difficulty) {
+    if (!checkIfPlayerLoggedIn()) {
         openLoginWindow();
         return;
-        
+
     }
     switch (type) {
-        case 'flag': 
+        case 'flag':
             window.location.href = `./game.html?type=${type}&level=${level}&difficulty=${difficulty}`;
-        break;
+            break;
         case 'music':
             window.location.href = `./game.html?type=${type}&level=${difficulty}&difficulty=${level}`;
     }
@@ -303,7 +303,7 @@ function loadPlayerDataOverview() {
         <div class="playerDataItem"><h3>Level:</h3><p>${PLAYER_DATA.user.level}</p></div>
         <div class="playerDataItem"><h3>XP:</h3><p>${Math.floor(PLAYER_DATA.user.XP)}/${PLAYER_DATA.user.XPToLevelUp}</p></div>
     `;
-console.log(PLAYER_DATA);
+    console.log(PLAYER_DATA);
 
     for (let i = 0; i < PLAYER_DATA.user.inventory.length; i++) {
         playerDataInventory.innerHTML += `<div class="playerDataItemTwo"><p>${PLAYER_DATA.user.inventory[i].name} ${PLAYER_DATA.user.inventory[i].quantity}x</p></div>`;

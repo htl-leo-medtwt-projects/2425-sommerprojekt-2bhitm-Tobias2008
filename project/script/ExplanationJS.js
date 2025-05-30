@@ -28,14 +28,15 @@ function loadNav() {
         <div class="nav"></div>
     `;
 
-    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 1; i++) {
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 2; i++) {
         document.getElementsByClassName('nav')[0].innerHTML += `
             <a href=".${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
 
     document.getElementsByClassName('nav')[0].innerHTML += `
-        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].name}</div>`
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
+        document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
 
 /******************** Footer ********************/
