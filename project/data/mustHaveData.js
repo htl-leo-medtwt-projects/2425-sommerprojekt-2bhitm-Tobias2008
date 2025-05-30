@@ -23,6 +23,10 @@ const MUST_HAVE_DATA = {
         {
             "name": "Darkmode",
             "onclick": "changeDarkWhiteMode()"
+        },
+        {
+            "name": "ResponsiveImage",
+            "link": "./media/Images/imageNav.png"
         }
     ],
     "footer": [

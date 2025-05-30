@@ -51,7 +51,7 @@ input:focus {
 
 
 body {
-    margin: 0;
+    margin: 7em 0 0 0;
     padding: 0;
     font-family: var(--font);
     color: var(--color);
@@ -66,7 +66,7 @@ html {
 }
 
 nav {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -719,6 +719,14 @@ hr {
     transition: var(--transitions);
 }
 
+.respsonsiveImg {
+    display: none;
+    width: 20vw;
+    height: auto;
+    padding: 1em;
+    margin-left: auto;
+}
+
 /* hover alle so hinzufügen, dass ich sie später bei 
    responsiv nicht mühselig weg machen muss */
 
@@ -802,7 +810,7 @@ hr {
     }
 
     body {
-        max-width: 91.5vw;
+        max-width: 100vw;
         overflow-x: hidden;
     }
 
@@ -916,6 +924,19 @@ hr {
         width: 70%;
         text-align: center;
         margin: 0 auto;
+    }
+
+    nav , .nav{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav, .logo {
+        display: none;
+    }
+
+    .respsonsiveImg {
+        display: block;
     }
 
 }

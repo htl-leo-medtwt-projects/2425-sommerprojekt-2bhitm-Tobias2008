@@ -156,4 +156,7 @@
         width: 80%;
     }
     
+    .bigView {
+        display: none;
+    }
 }
