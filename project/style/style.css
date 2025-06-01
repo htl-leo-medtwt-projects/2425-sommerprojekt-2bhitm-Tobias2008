@@ -48,6 +48,10 @@ input:focus {
     outline: none;
 }
 
+.respsonsiveImg {
+    filter: var(--invert);
+}
+
 
 
 body {
@@ -529,6 +533,11 @@ hr {
     filter: var(--invert);
 }
 
+.respsonsiveImg {
+    filter: var(--invert);
+}
+
+
 .blurryBackground {
     position: fixed;
     top: 0;
@@ -693,7 +702,7 @@ hr {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
 }
 
-.confirmButton, 
+.confirmButton,
 .cancelButton {
     font-size: 1.3rem;
     transition: var(--transitions);
@@ -719,6 +728,16 @@ hr {
     transition: var(--transitions);
 }
 
+.respsonsiveNavMQ {
+    display: none;
+    position: fixed;
+    top: 2%;
+    left: 4%;
+    color: var(--color);
+    text-decoration: none;
+}
+
+
 .respsonsiveImg {
     display: none;
     width: 20vw;
@@ -736,19 +755,19 @@ hr {
     z-index: 10000000;
 }
 
-.responsiveNavLogo a, .responsiveNavLinks a {
+.responsiveNavLogo a,
+.responsiveNavLinks a {
     text-decoration: none;
     color: var(--color);
     font-weight: bolder;
     padding: 1rem;
-    margin: 0.5rem 0;
     border-radius: var(--border-radius);
 }
 
 .responsiveNavLogo {
     position: fixed;
-    top: 5vh;
-    left: 5vw;
+    top: 2vh;
+    left: 2vw;
 }
 
 /* hover alle so hinzufügen, dass ich sie später bei 
@@ -826,6 +845,9 @@ hr {
 
 
 @media screen and (max-width: 500px) {
+    .respsonsiveNavMQ {
+        display: block;
+    }
     .overview {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -838,7 +860,8 @@ hr {
         overflow-x: hidden;
     }
 
-    .body h1, .body h2 {
+    .body h1,
+    .body h2 {
         text-align: center;
     }
 
@@ -859,8 +882,9 @@ hr {
         margin: 0 auto;
     }
 
-    
-    .flaggenquiz p, .flaggenquiz h3 {
+
+    .flaggenquiz p,
+    .flaggenquiz h3 {
         margin: 0 auto;
         width: 100%;
     }
@@ -892,7 +916,8 @@ hr {
         margin: 0 auto;
     }
 
-    .laenderquiz p, .laenderquiz h3 {
+    .laenderquiz p,
+    .laenderquiz h3 {
         margin: 0 auto;
         width: 90%;
         text-align: justify;
@@ -917,6 +942,7 @@ hr {
         width: 100%;
         text-align: center;
     }
+
     footer .right {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -954,12 +980,14 @@ hr {
         margin: 0 auto;
     }
 
-    nav , .nav{
+    nav,
+    .nav {
         flex-direction: column;
         align-items: center;
     }
 
-    .nav, .logo {
+    .nav,
+    .logo {
         display: none;
     }
 

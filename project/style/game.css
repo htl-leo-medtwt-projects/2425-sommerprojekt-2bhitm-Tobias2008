@@ -47,12 +47,15 @@ nav {
 }
 
 .answer {
-    margin: 0.5em 1em;
+    margin: 0.5em auto;
     border-radius: var(--border-radius);
-    padding: 1em;
+    padding: 0.5em;
     background-color: var(--secondary-color); 
     transition: var(--transitions); 
     cursor: pointer;
+    min-width: max-content;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 #image {
@@ -107,6 +110,14 @@ nav {
     text-align: center;
     font-weight: bolder;
     margin: 0.5em 1em;
+}
+
+#answer {
+    color: var(--color)
+}
+
+input {
+    border: none;
 }
 
 @media screen and (min-width: 1000px) {

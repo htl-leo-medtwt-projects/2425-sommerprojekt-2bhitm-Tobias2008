@@ -126,8 +126,8 @@ function loadNav() {
     }
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
-        
-        document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
+
+    document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
 
 /******************** Footer ********************/
