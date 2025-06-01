@@ -80,10 +80,8 @@ nav {
 #result {
     font-size: 2rem;
     font-weight: bolder;
-    margin-top: 2em;
+    margin: auto;
     height: 5vh;
-    position: relative;
-    top: 8vh;
     text-align: center;
     opacity: 0;
     transition: var(--transitions);
@@ -124,5 +122,36 @@ input {
     .answer:hover {
         color: var(--lighter-color);
         transform: translateY(-4px);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        overflow-x: hidden;
+        margin-top: 9em;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+        margin: 2em auto;
+        width: 90vw;
+    }
+
+    .answer {
+        font-size: 1.5rem;
+        padding: 0.5em;
+        margin: 0.5em auto;
+    }
+
+    #image img {
+        max-height: 30vh;
+    }
+
+    #image p {
+        font-size: 1.5rem;
+    }
+
+    .answersInput {
+        width: 80vw;
     }
 }
