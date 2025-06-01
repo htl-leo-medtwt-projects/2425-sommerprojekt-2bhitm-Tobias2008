@@ -121,8 +121,9 @@ function loadNav() {
             <a href=".${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
         `;
     }
-    document.getElementsByClassName('nav')[0].innerHTML += `
-        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
+    document.getElementsByClassName('nav')[0].innerHTML += `<div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
+    
+    document.querySelector('nav').innerHTML += `<a class="respsonsiveNavMQ" href=".${MUST_HAVE_DATA.nav[0].link}" onclick="openResponsiveNav()">${MUST_HAVE_DATA.nav[0].name}</a>`
     document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 
     // LoginWindow

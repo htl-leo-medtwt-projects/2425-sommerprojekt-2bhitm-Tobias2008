@@ -127,7 +127,62 @@ function loadNav() {
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
 
+    document.querySelector('nav').innerHTML += `<a class="respsonsiveNavMQ" href="${MUST_HAVE_DATA.nav[0].link}" onclick="openResponsiveNav()">${MUST_HAVE_DATA.nav[0].name}</a>`
     document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
+}
+
+function openResponsiveNav() {
+    let nav = document.querySelector('nav');
+
+    nav.innerHTML += `<div id="responsiveNav" class="responsiveNav"></div>`;
+
+    let responsiveNav = document.getElementById('responsiveNav');
+    console.log("geht noch");
+
+    responsiveNav.innerHTML = `
+        <div class="responsiveNavContent">
+            <div class="responsiveNavLinks"></div>
+        </div>
+    `;
+
+    let responsiveNavLinks = document.querySelector('.responsiveNavLinks');
+
+    for (let i = 2; i < MUST_HAVE_DATA.nav.length - 2; i++) {
+        responsiveNavLinks.innerHTML += `
+            <a href="${MUST_HAVE_DATA.nav[i].link}">${MUST_HAVE_DATA.nav[i].name}</a>
+        `;
+    }
+    console.log("geht noch 2");
+
+
+    theme = localStorage.getItem('theme') ?? 'WhiteMode';
+    let temp;
+    if (theme === 'WhiteMode') {
+        temp = 'DarkMode';
+    } else if (theme === 'DarkMode') {
+        temp = 'WhiteMode';
+    }
+
+    responsiveNavLinks.innerHTML += `
+        <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${temp}</div>
+    `;
+    responsiveNavLinks.innerHTML += `
+        <div class="responsiveNavClose" onclick="closeResponsiveNav()">X</div>
+    `;
+
+    document.getElementsByClassName('respsonsiveImg')[0].onclick = closeResponsiveNav;
+
+
+}
+
+function closeResponsiveNav() {
+    let responsiveNav = document.getElementById('responsiveNav');
+    if (responsiveNav) {
+        document.getElementsByClassName('respsonsiveImg')[0].onclick = openResponsiveNav;
+        responsiveNav.remove();
+        console.log('Responsive Nav closed');
+
+    }
 }
 
 /******************** Footer ********************/
