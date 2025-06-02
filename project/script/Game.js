@@ -71,19 +71,19 @@ function loadDarkWhiteMode() {
     let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
     if (theme === 'WhiteMode') {
-        root.style.setProperty('--color', '#1b3a4b');
-        root.style.setProperty('--lighter-color', '#4a90e2');
-        root.style.setProperty('--secondary-color', '#80deea');
-        root.style.setProperty('--accent-color', '#00bcd4');
-        root.style.setProperty('--background-image', 'linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%)');
-        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #56ccf2 0%, #2f80ed 50%, #56d8e4 100%)');
-        root.style.setProperty('--extra-highlight', '#b2ebf2');
-        root.style.setProperty('--invert', 'invert(0)');
+        root.style.setProperty('--color', '#f3ecf9');
+        root.style.setProperty('--lighter-color', '#bfa6da');
+        root.style.setProperty('--secondary-color', '#2c1e3d');
+        root.style.setProperty('--accent-color', '#a86ed4');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #1c1028 0%, #261437 50%, #1c1028 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #2c1e3d 0%, #3e2755 50%, #2c1e3d 100%)');
+        root.style.setProperty('--extra-highlight', '#43275a');
+        root.style.setProperty('--invert', 'invert(1)');
 
-        localStorage.setItem('theme', 'WhiteMode');
+        localStorage.setItem('theme', 'DarkMode');
 
         for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
-            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
         }
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#c0d6df');
@@ -239,15 +239,13 @@ function startGame() {
                 }
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
-
-                document.getElementsByClassName('answers')[0].focus();
-
-
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
+                
+                document.getElementById('answer').focus();
 
             }
 
