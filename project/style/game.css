@@ -38,6 +38,10 @@ nav {
 }
 
 .answers {
+    position: absolute;
+    bottom: 15vh;
+    left: 16.5vw;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -97,6 +101,9 @@ nav {
 
 
 .answersInput {
+    position: absolute;
+    bottom: 10vh;
+    left: 34.5vw;
     display: flex;
     flex-direction: column;
     width: 30vw;
@@ -131,6 +138,7 @@ nav {
 .answer {
     display: block;
     margin: auto;
+    transition: var(--transitions);
 }
 
 input {

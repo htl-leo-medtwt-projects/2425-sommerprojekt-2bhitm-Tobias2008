@@ -240,6 +240,9 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
 
+                document.getElementsByClassName('answers')[0].focus();
+
+
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
@@ -247,26 +250,24 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
 
             }
+
+
+            document.getElementById('answer').addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+
+                    document.getElementById('answer').removeEventListener('keydown', arguments.callee);
+
+                    console.log("Enter pressed");
+
+                    event.preventDefault();
+                    eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
+                }
+            });
+
             break;
 
         case 'music':
             console.log("Music");
-
-            switch (game.difficulty) {
-                case 'easy':
-                    randomPercent = false;
-                    break;
-                case 'medium':
-                    randomPercent = Math.ceil(Math.random() * 100) > 50;
-                    break;
-                case 'hard':
-                    randomPercent = true;
-                    break;
-                default:
-                    randomPercent = false;
-                    break;
-            }
-
 
             console.log("MUSIKQUIZDATA", MUSIKQUIZDATA);
 
@@ -287,11 +288,20 @@ function startGame() {
                         correctAnswerIndex = i;
                     }
                 }
-                for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Music[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
-                }
-                document.getElementsByClassName('answers')[0].innerHTML = brick;
 
+                if (randomPercent) {
+                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                    brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Music[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
+                    document.getElementsByClassName('answersInput')[0].innerHTML = brick;
+                    document.getElementsByClassName('answers')[0].innerHTML = ``;
+                    document.getElementById('answer').focus();
+                } else {
+                    for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
+                        brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Music[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
+                    }
+
+                    document.getElementsByClassName('answers')[0].innerHTML = brick;
+                }
             } else {
                 question = Math.floor(Math.random() * MUSIKQUIZDATA.Artist.length);
                 console.log("question", question);
@@ -305,14 +315,37 @@ function startGame() {
                         correctAnswerIndex = i;
                     }
                 }
-                for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
-                    brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
+
+                if (randomPercent) {
+                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                    brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
+                    document.getElementsByClassName('answersInput')[0].innerHTML = brick;
+                    document.getElementsByClassName('answers')[0].innerHTML = ``;
+
+                    document.getElementById('answer').focus();
+                } else {
+                    for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
+                        brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
+                    }
+                    document.getElementsByClassName('answers')[0].innerHTML = brick;
                 }
-                document.getElementsByClassName('answers')[0].innerHTML = brick;
+
 
             }
 
 
+
+            document.getElementById('answer').addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+
+                    document.getElementById('answer').removeEventListener('keydown', arguments.callee);
+
+                    console.log("Enter pressed");
+
+                    event.preventDefault();
+                    eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
+                }
+            });
             break;
 
     }
@@ -485,7 +518,7 @@ function checkAnswerFlagInput(answer) {
     flagMatchData.length++;
     let input = document.getElementById('answer').value;
 
-document.getElementsByClassName('answer')[0].onclick = null;
+    document.getElementsByClassName('answer')[0].onclick = null;
 
     if (input.toLowerCase() == answer.toLowerCase()) {
         flagMatchData.correct++;
