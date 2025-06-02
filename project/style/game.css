@@ -1,4 +1,3 @@
-
 body {
     min-width: 100vw;
     min-height: 100vh;
@@ -24,52 +23,61 @@ nav {
     cursor: pointer;
 }
 
-.coin-icon, .hint-icon {
+.coin-icon,
+.hint-icon {
     width: 1.8rem;
     height: 1.8rem;
     position: relative;
-    margin:  0 0.5rem 0 0.3rem;
+    margin: 0 0.5rem 0 0.3rem;
     top: 0.5rem;
 }
 
-#nav-coins, #nav-hints {
+#nav-coins,
+#nav-hints {
     padding-top: 0;
 }
 
 .answers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    font-weight: bolder;
-    font-size: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* zentriert horizontal */
     gap: 0.5rem;
     margin: 4em 10em;
 }
 
 .answer {
-    margin: 0.5em auto;
+    flex: 1 1 40%;
+    /* flexibel mit Basis 40%, wächst/shrink */
+    max-width: 27vw;
+    min-width: 200px;
+    padding: 1em;
     border-radius: var(--border-radius);
-    padding: 0.5em;
-    background-color: var(--secondary-color); 
-    transition: var(--transitions); 
-    cursor: pointer;
-    min-width: max-content;
+    background-color: var(--secondary-color);
     font-size: 1.5rem;
     text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: bolder;
+}
+
+
+
+#image img {
+    max-height: 20vh;
+    padding: 2rem;
 }
 
 #image {
-    max-height: 20vh;
     text-align: center;
-    padding: 2rem;
 }
 
 #image p {
     font-size: 2rem;
     font-weight: bolder;
     margin: 0.5em 1em;
-    
-    
+
+
 }
 
 #image img {
@@ -96,7 +104,7 @@ nav {
     margin: 0 auto;
     text-align: center;
     font-weight: bolder;
-    font-size: 2rem;    
+    font-size: 2rem;
 }
 
 #answer {
@@ -125,13 +133,14 @@ input {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     body {
         overflow-x: hidden;
         margin-top: 9em;
     }
 
     .answers {
+        display: grid;
         grid-template-columns: 1fr;
         margin: 2em auto;
         width: 90vw;
@@ -141,6 +150,7 @@ input {
         font-size: 1.5rem;
         padding: 0.5em;
         margin: 0.5em auto;
+        width: 80vw;
     }
 
     #image img {

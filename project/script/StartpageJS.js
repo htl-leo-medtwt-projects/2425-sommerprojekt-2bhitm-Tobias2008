@@ -38,6 +38,7 @@ function load() {
 let root = document.querySelector(':root');
 
 function loadDarkWhiteMode() {
+    let root = document.querySelector(':root');
     theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
     if (theme === 'WhiteMode') {
@@ -50,10 +51,11 @@ function loadDarkWhiteMode() {
         root.style.setProperty('--extra-highlight', '#f9abd7');
         root.style.setProperty('--invert', 'invert(0)');
 
-
         localStorage.setItem('theme', 'WhiteMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
+        }
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#fce4f1');
         root.style.setProperty('--lighter-color', '#cfa8c3');
@@ -67,11 +69,16 @@ function loadDarkWhiteMode() {
 
         localStorage.setItem('theme', 'DarkMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
+        }
     }
+
+    console.log(document.getElementsByClassName('DarkWhiteMode'));
 }
 
 function changeDarkWhiteMode() {
+    let root = document.querySelector(':root');
     theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
     if (theme === 'WhiteMode') {
@@ -84,10 +91,11 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--extra-highlight', '#51213c');
         root.style.setProperty('--invert', 'invert(1)');
 
-
         localStorage.setItem('theme', 'DarkMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'WhiteMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
+        }
     } else if (theme === 'DarkMode') {
         root.style.setProperty('--color', '#351829');
         root.style.setProperty('--lighter-color', '#7e3d64');
@@ -98,10 +106,11 @@ function changeDarkWhiteMode() {
         root.style.setProperty('--extra-highlight', '#f9abd7');
         root.style.setProperty('--invert', 'invert(0)');
 
-
         localStorage.setItem('theme', 'WhiteMode');
 
-        document.getElementsByClassName('DarkWhiteMode')[0].innerHTML = 'DarkMode';
+        for (let i = 0; i < document.getElementsByClassName('DarkWhiteMode').length; i++) {
+            document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
+        }
     }
 }
 
