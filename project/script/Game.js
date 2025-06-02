@@ -315,7 +315,7 @@ function checkAnswerFlag(index, correctIndex) {
     let answers = document.getElementsByClassName('answer');
 
     for (let i = 0; i < answers.length; i++) {
-        answers[i].onclick = null; // Disable further clicks on answers
+        answers[i].onclick = null;
     }
 
     flagMatchData.length++;
@@ -477,6 +477,8 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
 function checkAnswerFlagInput(answer) {
     flagMatchData.length++;
     let input = document.getElementById('answer').value;
+
+    document.getElementsByClassName('answer')[0].onclick = null;
 
     if (input.toLowerCase() == answer.toLowerCase()) {
         flagMatchData.correct++;

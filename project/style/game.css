@@ -108,21 +108,34 @@ nav {
 }
 
 #answer {
-    width: 50%;
+    width: 100%;
     padding: 1em;
     border-radius: var(--border-radius);
     background-color: var(--secondary-color);
     font-size: 1rem;
     text-align: center;
     font-weight: bolder;
-    margin: 0.5em 1em;
+    display: block; 
+    margin: 0.5em auto;
+
+}
+
+.answerinput {
+    margin: 0 auto;
 }
 
 #answer {
     color: var(--color)
 }
 
+.answer {
+    display: block;
+    margin: auto;
+}
+
 input {
+    width: 100%;
+    margin: auto;
     border: none;
 }
 
