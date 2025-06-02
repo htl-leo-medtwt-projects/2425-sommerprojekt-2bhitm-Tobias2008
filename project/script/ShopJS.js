@@ -159,16 +159,16 @@ function loadFooterData() {
 
 function loadDarkWhiteMode() {
     let root = document.querySelector(':root');
-    theme = localStorage.getItem('theme') ?? 'WhiteMode';
+    let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
     if (theme === 'WhiteMode') {
-        root.style.setProperty('--color', '#351829');
-        root.style.setProperty('--lighter-color', '#7e3d64');
-        root.style.setProperty('--secondary-color', '#fcd6e9');
-        root.style.setProperty('--accent-color', '#d96cbf');
-        root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
-        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
-        root.style.setProperty('--extra-highlight', '#f9abd7');
+        root.style.setProperty('--color', '#1b3a4b');
+        root.style.setProperty('--lighter-color', '#4a90e2');
+        root.style.setProperty('--secondary-color', '#80deea');
+        root.style.setProperty('--accent-color', '#00bcd4');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #56ccf2 0%, #2f80ed 50%, #56d8e4 100%)');
+        root.style.setProperty('--extra-highlight', '#b2ebf2');
         root.style.setProperty('--invert', 'invert(0)');
 
         localStorage.setItem('theme', 'WhiteMode');
@@ -177,15 +177,14 @@ function loadDarkWhiteMode() {
             document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'DarkMode';
         }
     } else if (theme === 'DarkMode') {
-        root.style.setProperty('--color', '#fce4f1');
-        root.style.setProperty('--lighter-color', '#cfa8c3');
-        root.style.setProperty('--secondary-color', '#3a1c2f');
-        root.style.setProperty('--accent-color', '#ff7eb9');
-        root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
-        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
-        root.style.setProperty('--extra-highlight', '#51213c');
-        root.style.setProperty('--invert', 'invert(1)');
-
+        root.style.setProperty('--color', '#c0d6df');
+        root.style.setProperty('--lighter-color', '#8fbccf');
+        root.style.setProperty('--secondary-color', '#1f4f7a');
+        root.style.setProperty('--accent-color', '#39c0d6');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #0b223c 0%, #153a5d 50%, #1f4f7a 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #074c6d 0%, #0a5275 50%, #056680 100%)');
+        root.style.setProperty('--extra-highlight', '#3da9c9');
+        root.style.setProperty('--invert', 'invert(0)');
 
         localStorage.setItem('theme', 'DarkMode');
 
@@ -199,17 +198,17 @@ function loadDarkWhiteMode() {
 
 function changeDarkWhiteMode() {
     let root = document.querySelector(':root');
-    theme = localStorage.getItem('theme') ?? 'WhiteMode';
+    let theme = localStorage.getItem('theme') ?? 'WhiteMode';
 
     if (theme === 'WhiteMode') {
-        root.style.setProperty('--color', '#fce4f1');
-        root.style.setProperty('--lighter-color', '#cfa8c3');
-        root.style.setProperty('--secondary-color', '#3a1c2f');
-        root.style.setProperty('--accent-color', '#ff7eb9');
-        root.style.setProperty('--background-image', 'linear-gradient(320deg, #1b0f1b 0%, #2a1a2e 50%, #1b0f1b 100%)');
-        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #3a1c2f 0%, #5e2a4d 50%, #3a1c2f 100%)');
-        root.style.setProperty('--extra-highlight', '#51213c');
-        root.style.setProperty('--invert', 'invert(1)');
+        root.style.setProperty('--color', '#c0d6df');
+        root.style.setProperty('--lighter-color', '#8fbccf');
+        root.style.setProperty('--secondary-color', '#1f4f7a');
+        root.style.setProperty('--accent-color', '#39c0d6');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #0b223c 0%, #153a5d 50%, #1f4f7a 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #074c6d 0%, #0a5275 50%, #056680 100%)');
+        root.style.setProperty('--extra-highlight', '#3da9c9');
+        root.style.setProperty('--invert', 'invert(0)');
 
         localStorage.setItem('theme', 'DarkMode');
 
@@ -217,13 +216,13 @@ function changeDarkWhiteMode() {
             document.getElementsByClassName('DarkWhiteMode')[i].innerHTML = 'WhiteMode';
         }
     } else if (theme === 'DarkMode') {
-        root.style.setProperty('--color', '#351829');
-        root.style.setProperty('--lighter-color', '#7e3d64');
-        root.style.setProperty('--secondary-color', '#fcd6e9');
-        root.style.setProperty('--accent-color', '#d96cbf');
-        root.style.setProperty('--background-image', 'linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%)');
-        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%)');
-        root.style.setProperty('--extra-highlight', '#f9abd7');
+        root.style.setProperty('--color', '#1b3a4b');
+        root.style.setProperty('--lighter-color', '#4a90e2');
+        root.style.setProperty('--secondary-color', '#80deea');
+        root.style.setProperty('--accent-color', '#00bcd4');
+        root.style.setProperty('--background-image', 'linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%)');
+        root.style.setProperty('--nav-gradient', 'linear-gradient(40deg, #56ccf2 0%, #2f80ed 50%, #56d8e4 100%)');
+        root.style.setProperty('--extra-highlight', '#b2ebf2');
         root.style.setProperty('--invert', 'invert(0)');
 
         localStorage.setItem('theme', 'WhiteMode');
@@ -233,6 +232,7 @@ function changeDarkWhiteMode() {
         }
     }
 }
+
 
 /******************** Script Start ********************/
 

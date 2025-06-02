@@ -25,19 +25,20 @@
 }
 
 :root {
-    --nav-gradient: linear-gradient(40deg, #f4b4d7 0%, #f28ec4 50%, #fcb4dc 100%);
+    --nav-gradient: linear-gradient(40deg, #56ccf2 0%, #2f80ed 50%, #56d8e4 100%);
     --transitions: 0.2s all ease-in-out;
     --font: 'NotoSans';
 
-    --color: #351829;
-    --lighter-color: #7e3d64;
-    --background-image: linear-gradient(320deg, #fff4fa 0%, #fde0f0 50%, #fcd6e9 100%);
-    --secondary-color: #fcd6e9;
-    --accent-color: #d96cbf;
+    --color: #1b3a4b;            /* dunkles Blau */
+    --lighter-color: #4a90e2;    /* helleres Blau */
+    --background-image: linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+    --secondary-color: #80deea;  /* helles Türkis-Blau */
+    --accent-color: #00bcd4;     /* kräftiges Türkis */
     --border-radius: 15px;
-    --extra-highlight: #f9abd7;
+    --extra-highlight: #b2ebf2;  /* sanftes Hellblau */
     --invert: invert(0);
 }
+
 
 * {
     box-sizing: border-box;
