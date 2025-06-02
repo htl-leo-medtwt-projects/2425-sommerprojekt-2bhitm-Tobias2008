@@ -84,8 +84,8 @@ const MUST_HAVE_DATA = {
     "loginWindow": [
         {
             name: "Login",
-            inputUsername: "<input type='text' id='usernameLogin' placeholder='Username'>",
-            inputPassword: "<input type='password' id='passwordLogin' placeholder='Password'>",
+            inputUsername: "<input type='text' id='usernameLogin' placeholder='Username' autocomplete='off'>",
+            inputPassword: "<input type='password' id='passwordLogin' placeholder='Password' autocomplete='off'>",
             button: "<div id='loginButton' onclick='login()'>Login</div>",
             info: "Noch keinen Account?",
             registerButton: "Registrieren",
@@ -95,8 +95,8 @@ const MUST_HAVE_DATA = {
     "registerWindow": [
         {
             name: "Registrieren",
-            inputUsername: "<input type='text' id='usernameRegister' placeholder='Username'>",
-            inputPassword: "<input type='password' id='passwordRegister' placeholder='Password'>",
+            inputUsername: "<input type='text' id='usernameRegister' placeholder='Username' autocomplete='off'>",
+            inputPassword: "<input type='password' id='passwordRegister' placeholder='Password' autocomplete='off'>",
             inputPasswordRepeat: "<input type='password' id='passwordRepeatRegister' placeholder='Password wiederholen'>",
             button: "<div id='registerButton' onclick='register()'>Registrieren</div>",
             info: "Bereits einen Account?",

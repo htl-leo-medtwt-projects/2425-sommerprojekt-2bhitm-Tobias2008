@@ -240,7 +240,7 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
             } else {
-                brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
@@ -288,7 +288,7 @@ function startGame() {
                 }
 
                 if (randomPercent) {
-                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                     brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Music[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
                     document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].innerHTML = ``;
@@ -315,7 +315,7 @@ function startGame() {
                 }
 
                 if (randomPercent) {
-                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here"></div>`;
+                    brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                     brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
                     document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].innerHTML = ``;
@@ -394,6 +394,7 @@ function checkAnswerFlag(index, correctIndex) {
         setTimeout(() => {
             document.getElementById('image').innerHTML = ``;
             document.getElementsByClassName('answers')[0].innerHTML = ``;
+            document.getElementsByClassName('answersInput')[0].innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
@@ -469,6 +470,7 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
         setTimeout(() => {
             document.getElementById('image').innerHTML = ``;
             document.getElementsByClassName('answers')[0].innerHTML = ``;
+            document.getElementsByClassName('answersInput')[0].innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
@@ -554,6 +556,7 @@ function checkAnswerFlagInput(answer) {
         setTimeout(() => {
             document.getElementById('image').innerHTML = ``;
             document.getElementsByClassName('answers')[0].innerHTML = ``;
+            document.getElementsByClassName('answersInput')[0].innerHTML = ``;
             document.getElementById('result').innerHTML = ``;
             document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
