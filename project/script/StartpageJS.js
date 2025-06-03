@@ -267,8 +267,6 @@ function loadStartpageBricks() {
         <div class="overview"></div>
         <h2>Flaggenquiz</h2>
         <div class="flaggenquiz"></div>
-        <h2>Länderquiz</h2>
-        <div class="laenderquiz"></div>
         <h2>Musikquiz</h2>
         <div class="musikquiz"></div>
         <div class="bottomNav"></div>
@@ -315,21 +313,6 @@ function loadStartpageData() {
         flaggenquiz.innerHTML = brick;
         flaggenquiz.innerHTML += `<img style="border-radius: 10px" src="${STARTPAGE_DATA.flaggenquiz[0].imgSRC}">`;
 
-    }
-
-    //Länderquiz
-    if (true) {
-        let laenderquiz = document.getElementsByClassName('laenderquiz')[0];
-
-        for (let i = 0; i < STARTPAGE_DATA.laenderquiz.length; i++) {
-            laenderquiz.innerHTML += `
-            <div id="grid-${(i + 1).toString()}">  
-            <img src="${STARTPAGE_DATA.laenderquiz[i].imgSRC}">
-            <h3>${STARTPAGE_DATA.laenderquiz[i].headline}</h3>
-            <p>${STARTPAGE_DATA.laenderquiz[i].information}</p>
-            </div>
-            `;
-        }
     }
 
     //Musikquiz

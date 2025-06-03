@@ -25,13 +25,6 @@ const SHOP_DATA = {
             "onclick": 3
         },
         {
-            "name": "Time freeze",
-            "icon": "./media/Images/sanduhr.png",
-            "price": 25,
-            "description": "Friere den Timer für 15 Sekunden ein",
-            "onclick": 4
-        },
-        {
             "name": "Risiko-Boost",
             "icon": "./media/Images/risiko.png",
             "price": 25,

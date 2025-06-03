@@ -3,17 +3,12 @@ const STARTPAGE_DATA ={
         {
             "headline": "Flaggenquiz",
             "information": "Teste dein Wissen über die Flaggen der Welt! Ordne die Flaggen dem richtigen Land zu und finde heraus, wie gut du dich international auskennst. Perfekt für alle, die Farben, Muster und Länder lieben!",
-            "imgSRC": "./media/Images/FlaggenQuizProfile.png"
+            "imgSRC": "./media/Images/OverviewFlaggen.jpg"
         },
-        {
-            "headline": "Länderquiz",
-            "information": "Wie gut kennst du die Weltkarte? Beweise dein Wissen über Länder, ihre Lage und Hauptstädte. Das Quiz ist ideal für alle, die Geografie auf die nächste Stufe bringen wollen!",
-            "imgSRC": "./media/Images/LaenderQuizProfile.png"
-        },
-        {
+         {
             "headline": "Musikquiz",
             "information": "Erkennst du die Songs anhand von nur wenigen Noten? Teste dein Wissen über Musik und Künstler und finde heraus, wie gut du dich in der Welt der Musik auskennst. Perfekt für alle, die gerne Musik hören und Rätsel lösen!",
-            "imgSRC": "./media/Images/MusikQuizProfile.png"
+            "imgSRC": "./media/Images/music.png"
         }
     ],
     "flaggenquiz": [
@@ -29,18 +24,6 @@ const STARTPAGE_DATA ={
         {
             "headline": "Für wen ist das Quiz geeignet?",
             "information": "Dieses Quiz ist für alle geeignet – egal ob Schülerin, Lehrerin, Reise-Fan oder einfach jemand, der gern spielerisch lernt. Es eignet sich auch super für Schulklassen, kleine Wettkämpfe unter Freunden oder als Pause im Homeoffice. Du kannst jederzeit loslegen, ohne Anmeldung oder Vorbereitung. Einfach starten und schauen, wie viele Flaggen du erkennst. Und wer weiß – vielleicht knackst du ja den Highscore!"
-        }
-    ],
-    "laenderquiz": [
-        {
-            "headline": "Was erwartet dich im Länderquiz?",
-            "information": "Im Länderquiz testest du dein Wissen rund um die Staaten unserer Erde. Dabei geht es nicht nur um die bloßen Namen der Länder, sondern auch um deren geografische Lage, Nachbarländer, Hauptstädte und manchmal auch spezielle Merkmale. Du bekommst Fragen zu verschiedenen Regionen gestellt – mal einfach, mal knifflig – und kannst so deine Kenntnisse spielerisch erweitern. Ob du bereits ein Geografie-Pro bist oder noch am Anfang stehst: Dieses Quiz bringt dir die Welt näher!",
-            "imgSRC": "./media/Images/international-sos-risk-map-2025-screenshot.png"
-        },
-        {
-            "headline": "Spielerisch lernen – mit echtem Mehrwert",
-            "information": "Das Länderquiz ist mehr als nur ein Ratespiel – es ist eine clevere Mischung aus Lernen und Spaß. Du trainierst dein Orientierungsvermögen, entwickelst ein besseres Verständnis für politische und geografische Zusammenhänge und lernst, wie vielfältig unsere Erde wirklich ist. Besonders cool: Du bekommst direktes Feedback zu deinen Antworten, was den Lerneffekt enorm steigert. Ideal also für Schule, Freizeit oder einfach, um dein Wissen aufzufrischen.",
-            "imgSRC": "./media/Images/laender.jpg"
         }
     ],
     "musikquiz": [
