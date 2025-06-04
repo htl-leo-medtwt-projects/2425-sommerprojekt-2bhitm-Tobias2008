@@ -504,8 +504,6 @@ function userLoggedIn() {
     return true;
 }
 
-
-
 function loadPlayerDataOverview() {
     document.querySelector('body').style.overflow = 'hidden';
     document.getElementsByClassName('playerDataContent')[0].style.overflow = 'auto';

@@ -310,10 +310,6 @@ function startGame() {
                     }
                 });
             }
-
-
-
-
             break;
 
         case 'music':
