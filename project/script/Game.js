@@ -278,14 +278,14 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
                 document.getElementsByClassName('answers')[0].id = '';
-                document.getElementById('result').classList.remove('hilfe');
+                document.getElementById('hilfe2').id = 'result';
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
                 document.getElementsByClassName('answers')[0].id = '';
-                document.getElementById('result').classList.remove('hilfe');
+                document.getElementById('hilfe2').id = 'result';
 
                 document.getElementById('answer').focus();
 
@@ -373,7 +373,7 @@ function startGame() {
                     document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].id = 'hilfe';
-                    document.getElementById('result').classList.add('hilfe');
+                    document.getElementById('result').id= 'hilfe2';
                 }
 
 
