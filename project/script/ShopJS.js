@@ -38,7 +38,8 @@ function loadNav() {
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
 
-    document.querySelector('nav').innerHTML += `<a class="respsonsiveNavMQ" href=".${MUST_HAVE_DATA.nav[0].link}" onclick="openResponsiveNav()">${MUST_HAVE_DATA.nav[0].name}</a>`
+        
+    document.querySelector('nav').innerHTML += `<div class="repsonsiveNavLogo"><img class="loginGuy" src=".${MUST_HAVE_DATA.nav[1].link}" onclick="openLoginWindow()"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>`
     document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
 
@@ -240,10 +241,18 @@ function loadData() {
     shopData.innerHTML = `
         <div class="shopTitle">${SHOP_DATA.title}</div>
         <div class="shopDescription">${SHOP_DATA.description}</div>
+        <div class="coinInfo">${SHOP_DATA.coinInfo} <span class="coins"></span> <img class="coinImage" src="../media/Images/coin.png"></div>
         <div class="bigView"></div>
         <div class="shopItems"></div>
         <div id="loginWindow"></div>
     `;
+
+    if (!JSON.parse(localStorage.getItem('loggedPlayer')).user.coins) {
+        document.getElementsByClassName('coins')[0].innerHTML = '0';
+    } else {
+        document.getElementsByClassName('coins')[0].innerHTML = JSON.parse(localStorage.getItem('loggedPlayer')).user.coins;
+    }
+
     let shopItems = document.getElementsByClassName('shopItems')[0];
 
     for (let i = 0; i < SHOP_DATA.items.length; i++) {
@@ -254,7 +263,7 @@ function loadData() {
                     <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
                 </div>
                 <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
-                <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
+                <div class="itemPrice">${SHOP_DATA.items[i].price} <img src="../media/Images/coin.png" class="coinImage"></div>
                 <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
             </div>
         `;
@@ -277,7 +286,7 @@ function loadData() {
                             <div class="itemName"><p>${SHOP_DATA.items[i].name}</p></div>
                         </div>
                         <div class="itemDescription">${SHOP_DATA.items[i].description}</div>
-                        <div class="itemPrice">${SHOP_DATA.items[i].price} Coins</div>
+                        <div class="itemPrice">${SHOP_DATA.items[i].price} <img src="../media/Images/coin.png" class="coinImage"></div>
                         <div class="buyButton" onclick="buyPowerUp(${i})"><p>Buy</p></div>
                     </div>`;
         }
@@ -358,6 +367,42 @@ function loadData() {
         </div>`;
     }
 
+
+    document.getElementById('usernameLogin').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordLogin').focus()
+        }
+    });
+
+    document.getElementById('passwordLogin').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            login();
+        }
+    });        
+
+    document.getElementById('usernameRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordRegister').focus()
+        }
+    });
+
+    document.getElementById('passwordRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordRepeatRegister').focus()
+        }
+    });
+
+    document.getElementById('passwordRepeatRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            register();
+        }
+    });
+
 }
 
 function buyPowerUp(index) {
@@ -437,7 +482,8 @@ function userLoggedIn() {
 
 
 function loadPlayerDataOverview() {
-
+    document.querySelector('body').style.overflow = 'hidden';
+    document.getElementsByClassName('playerDataContent')[0].style.overflow = 'auto';
     console.log('PLAYER_DATA:', PLAYER_DATA);
     console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')))
 
@@ -534,4 +580,3 @@ function getCoins() {
     userData.user.coins += 1000;
     localStorage.setItem('loggedPlayer', JSON.stringify(userData));
 }
-

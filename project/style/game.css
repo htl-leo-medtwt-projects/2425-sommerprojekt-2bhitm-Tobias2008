@@ -38,16 +38,21 @@ nav {
 }
 
 .answers {
-    position: absolute;
-    bottom: 15vh;
-    left: 16.5vw;
-
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* zentriert horizontal */
+    align-items: center;
+
     gap: 0.5rem;
-    margin: 4em 10em;
+    width: 50vw;
+    margin: 0 auto;
+
+    position: relative;
+    top: 15vh;
+    padding: 1em;
+
+
 }
 
 .answer {
@@ -90,20 +95,22 @@ nav {
 }
 
 #result {
-    font-size: 2rem;
+    position: relative;
+    top: 5vh;
+    font-size: 2.4rem;
     font-weight: bolder;
     margin: auto;
     height: 5vh;
     text-align: center;
     opacity: 0;
     transition: var(--transitions);
+    z-index: 1000000;
 }
 
 
 .answersInput {
-    position: absolute;
-    bottom: 10vh;
-    left: 34.5vw;
+    position: relative;
+    top: 30vh;
     display: flex;
     flex-direction: column;
     width: 30vw;
@@ -122,7 +129,7 @@ nav {
     font-size: 1rem;
     text-align: center;
     font-weight: bolder;
-    display: block; 
+    display: block;
     margin: 0.5em auto;
 
 }
@@ -161,9 +168,12 @@ input {
     }
 
     .answers {
+        position: relative;
+        top: 0;
+        bottom: 0;
         display: grid;
         grid-template-columns: 1fr;
-        margin: 2em auto;
+        margin: 1em auto;
         width: 90vw;
     }
 
@@ -175,7 +185,9 @@ input {
     }
 
     #image img {
-        max-height: 30vh;
+        max-height: 20vh;
+        margin-top: 4em;
+        margin-bottom: 4em;
     }
 
     #image p {
@@ -184,5 +196,15 @@ input {
 
     .answersInput {
         width: 80vw;
+        position: relative;
+        top: 0;
+    }
+
+    #result {
+        position: relative;
+        top: 0;
+        bottom: 5vh;
+        font-size: 1.5rem;
+        height: 3vh;
     }
 }

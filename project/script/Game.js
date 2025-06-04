@@ -244,23 +244,24 @@ function startGame() {
                 brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
-                
+
                 document.getElementById('answer').focus();
 
+                document.getElementById('answer').addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+
+                        document.getElementById('answer').removeEventListener('keydown', arguments.callee);
+
+                        console.log("Enter pressed");
+
+                        event.preventDefault();
+                        eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
+                    }
+                });
             }
 
 
-            document.getElementById('answer').addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
 
-                    document.getElementById('answer').removeEventListener('keydown', arguments.callee);
-
-                    console.log("Enter pressed");
-
-                    event.preventDefault();
-                    eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
-                }
-            });
 
             break;
 

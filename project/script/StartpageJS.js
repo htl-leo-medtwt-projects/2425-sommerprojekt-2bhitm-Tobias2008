@@ -136,7 +136,7 @@ function loadNav() {
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
 
-    document.querySelector('nav').innerHTML += `<a class="respsonsiveNavMQ" href="${MUST_HAVE_DATA.nav[0].link}" onclick="openResponsiveNav()">${MUST_HAVE_DATA.nav[0].name}</a>`
+    document.querySelector('nav').innerHTML += `<div class="repsonsiveNavLogo"><img class="loginGuy" src="${MUST_HAVE_DATA.nav[1].link}" onclick="openLoginWindow()"><a id="logo" href="${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>`
     document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
 
@@ -407,6 +407,43 @@ function loadStartpageData() {
             </div>
         </div>`;
     }
+
+       document.getElementById('usernameLogin').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordLogin').focus()
+        }
+    });
+
+    document.getElementById('passwordLogin').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            login();
+        }
+    });        
+
+    document.getElementById('usernameRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordRegister').focus()
+        }
+    });
+
+    document.getElementById('passwordRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('passwordRepeatRegister').focus()
+        }
+    });
+
+    document.getElementById('passwordRepeatRegister').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            register();
+        }
+    });
+
+
 }
 
 function animateMusikQuizData(index) {
@@ -443,7 +480,9 @@ function animateMusikQuizData(index) {
 }
 
 function loadPlayerDataOverview() {
-
+document.querySelector('body').style.overflow = 'hidden';
+    document.getElementsByClassName('playerDataContent')[0].style.overflow = 'auto';
+    
     console.log('PLAYER_DATA:');
     console.log(PLAYER_DATA);
     console.log('localStorage', JSON.parse(localStorage.getItem('loggedPlayer')))

@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
     text-align: center;
     margin: 1rem;
     background-color: var(--secondary-color);
@@ -96,6 +96,7 @@
     padding: 2rem;
 
 }
+
 .swiper-button-prev,
 .swiper-button-next {
 
@@ -124,6 +125,18 @@
 .slideItem .buyButton {
     width: 20%;
     margin: 0.5em auto;
+}
+
+.coinImage {
+    width: 20px;
+    position: relative;
+    top:4px;
+}
+
+.coinInfo {
+    text-align: left;
+    margin-left: 0.3em;
+    font-size: 1.2rem;
 }
 
 @media screen and (min-width: 1000px) {
@@ -155,7 +168,7 @@
     .buyButton {
         width: 80%;
     }
-    
+
     .bigView {
         display: none;
     }

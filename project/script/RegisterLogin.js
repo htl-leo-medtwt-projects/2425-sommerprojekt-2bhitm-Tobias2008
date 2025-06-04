@@ -14,6 +14,8 @@ function openLoginWindow() {
     loginWindow.style.display = 'block';
 
     setTimeout(() => { loginWindow.style.opacity = '1'; }, 10);
+
+    document.getElementById('usernameLogin').focus();
 }
 
 function closeLoginWindow() {
@@ -117,6 +119,8 @@ function openRegisterWindow() {
     registerWindow.style.display = 'block';
 
     setTimeout(() => { registerWindow.style.opacity = '1'; }, 10);
+
+    document.getElementById('usernameRegister').focus();
 }
 
 function closeRegisterWindow() {
@@ -221,6 +225,8 @@ function register() {
 /***************** PlayerData *****************/
 
 function closePlayerOverview() {
+    document.querySelector('body').style.overflow = 'auto';
+    document.getElementsByClassName('playerDataContent')[0].style.overflow = 'none';
     let playerData = document.getElementsByClassName('playerData')[0];
     playerData.style.opacity = '0';
 

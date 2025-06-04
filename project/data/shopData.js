@@ -1,6 +1,7 @@
 const SHOP_DATA = {
     "title": "Power-Ups",
     "description": "Hier kannst du Power-Ups kaufen, um deine Gewinnchancen zu erhöhen. Jedes Power-Up hat einen bestimmten Preis und eine spezielle Funktion. Wähle weise aus!",
+    "coinInfo": "Du hast",
     "items": [
         
         {

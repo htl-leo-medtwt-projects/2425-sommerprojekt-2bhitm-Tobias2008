@@ -29,13 +29,18 @@
     --transitions: 0.2s all ease-in-out;
     --font: 'NotoSans';
 
-    --color: #1b3a4b;            /* dunkles Blau */
-    --lighter-color: #4a90e2;    /* helleres Blau */
+    --color: #1b3a4b;
+    /* dunkles Blau */
+    --lighter-color: #4a90e2;
+    /* helleres Blau */
     --background-image: linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
-    --secondary-color: #80deea;  /* helles Türkis-Blau */
-    --accent-color: #00bcd4;     /* kräftiges Türkis */
+    --secondary-color: #80deea;
+    /* helles Türkis-Blau */
+    --accent-color: #00bcd4;
+    /* kräftiges Türkis */
     --border-radius: 15px;
-    --extra-highlight: #b2ebf2;  /* sanftes Hellblau */
+    --extra-highlight: #b2ebf2;
+    /* sanftes Hellblau */
     --invert: invert(0);
 }
 
@@ -105,12 +110,14 @@ nav a {
     color: var(--color);
 }
 
-.logo {
+.logo,
+.repsonsiveNavLogo {
     display: flex;
     align-items: center;
 }
 
-.logo img {
+.logo img,
+.repsonsiveNavLogo img {
     width: 30px;
     border-radius: var(--border-radius * 10);
     margin: 0 1rem;
@@ -119,10 +126,15 @@ nav a {
 
 }
 
-.logo a {
+.logo a,
+.repsonsiveNavLogo a {
     color: var(--color);
     text-decoration: none;
     padding-left: 1.5rem;
+}
+
+.repsonsiveNavLogo {
+    display: none;
 }
 
 #logo {
@@ -567,6 +579,7 @@ hr {
     top: 10vh;
     left: 5vw;
     right: 5vw;
+    bottom: 10vh;
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     transition: var(--transitions);
@@ -739,6 +752,7 @@ hr {
 }
 
 
+
 .respsonsiveImg {
     display: none;
     width: 20vw;
@@ -849,6 +863,16 @@ hr {
     .respsonsiveNavMQ {
         display: block;
     }
+
+    .repsonsiveNavLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0.6vh;
+        left: 0;
+    }
+
     .overview {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -996,4 +1020,43 @@ hr {
         display: block;
     }
 
+    .loginWindowContent,
+    .registerWindowContent {
+        width: 94vw;
+        position: fixed;
+        top: 10vh;
+        left: 3vw;
+        right: 3vw;
+    }
+
+    .playerDataGrid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+
+    .playerDataInventoryHeadline,
+    .playerDataAchievementsHeadline,
+    .playerDataQuestsHeadline {
+        border-bottom-right-radius: 0;
+        border-right: none;
+        padding: 0;
+    }
+
+    .playerDataNav img {
+        position: fixed;
+        top: 12.35vh;
+        right: 15vw;
+        width: 8%;
+    }
+
+    .closePlayerOverview {
+        position: fixed;
+        top: 10.5vh;
+        right: 9vw;
+        font-size: 1.8rem;
+    }
+
+.playerDataContent h1 {
+    text-align: left;
+}
 }
