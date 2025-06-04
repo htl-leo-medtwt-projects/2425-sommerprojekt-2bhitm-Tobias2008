@@ -373,13 +373,30 @@ function checkAnswerFlag(index, correctIndex) {
 
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
-        PLAYER.user.coins += 3;
-        PLAYER.user.XP += 89 / 71;
+        PLAYER.user.coins += 3 * risc * streak;
+        PLAYER.user.XP += (89 * risc * streak) / 71;
+        if(countStreak) {
+            streak++;
+            console.log("Streak increased to", streak);
+            
+        }
+        risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
 
     } else {
+        endStreak();
         flagMatchData.wrong++;
+
+        if (risc == 2) {
+            PLAYER.user.coins -= 3;
+            if (PLAYER.user.coins < 0) {
+                PLAYER.user.coins = 0;
+            }
+            document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
+        }
+        risc = 1;
+
         flagMatchData.wrongCountries.push(answers[index]);
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
         document.getElementById('result').style.opacity = '1';
@@ -407,9 +424,6 @@ function checkAnswerFlag(index, correctIndex) {
             document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
             document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
             document.getElementById('result').style.opacity = '1';
-
-            PLAYER.user.coins += flagMatchData.correct * 3;
-            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
 
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
                 PLAYER.user.level++;
@@ -446,8 +460,14 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
 
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
-        PLAYER.user.coins += 3;
-        PLAYER.user.XP += 89 / 71;
+        PLAYER.user.coins += 3 * risc * streak;
+        PLAYER.user.XP += (89 * risc * streak) / 71;
+        if(countStreak) {
+            streak++;
+            console.log("Streak increased to", streak);
+            
+        }
+        risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
         setTimeout(() => {
@@ -458,7 +478,18 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
         console.log('Round finished!');
 
     } else {
+        endStreak();
         flagMatchData.wrong++;
+
+        if (risc == 2) {
+            PLAYER.user.coins -= 3;
+            if (PLAYER.user.coins < 0) {
+                PLAYER.user.coins = 0;
+            }
+            document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
+        }
+        risc = 1;
+
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct Answer: ${correctAnswer}</div>`;
         document.getElementById('result').style.opacity = '1';
 
@@ -492,8 +523,6 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
             document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
             document.getElementById('result').style.opacity = '1';
 
-            PLAYER.user.coins += flagMatchData.correct * 3;
-            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
 
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
                 PLAYER.user.level++;
@@ -541,8 +570,15 @@ function checkAnswerInput(answer) {
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
 
-        PLAYER.user.coins += 3;
-        PLAYER.user.XP += 89 / 71;
+        PLAYER.user.coins += 3 * risc * streak;
+        
+        PLAYER.user.XP += (89 * risc * streak) / 71;
+        if(countStreak) {
+            streak++;
+            console.log("Streak increased to", streak);
+            
+        }
+        risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
         setTimeout(() => {
@@ -553,7 +589,17 @@ function checkAnswerInput(answer) {
         console.log('Round finished!');
 
     } else {
+        endStreak();
         flagMatchData.wrong++;
+
+        if (risc == 2) {
+            PLAYER.user.coins -= 3;
+            if (PLAYER.user.coins < 0) {
+                PLAYER.user.coins = 0;
+            }
+            document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
+        }
+        risc = 1;
         flagMatchData.wrongCountries.push(answer);
         document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct: ${answer}</div>`;
         document.getElementById('result').style.opacity = '1';
@@ -606,26 +652,26 @@ function checkAnswerInput(answer) {
 
 
 
-  function shuffleArray(array) {
+function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
-  }
+}
 
-  // Diese Funktion mischt alle Optionen in MUSIKQUIZDATA
-  function shuffleAllQuizOptions(data) {
+// Diese Funktion mischt alle Optionen in MUSIKQUIZDATA
+function shuffleAllQuizOptions(data) {
     ['Music', 'Artist'].forEach(category => {
-      data[category].forEach(question => {
-        shuffleArray(question.options);
-      });
+        data[category].forEach(question => {
+            shuffleArray(question.options);
+        });
     });
-  }
+}
 
-  // Wird direkt beim Seitenladen ausgeführt
-  window.addEventListener("DOMContentLoaded", () => {
+// Wird direkt beim Seitenladen ausgeführt
+window.addEventListener("DOMContentLoaded", () => {
     shuffleAllQuizOptions(MUSIKQUIZDATA);
 
     // Optional: zum Testen in der Konsole anzeigen
     console.log(MUSIKQUIZDATA);
-  });
+});
