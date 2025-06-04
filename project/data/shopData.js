@@ -11,13 +11,13 @@ const SHOP_DATA = {
             "description": "Ein zufälliger Power-Up-Effekt wird ausgelöst",
             "onclick": 2
         },
-        {
-            "name": "Hint",
-            "icon": "./media/Images/die-gluhbirne.png",
-            "price": 10,
-            "description": "Erhalte einen kleinen Hinweis zur aktuellen Frage",
-            "onclick": 1
-        },
+        // {
+        //     "name": "Hint",
+        //     "icon": "./media/Images/die-gluhbirne.png",
+        //     "price": 10,
+        //     "description": "Erhalte einen kleinen Hinweis zur aktuellen Frage",
+        //     "onclick": 1
+        // },
         {
             "name": "Skip",
             "icon": "./media/Images/fast-forward.png",
@@ -31,27 +31,6 @@ const SHOP_DATA = {
             "price": 25,
             "description": "Setze XP und Coins auf Risiko: doppelt bei richtiger Antwort, sonst verlierst du sie",
             "onclick": 5
-        },
-        {
-            "name": "50:50",
-            "icon": "./media/Images/graph.png",
-            "price": 30,
-            "description": "Zwei falsche Antworten werden entfernt",
-            "onclick": 6
-        },
-        {
-            "name": "Analyse-Modus",
-            "icon": "./media/Images/lupe.png",
-            "price": 30,
-            "description": "Erhalte zusätzliche Informationen oder Hinweise zur Frage",
-            "onclick": 7
-        },
-        {
-            "name": "Schutzschild",
-            "icon": "./media/Images/schutzschild.png",
-            "price": 30,
-            "description": "Schütze dich einmalig vor Punktverlust bei einer falschen Antwort",
-            "onclick": 8
         },
         {
             "name": "Doppelte Punkte",

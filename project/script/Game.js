@@ -110,13 +110,51 @@ function load() {
     document.querySelector('nav').innerHTML = `
         <div class="nav-container">
             <div id="nav-coins">${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon"></div>
-            <div id="nav-hints">${getHints()} <img src="../media/Images/hint.png" class="hint-icon"></div>
-        </div>
+
+
+            </div>
         <div class="nav-container">
             <div id="nav-level">Level ${PLAYER.user.level}</div>
             <div id="nav-logout" onclick="leave()">Leave</div>
         </div>
     `;
+
+    let findIndex = []
+
+    findIndex[0] = PLAYER.user.inventory.findIndex(item => item.name === 'Random hilfe');
+    findIndex[1] = PLAYER.user.inventory.findIndex(item => item.name === 'Skip');
+    findIndex[2] = PLAYER.user.inventory.findIndex(item => item.name === 'Risiko-Boost');
+    findIndex[3] = PLAYER.user.inventory.findIndex(item => item.name === 'Doppelte Punkte');
+    findIndex[4] = PLAYER.user.inventory.findIndex(item => item.name === 'Streak Boost');
+
+
+    document.body.innerHTML += `
+    <div class="power-ups">
+        <div class="power-up" onclick="randomItem(${PLAYER.user.inventory[findIndex[0]]?.quantity ?? 0})">
+            <img src="../media/Images/wurfel-wurfel-umriss.png" alt="Random Hilfe" title="Random Hilfe">
+        </div>
+        <div class="power-up" onclick="Skip(${PLAYER.user.inventory[findIndex[1]]?.quantity ?? 0})">
+            <img src="../media/Images/fast-forward.png" alt="Skip" title="Skip">
+        </div>
+        <div class="power-up" onclick="risiko(${PLAYER.user.inventory[findIndex[2]]?.quantity ?? 0})">
+            <img src="../media/Images/risiko.png" alt="Risiko-Boost" alt="Risiko-Boost">
+        </div>
+        <div class="power-up" onclick="DoppeltePunkte(${PLAYER.user.inventory[findIndex[3]]?.quantity ?? 0})">
+            <img src="../media/Images/doppelpunkt.png" alt="Doppelte Punkte" alt="Doppelte Punkte">
+        </div>
+        <div class="power-up" onclick="StreakBoost(${PLAYER.user.inventory[findIndex[4]]?.quantity ?? 0})">
+            <img src="../media/Images/fire.png" alt="Streak Boost" alt="Streak Boost">
+        </div>
+    </div>
+    `;
+
+    /*
+    <div class="power-up" onclick="Hint(${PLAYER.user.inventory})">
+            <img src="../media/Images/die-gluhbirne.png" alt="Hint" title="Hint">
+        </div>
+    */
+    // <div id="nav-hints">${getHints()} <img src="../media/Images/hint.png" class="hint-icon"></div>
+
 }
 
 function getPlayerData() { PLAYER = JSON.parse(localStorage.getItem('loggedPlayer')); }
@@ -239,11 +277,15 @@ function startGame() {
                 }
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
+                document.getElementsByClassName('answers')[0].id = '';
+                document.getElementById('result').classList.remove('hilfe');
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
+                document.getElementsByClassName('answers')[0].id = '';
+                document.getElementById('result').classList.remove('hilfe');
 
                 document.getElementById('answer').focus();
 
@@ -300,6 +342,8 @@ function startGame() {
                     }
                     document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
+                    document.getElementsByClassName('answers')[0].id = 'hilfe';
+                    document.getElementById('result').id = 'hilfe2';
                 }
             } else {
                 question = Math.floor(Math.random() * MUSIKQUIZDATA.Artist.length);
@@ -328,6 +372,8 @@ function startGame() {
                     }
                     document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
+                    document.getElementsByClassName('answers')[0].id = 'hilfe';
+                    document.getElementById('result').classList.add('hilfe');
                 }
 
 
@@ -373,12 +419,19 @@ function checkAnswerFlag(index, correctIndex) {
 
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
-        PLAYER.user.coins += 3 * risc * streak;
-        PLAYER.user.XP += (89 * risc * streak) / 71;
-        if(countStreak) {
+        console.log(PLAYER.user.coins); console.log("risc", risc);
+        console.log("streak", streak);
+        console.log("double", double);
+        PLAYER.user.coins += 3 * risc * streak * double;
+        PLAYER.user.XP += (89 * risc * streak * double) / 71;
+        console.log(PLAYER.user.coins);
+
+
+
+        if (countStreak) {
             streak++;
             console.log("Streak increased to", streak);
-            
+
         }
         risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
@@ -408,6 +461,8 @@ function checkAnswerFlag(index, correctIndex) {
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
     }
+
+    double = 1;
 
     if (flagMatchData.length < flagLength[game.difficulty]) {
         answers = [];
@@ -460,12 +515,16 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
 
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
-        PLAYER.user.coins += 3 * risc * streak;
-        PLAYER.user.XP += (89 * risc * streak) / 71;
-        if(countStreak) {
+        console.log(PLAYER.user.coins); console.log("risc", risc);
+        console.log("streak", streak);
+        console.log("double", double);
+        PLAYER.user.coins += 3 * risc * streak * double;
+        PLAYER.user.XP += (89 * risc * streak * double) / 71;
+        console.log(PLAYER.user.coins);
+        if (countStreak) {
             streak++;
             console.log("Streak increased to", streak);
-            
+
         }
         risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
@@ -500,6 +559,8 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
     }
+
+    double = 1;
 
     console.log("flagMatchData length", flagMatchData.length);
     console.log("flagLength", flagLength[game.difficulty]);
@@ -569,14 +630,19 @@ function checkAnswerInput(answer) {
         flagMatchData.correctCountries.push(answer);
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
+        console.log(PLAYER.user.coins);
+        console.log("risc", risc);
+        console.log("streak", streak);
+        console.log("double", double);
 
-        PLAYER.user.coins += 3 * risc * streak;
-        
-        PLAYER.user.XP += (89 * risc * streak) / 71;
-        if(countStreak) {
+
+        PLAYER.user.coins += 3 * risc * streak * double;
+        console.log(PLAYER.user.coins);
+        PLAYER.user.XP += (89 * risc * streak * double) / 71;
+        if (countStreak) {
             streak++;
             console.log("Streak increased to", streak);
-            
+
         }
         risc = 1;
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
@@ -611,6 +677,8 @@ function checkAnswerInput(answer) {
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
     }
+
+    double = 1;
 
     if (flagMatchData.length < flagLength[game.difficulty]) {
         answers = [];
@@ -650,8 +718,6 @@ function checkAnswerInput(answer) {
     }
 }
 
-
-
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -659,7 +725,6 @@ function shuffleArray(array) {
     }
 }
 
-// Diese Funktion mischt alle Optionen in MUSIKQUIZDATA
 function shuffleAllQuizOptions(data) {
     ['Music', 'Artist'].forEach(category => {
         data[category].forEach(question => {
@@ -668,10 +733,7 @@ function shuffleAllQuizOptions(data) {
     });
 }
 
-// Wird direkt beim Seitenladen ausgeführt
 window.addEventListener("DOMContentLoaded", () => {
     shuffleAllQuizOptions(MUSIKQUIZDATA);
-
-    // Optional: zum Testen in der Konsole anzeigen
     console.log(MUSIKQUIZDATA);
 });

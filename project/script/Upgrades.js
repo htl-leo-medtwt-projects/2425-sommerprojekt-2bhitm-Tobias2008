@@ -1,8 +1,15 @@
 let risc = 1;
-let streak = 0;
+let streak = 1;
 let countStreak = false;
+let double = 1;
 
 function randomItem() {
+    console.log("randomItem called");
+    
+    if (!checkItem("Random hilfe")) {
+        return;
+    }
+
     let rnd = Math.floor(Math.random() * 4);
 
     switch (rnd) {
@@ -21,12 +28,16 @@ function randomItem() {
     }
 }
 
+// function Hint() {
 
-function Hint() {
-
-}
+// }
 
 function Skip() {
+    console.log("Skip called");
+    if (!checkItem("Skip")) {
+        return;
+    }
+
     setTimeout(() => {
         startGame();
     }, 300);
@@ -35,12 +46,30 @@ function Skip() {
 }
 
 function DoppeltePunkte() {
-    risc = 2;
+    console.log("Doppelte Punkte called");
+    if (!checkItem("Doppelte Punkte")) {
+        return;
+    }
+    double = 2;
 
     removeItem("Doppelte Punkte");
 }
 
+function risiko() {
+    console.log("Risiko called");
+    if (!checkItem("Risiko-Boost")) {
+        return;
+    }
+    risc = 2;
+
+    removeItem("Risiko-Boost");
+}
+
 function StreakBoost() {
+    console.log("Streak Boost called");
+    if (!checkItem("Streak Boost")) {
+        return;
+    }
     countStreak = true;
     streak = 1;
 
@@ -81,4 +110,22 @@ function removeItem(item) {
 
     localStorage.setItem("loggedUser", JSON.stringify(user));
     localStorage.setItem("playerData", JSON.stringify(player));
+}
+
+function checkItem(item) {
+    let user = JSON.parse(localStorage.getItem("loggedPlayer")) || { isLoggedIn: false, user: {}, time: new Date(new Date) };
+
+    if (user.isLoggedIn) {
+        for (i = 0; i < user.user.inventory.length; i++) {
+            if (user.user.inventory[i].name === item && user.user.inventory[i].quantity > 0) {
+                console.log("Item found in inventory:", item);
+                
+                return true;
+            }
+        }
+    }
+     
+    console.log(user.user.inventory);
+    console.log("Item not found in inventory:", item);
+    return false;
 }

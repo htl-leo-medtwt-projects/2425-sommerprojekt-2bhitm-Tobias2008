@@ -39,8 +39,8 @@ nav {
 
 .answers {
     text-align: center;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
 
@@ -55,10 +55,25 @@ nav {
 
 }
 
+.power-ups {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.power-ups img {
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: var(--transitions);
+}
+
 .answer {
-    flex: 1 1 40%;
     /* flexibel mit Basis 40%, wächst/shrink */
-    max-width: 27vw;
+    max-width: min-content;
     min-width: 200px;
     padding: 1em;
     border-radius: var(--border-radius);
@@ -169,19 +184,24 @@ input {
 
     .answers {
         position: relative;
-        top: 0;
-        bottom: 0;
+        top: 4vh;
         display: grid;
         grid-template-columns: 1fr;
         margin: 1em auto;
         width: 90vw;
     }
 
+    .answers .answer {
+        position: relative;
+        top: -8vh;
+    }
+
     .answer {
         font-size: 1.5rem;
         padding: 0.5em;
-        margin: 0.5em auto;
+        margin: 0 auto;
         width: 80vw;
+        max-width: min-content;
     }
 
     #image img {
@@ -191,6 +211,7 @@ input {
     }
 
     #image p {
+        margin-top: 9em;
         font-size: 1.5rem;
     }
 
@@ -202,9 +223,41 @@ input {
 
     #result {
         position: relative;
-        top: 0;
-        bottom: 5vh;
+        bottom: 4vh;
+        top: -4vh;
         font-size: 1.5rem;
         height: 3vh;
     }
+
+    #hilfe {
+        position: relative;
+        top: 15vh;
+        bottom: 0;
+        margin: 0 auto;
+        width: 80vw;
+        font-size: 1.5rem;
+    }
+
+    .hilfe {
+        position: relative;
+        top: 5vh;
+    }
+
+    .correct {
+        position: relative;
+        top: 1vh;
+        bottom: -1vh;
+    }
+
+    .power-ups {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: var(--secondary-color);
+        padding: 0.3em 0 0 0;
+    } 
 }
