@@ -252,7 +252,7 @@ function loadData() {
         <div id="loginWindow"></div>
     `;
 
-    if (!JSON.parse(localStorage.getItem('loggedPlayer')).user.coins) {
+    if (!localStorage.getItem('loggedPlayer').isLoggedIn) {
         document.getElementsByClassName('coins')[0].innerHTML = '0';
     } else {
         document.getElementsByClassName('coins')[0].innerHTML = JSON.parse(localStorage.getItem('loggedPlayer')).user.coins;

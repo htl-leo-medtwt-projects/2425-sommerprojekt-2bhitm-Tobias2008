@@ -263,6 +263,13 @@ function checkIfPlayerLoggedIn() {
 
 
 function logout() {
+
+    document.getElementsByClassName('confirmButton')[0].style.backgroundColor = 'var(--secondary-color)';
+
+    setTimeout(() => {
+        document.getElementsByClassName('confirmButton')[0].style.backgroundColor = 'var(--extra-highlight)';
+    }, 200);
+
     let players = JSON.parse(localStorage.getItem('playerData')) ?? [];
 
     for (let i = 0; i < players.length; i++) {
@@ -318,6 +325,14 @@ function checkIfPlayerReallyWantsToLogout() {
 
 
 function closeLogout() {
+
+
+    document.getElementsByClassName('cancelButton')[0].style.backgroundColor = 'var(--secondary-color)';
+
+    setTimeout(() => {
+        document.getElementsByClassName('cancelButton')[0].style.backgroundColor = 'var(--extra-highlight)';
+    }, 200);
+
     let box = document.getElementById('temp');
     box.style.opacity = '0';
 

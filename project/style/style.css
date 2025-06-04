@@ -30,17 +30,12 @@
     --font: 'NotoSans';
 
     --color: #1b3a4b;
-    /* dunkles Blau */
     --lighter-color: #4a90e2;
-    /* helleres Blau */
     --background-image: linear-gradient(320deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
     --secondary-color: #80deea;
-    /* helles Türkis-Blau */
     --accent-color: #00bcd4;
-    /* kräftiges Türkis */
     --border-radius: 15px;
     --extra-highlight: #b2ebf2;
-    /* sanftes Hellblau */
     --invert: invert(0);
 }
 
@@ -1058,5 +1053,14 @@ hr {
 
 .playerDataContent h1 {
     text-align: left;
+}
+
+.infoItem {
+    font-size: 1.1rem;
+}
+
+.flexBox {
+    gap: 1em;
+    flex-direction: column;
 }
 }

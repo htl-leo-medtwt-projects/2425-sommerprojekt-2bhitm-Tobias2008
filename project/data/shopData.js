@@ -7,35 +7,28 @@ const SHOP_DATA = {
         {
             "name": "Random hilfe",
             "icon": "./media/Images/wurfel-wurfel-umriss.png",
-            "price": 15,
+            "price": 25,
             "description": "Ein zufälliger Power-Up-Effekt wird ausgelöst",
             "onclick": 2
         },
-        // {
-        //     "name": "Hint",
-        //     "icon": "./media/Images/die-gluhbirne.png",
-        //     "price": 10,
-        //     "description": "Erhalte einen kleinen Hinweis zur aktuellen Frage",
-        //     "onclick": 1
-        // },
         {
             "name": "Skip",
             "icon": "./media/Images/fast-forward.png",
-            "price": 20,
+            "price": 5,
             "description": "Beantworte die aktuelle Frage nicht und gehe zur nächsten über",
             "onclick": 3
         },
         {
             "name": "Risiko-Boost",
             "icon": "./media/Images/risiko.png",
-            "price": 25,
+            "price": 15,
             "description": "Setze XP und Coins auf Risiko: doppelt bei richtiger Antwort, sonst verlierst du sie",
             "onclick": 5
         },
         {
             "name": "Doppelte Punkte",
             "icon": "./media/Images/doppelpunkt.png",
-            "price": 35,
+            "price": 15,
             "description": "Verdopple die Punkte der nächsten richtigen Antwort",
             "onclick": 9
         },
