@@ -109,7 +109,7 @@ nav {
     max-height: 20vh;
 }
 
-#result {
+#result, #hilfe2 {
     position: relative;
     top: 5vh;
     font-size: 2.4rem;
@@ -221,10 +221,18 @@ input {
         top: 0;
     }
 
-    #result {
+    #result, #hilfe2 {
         position: relative;
         bottom: 4vh;
         top: -4vh;
+        font-size: 1.5rem;
+        height: 3vh;
+    }
+
+    #hilfe2 {
+        position: relative;
+        top: 0;
+        bottom: 0;
         font-size: 1.5rem;
         height: 3vh;
     }

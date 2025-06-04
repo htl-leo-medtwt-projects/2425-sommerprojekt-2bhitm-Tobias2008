@@ -5,7 +5,7 @@ let double = 1;
 
 function randomItem() {
     console.log("randomItem called");
-    
+
     if (!checkItem("Random hilfe")) {
         return;
     }
@@ -14,16 +14,16 @@ function randomItem() {
 
     switch (rnd) {
         case 0:
-            Hint();
+            Hint('rnd');
             break
         case 1:
-            Skip();
+            Skip('rnd');
             break
         case 2:
-            DoppeltePunkte();
+            DoppeltePunkte('rnd');
             break
         case 3:
-            StreakBoost();
+            StreakBoost('rnd');
             break
     }
 }
@@ -32,48 +32,89 @@ function randomItem() {
 
 // }
 
-function Skip() {
-    console.log("Skip called");
-    if (!checkItem("Skip")) {
-        return;
+function Skip(type) {
+    if (type === 'rnd') {
+        console.log("Random Skip called");
+    } else {
+        console.log("Skip called");
+        if (!checkItem("Skip")) {
+            return;
+        }
     }
 
     setTimeout(() => {
         startGame();
     }, 300);
 
-    removeItem("Skip");
+    if (type === 'rnd') {
+        removeItem("Random hilfe");
+    } else {
+        removeItem("Skip");
+    }
 }
 
-function DoppeltePunkte() {
+function DoppeltePunkte(type) {
     console.log("Doppelte Punkte called");
-    if (!checkItem("Doppelte Punkte")) {
-        return;
+
+    if (type === 'rnd') {
+        console.log("Random Doppelte Punkte called");
+    } else {
+        if (!checkItem("Doppelte Punkte")) {
+            return;
+        }
     }
+
     double = 2;
 
-    removeItem("Doppelte Punkte");
+    if (type === 'rnd') {
+        removeItem("Random hilfe");
+    } else {
+        removeItem("Doppelte Punkte");
+    }
+
 }
 
-function risiko() {
+function risiko(type) {
     console.log("Risiko called");
-    if (!checkItem("Risiko-Boost")) {
-        return;
+ 
+    if (type === 'rnd') {
+        console.log("Random Risiko called");
+    } else {
+        if (!checkItem("Risiko-Boost")) {
+            return;
+        }
     }
+
     risc = 2;
 
-    removeItem("Risiko-Boost");
+    if (type === 'rnd') {
+        removeItem("Random hilfe");
+    } else {
+        removeItem("Risiko-Boost");
+    }
+
 }
 
-function StreakBoost() {
+function StreakBoost(type) {
     console.log("Streak Boost called");
-    if (!checkItem("Streak Boost")) {
-        return;
+
+    if (type === 'rnd') {
+        console.log("Random Streak Boost called");
+    } else {
+        if (!checkItem("Streak Boost")) {
+            return;
+        }
     }
+
     countStreak = true;
     streak = 1;
 
-    removeItem("Streak Boost");
+    if (type === 'rnd') {
+        removeItem("Random hilfe");
+    }
+    else {
+        removeItem("Streak Boost");
+    }
 }
 
 function endStreak() {
@@ -119,12 +160,12 @@ function checkItem(item) {
         for (i = 0; i < user.user.inventory.length; i++) {
             if (user.user.inventory[i].name === item && user.user.inventory[i].quantity > 0) {
                 console.log("Item found in inventory:", item);
-                
+
                 return true;
             }
         }
     }
-     
+
     console.log(user.user.inventory);
     console.log("Item not found in inventory:", item);
     return false;

@@ -278,19 +278,28 @@ function startGame() {
                 document.getElementsByClassName('answers')[0].innerHTML = brick;
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
                 document.getElementsByClassName('answers')[0].id = '';
-                document.getElementById('hilfe2').id = 'result';
+                if (document.getElementById('hilfe2')) {
+                    document.getElementById('hilfe2').id = 'result';
+                }
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
                 brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
                 document.getElementsByClassName('answers')[0].id = '';
-                document.getElementById('hilfe2').id = 'result';
+
+
+                if (document.getElementById('result')) {
+                    document.getElementById('result').id = 'hilfe2';
+                }
 
                 document.getElementById('answer').focus();
 
                 document.getElementById('answer').addEventListener('keydown', function (event) {
                     if (event.key === 'Enter') {
+
+                        console.log("Enter pressed");
+
 
                         document.getElementById('answer').removeEventListener('keydown', arguments.callee);
 
@@ -343,7 +352,9 @@ function startGame() {
                     document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].id = 'hilfe';
-                    document.getElementById('result').id = 'hilfe2';
+                    if (document.getElementById('result')) {
+                        document.getElementById('result').id = 'hilfe2';
+                    }
                 }
             } else {
                 question = Math.floor(Math.random() * MUSIKQUIZDATA.Artist.length);
@@ -373,7 +384,9 @@ function startGame() {
                     document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].id = 'hilfe';
-                    document.getElementById('result').id= 'hilfe2';
+                    if (document.getElementById('result')) {
+                        document.getElementById('result').id = 'hilfe2';
+                    }
                 }
 
 
@@ -383,6 +396,8 @@ function startGame() {
             if (document.getElementById('answer')) {
                 document.getElementById('answer').addEventListener('keydown', function (event) {
                     if (event.key === 'Enter') {
+
+                        console.log("Enter pressed");
 
                         document.getElementById('answer').removeEventListener('keydown', arguments.callee);
 
@@ -513,8 +528,8 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
     if (index === correctIndex) {
         flagMatchData.correct++;
 
-        document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
-        document.getElementById('result').style.opacity = '1';
+        document.getElementById('hilfe2').innerHTML = `<div class="correct">Correct!</div>`;
+        document.getElementById('hilfe2').style.opacity = '1';
         console.log(PLAYER.user.coins); console.log("risc", risc);
         console.log("streak", streak);
         console.log("double", double);
@@ -530,7 +545,7 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
         setTimeout(() => {
-            document.getElementById('result').style.opacity = '0';
+            document.getElementById('hilfe2').style.opacity = '0';
         }, 2000);
 
         console.log("MatchData", flagMatchData);
@@ -549,11 +564,11 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
         }
         risc = 1;
 
-        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct Answer: ${correctAnswer}</div>`;
-        document.getElementById('result').style.opacity = '1';
+        document.getElementById('hilfe2').innerHTML = `<div class="wrong">Wrong!<br>Correct Answer: ${correctAnswer}</div>`;
+        document.getElementById('hilfe2').style.opacity = '1';
 
         setTimeout(() => {
-            document.getElementById('result').style.opacity = '0';
+            document.getElementById('hilfe2').style.opacity = '0';
         }, 2000);
 
         console.log("MatchData", flagMatchData);
@@ -578,11 +593,11 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
             document.getElementById('image').innerHTML = ``;
             document.getElementsByClassName('answers')[0].innerHTML = ``;
             document.getElementsByClassName('answersInput')[0].innerHTML = ``;
-            document.getElementById('result').innerHTML = ``;
-            document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
-            document.getElementById('result').style.opacity = '1';
+            document.getElementById('hilfe2').innerHTML = ``;
+            document.getElementById('hilfe2').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+            document.getElementById('hilfe2').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
+            document.getElementById('hilfe2').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
+            document.getElementById('hilfe2').style.opacity = '1';
 
 
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
@@ -620,6 +635,9 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
 // }
 
 function checkAnswerInput(answer) {
+
+    let temp = document.getElementById('result') ? 'result' : 'hilfe2';
+
     flagMatchData.length++;
     let input = document.getElementById('answer').value;
 
@@ -628,8 +646,8 @@ function checkAnswerInput(answer) {
     if (input.toLowerCase() == answer.toLowerCase()) {
         flagMatchData.correct++;
         flagMatchData.correctCountries.push(answer);
-        document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
-        document.getElementById('result').style.opacity = '1';
+        document.getElementById(temp).innerHTML = `<div class="correct">Correct!</div>`;
+        document.getElementById(temp).style.opacity = '1';
         console.log(PLAYER.user.coins);
         console.log("risc", risc);
         console.log("streak", streak);
@@ -648,7 +666,7 @@ function checkAnswerInput(answer) {
         document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
         setTimeout(() => {
-            document.getElementById('result').style.opacity = '0';
+            document.getElementById(temp).style.opacity = '0';
         }, 2000);
 
         console.log("MatchData", flagMatchData);
@@ -667,11 +685,11 @@ function checkAnswerInput(answer) {
         }
         risc = 1;
         flagMatchData.wrongCountries.push(answer);
-        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct: ${answer}</div>`;
-        document.getElementById('result').style.opacity = '1';
+        document.getElementById(temp).innerHTML = `<div class="wrong">Wrong!<br>Correct: ${answer}</div>`;
+        document.getElementById(temp).style.opacity = '1';
 
         setTimeout(() => {
-            document.getElementById('result').style.opacity = '0';
+            document.getElementById(temp).style.opacity = '0';
         }, 2000);
 
         console.log("MatchData", flagMatchData);
@@ -690,11 +708,11 @@ function checkAnswerInput(answer) {
             document.getElementById('image').innerHTML = ``;
             document.getElementsByClassName('answers')[0].innerHTML = ``;
             document.getElementsByClassName('answersInput')[0].innerHTML = ``;
-            document.getElementById('result').innerHTML = ``;
-            document.getElementById('result').innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
-            document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
-            document.getElementById('result').style.opacity = '1';
+            document.getElementById(temp).innerHTML = ``;
+            document.getElementById(temp).innerHTML = `<div class="correct">You completed the Game! Your stats:</div>`;
+            document.getElementById(temp).innerHTML += `<div class="correct">Correct: ${flagMatchData.correct}</div>`;
+            document.getElementById(temp).innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
+            document.getElementById(temp).style.opacity = '1';
 
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
                 PLAYER.user.level++;
@@ -709,7 +727,7 @@ function checkAnswerInput(answer) {
             localStorage.setItem('loggedPlayer', JSON.stringify(PLAYER));
 
             setTimeout(() => {
-                document.getElementById('result').style.opacity = '0';
+                document.getElementById(temp).style.opacity = '0';
                 setTimeout(() => {
                     window.location.href = `./quiz.html`;
                 }, 300);

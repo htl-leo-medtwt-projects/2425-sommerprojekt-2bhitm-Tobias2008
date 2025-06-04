@@ -428,7 +428,7 @@ function buyPowerUp(index) {
     console.log('userData', userData);
 
 
-    if (userData.user.coins > shopData.price) {
+    if (userData.user.coins >= shopData.price) {
         for (let i = 0; i < userData.user.inventory.length; i++) {
             if (userData.user.inventory[i].name == shopData.name) {
                 console.log("1st if");
