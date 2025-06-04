@@ -241,7 +241,7 @@ function startGame() {
                 document.getElementsByClassName('answersInput')[0].innerHTML = ``;
             } else {
                 brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
-                brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
+                brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(answers[correctAnswerIndex].name.common)})'>Submit Answer</div>`;
                 document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                 document.getElementsByClassName('answers')[0].innerHTML = ``;
 
@@ -290,7 +290,7 @@ function startGame() {
 
                 if (randomPercent) {
                     brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
-                    brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Music[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
+                    brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(MUSIKQUIZDATA.Music[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
                     document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].innerHTML = ``;
                     document.getElementById('answer').focus();
@@ -298,7 +298,7 @@ function startGame() {
                     for (let i = 0; i < MUSIKQUIZDATA.Music[question].options.length; i++) {
                         brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Music[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Music[question].options[i]}</div>`
                     }
-
+                    document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
                 }
             } else {
@@ -317,7 +317,7 @@ function startGame() {
 
                 if (randomPercent) {
                     brick += `<div class="answerinput"><input type="text" id="answer" placeholder="Type your answer here" autocomplete="off"></div>`;
-                    brick += `<div class="answer" onclick='checkAnswerFlagInput(${JSON.stringify(MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
+                    brick += `<div class="answer" onclick='checkAnswerInput(${JSON.stringify(MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex])})'>Submit Answer</div>`;
                     document.getElementsByClassName('answersInput')[0].innerHTML = brick;
                     document.getElementsByClassName('answers')[0].innerHTML = ``;
 
@@ -326,6 +326,7 @@ function startGame() {
                     for (let i = 0; i < MUSIKQUIZDATA.Artist[question].options.length; i++) {
                         brick += `<div class="answer" onclick="checkAnswerMusic(${i}, ${correctAnswerIndex}, '${MUSIKQUIZDATA.Artist[question].options[correctAnswerIndex]}')">${MUSIKQUIZDATA.Artist[question].options[i]}</div>`
                     }
+                    document.getElementsByClassName('answersInput')[0].innerHTML = '';
                     document.getElementsByClassName('answers')[0].innerHTML = brick;
                 }
 
@@ -333,20 +334,21 @@ function startGame() {
             }
 
 
+            if (document.getElementById('answer')) {
+                document.getElementById('answer').addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
 
-            document.getElementById('answer').addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
+                        document.getElementById('answer').removeEventListener('keydown', arguments.callee);
 
-                    document.getElementById('answer').removeEventListener('keydown', arguments.callee);
+                        console.log("Enter pressed");
 
-                    console.log("Enter pressed");
+                        event.preventDefault();
+                        eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
+                    }
+                });
+                break;
 
-                    event.preventDefault();
-                    eval(document.getElementsByClassName('answer')[0].getAttribute('onclick'));
-                }
-            });
-            break;
-
+            }
     }
 }
 
@@ -371,6 +373,10 @@ function checkAnswerFlag(index, correctIndex) {
 
         console.log("MatchData", flagMatchData);
         console.log('Round finished!');
+        PLAYER.user.coins += 3;
+        PLAYER.user.XP += 89 / 71;
+        document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
+
 
     } else {
         flagMatchData.wrong++;
@@ -429,12 +435,20 @@ function checkAnswerFlag(index, correctIndex) {
 
 function checkAnswerMusic(index, correctIndex, correctAnswer) {
     flagMatchData.length++;
+
+    for (let i = 0; i < document.getElementsByClassName('answer').length; i++) {
+        document.getElementsByClassName('answer')[i].onclick = null;
+    }
+
     console.log("checkAnswerMusic", index, correctIndex);
     if (index === correctIndex) {
         flagMatchData.correct++;
 
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
+        PLAYER.user.coins += 3;
+        PLAYER.user.XP += 89 / 71;
+        document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
 
         setTimeout(() => {
             document.getElementById('result').style.opacity = '0';
@@ -515,7 +529,7 @@ function checkAnswerMusic(index, correctIndex, correctAnswer) {
 
 // }
 
-function checkAnswerFlagInput(answer) {
+function checkAnswerInput(answer) {
     flagMatchData.length++;
     let input = document.getElementById('answer').value;
 
@@ -527,6 +541,10 @@ function checkAnswerFlagInput(answer) {
         document.getElementById('result').innerHTML = `<div class="correct">Correct!</div>`;
         document.getElementById('result').style.opacity = '1';
 
+        PLAYER.user.coins += 3;
+        PLAYER.user.XP += 89 / 71;
+        document.getElementById('nav-coins').innerHTML = `${PLAYER.user.coins} <img src="../media/Images/coin.png" class="coin-icon">`;
+
         setTimeout(() => {
             document.getElementById('result').style.opacity = '0';
         }, 2000);
@@ -537,7 +555,7 @@ function checkAnswerFlagInput(answer) {
     } else {
         flagMatchData.wrong++;
         flagMatchData.wrongCountries.push(answer);
-        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!</div>`;
+        document.getElementById('result').innerHTML = `<div class="wrong">Wrong!<br>Correct: ${answer}</div>`;
         document.getElementById('result').style.opacity = '1';
 
         setTimeout(() => {
@@ -564,9 +582,6 @@ function checkAnswerFlagInput(answer) {
             document.getElementById('result').innerHTML += `<div class="correct">Wrong: ${flagMatchData.wrong}</div>`;
             document.getElementById('result').style.opacity = '1';
 
-            PLAYER.user.coins += flagMatchData.correct * 3;
-            PLAYER.user.XP += flagMatchData.correct * (89 / 71);
-
             if (PLAYER.user.XP >= PLAYER.user.XPToLevelUp) {
                 PLAYER.user.level++;
                 PLAYER.user.XP = PLAYER.user.XP - PLAYER.user.XPToLevelUp;
@@ -588,3 +603,29 @@ function checkAnswerFlagInput(answer) {
         }, 2300);
     }
 }
+
+
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  // Diese Funktion mischt alle Optionen in MUSIKQUIZDATA
+  function shuffleAllQuizOptions(data) {
+    ['Music', 'Artist'].forEach(category => {
+      data[category].forEach(question => {
+        shuffleArray(question.options);
+      });
+    });
+  }
+
+  // Wird direkt beim Seitenladen ausgeführt
+  window.addEventListener("DOMContentLoaded", () => {
+    shuffleAllQuizOptions(MUSIKQUIZDATA);
+
+    // Optional: zum Testen in der Konsole anzeigen
+    console.log(MUSIKQUIZDATA);
+  });
