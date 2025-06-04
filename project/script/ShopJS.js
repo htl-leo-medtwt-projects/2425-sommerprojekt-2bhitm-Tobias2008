@@ -1,3 +1,8 @@
+let buyAudio = new Audio('../media/audio/coins.mp3')
+buyAudio.volume = 0.2;
+
+
+
 function load() {
     loadNav();
     // Habe ChatGPT gefragt, wie ich prüfen kann ob ein Element existiert/geladen ist
@@ -38,7 +43,7 @@ function loadNav() {
     document.getElementsByClassName('nav')[0].innerHTML += `
         <div class="DarkWhiteMode" onclick="${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].onclick}">${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 2].name}</div>`
 
-        
+
     document.querySelector('nav').innerHTML += `<div class="repsonsiveNavLogo"><img class="loginGuy" src=".${MUST_HAVE_DATA.nav[1].link}" onclick="openLoginWindow()"><a id="logo" href=".${MUST_HAVE_DATA.nav[0].link}">MindQuest</a></div>`
     document.querySelector('nav').innerHTML += `<img class="respsonsiveImg" src=".${MUST_HAVE_DATA.nav[MUST_HAVE_DATA.nav.length - 1].link}" onclick="openResponsiveNav()">`
 }
@@ -380,7 +385,7 @@ function loadData() {
             event.preventDefault();
             login();
         }
-    });        
+    });
 
     document.getElementById('usernameRegister').addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
@@ -436,6 +441,11 @@ function buyPowerUp(index) {
                 localStorage.setItem('playerData', JSON.stringify(playerData));
                 i = userData.user.inventory.length;
                 bought = true;
+                buyEffect(index);
+
+
+                document.getElementsByClassName('coins')[0].innerHTML = userData.user.coins;
+
                 return;
             }
         }
@@ -449,18 +459,33 @@ function buyPowerUp(index) {
             playerData[playerIndex] = userData;
             localStorage.setItem('playerData', JSON.stringify(playerData));
             bought = true;
+            document.getElementsByClassName('coins')[0].innerHTML = userData.user.coins;
+
+            buyEffect(index);
         }
 
         if (!bought) {
             console.log("Ein Fehler ist aufgetreten, Item konnte nicht gekauft werden");
         }
-
     } else {
         console.log("Nicht genug Coins", userData.user.coins, shopData.price);
     }
+}
 
+function buyEffect(index) {
+    buyAudio.volume = 0.2;
+    buyAudio.currentTime = 0;
 
+    buyAudio.play();
+    document.getElementsByClassName('buyButton')[index].style.backgroundColor = 'var(--secondary-color)';
+    document.getElementsByClassName('buyButton')[index + SHOP_DATA.items.length].style.backgroundColor = 'var(--secondary-color)';
 
+    console.log(document.getElementsByClassName('buyButton')[index]);
+    console.log(document.getElementsByClassName('buyButton')[index + SHOP_DATA.items.length]);
+    setTimeout(() => {
+        document.getElementsByClassName('buyButton')[index].style.backgroundColor = 'var(--extra-highlight)';
+        document.getElementsByClassName('buyButton')[index + SHOP_DATA.items.length].style.backgroundColor = 'var(--extra-highlight)';
+    }, 150);
 
 }
 
@@ -575,8 +600,8 @@ const swiper = new Swiper('.swiper-container', {
 
 });
 
-function getCoins() {
+function getCoins(coins) {
     let userData = JSON.parse(localStorage.getItem('loggedPlayer'));
-    userData.user.coins += 1000;
+    userData.user.coins += coins;
     localStorage.setItem('loggedPlayer', JSON.stringify(userData));
 }
