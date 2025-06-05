@@ -323,7 +323,6 @@ function checkIfPlayerReallyWantsToLogout() {
 
 }
 
-
 function closeLogout() {
 
 

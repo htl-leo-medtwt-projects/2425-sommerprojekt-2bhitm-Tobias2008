@@ -252,9 +252,15 @@ function loadData() {
         <div id="loginWindow"></div>
     `;
 
-    if (!localStorage.getItem('loggedPlayer').isLoggedIn) {
+
+    console.log(JSON.parse(localStorage.getItem('loggedPlayer')).isLoggedIn)
+
+    if (!JSON.parse(localStorage.getItem('loggedPlayer')).isLoggedIn) {
+        console.log("User is not logged in, setting coins to 0");
+        
         document.getElementsByClassName('coins')[0].innerHTML = '0';
     } else {
+        console.log("User is logged in, setting coins to", JSON.parse(localStorage.getItem('loggedPlayer')).user.coins);
         document.getElementsByClassName('coins')[0].innerHTML = JSON.parse(localStorage.getItem('loggedPlayer')).user.coins;
     }
 
@@ -444,6 +450,8 @@ function buyPowerUp(index) {
                 buyEffect(index);
 
 
+                console.log(userData.user.coins);
+                
                 document.getElementsByClassName('coins')[0].innerHTML = userData.user.coins;
 
                 return;

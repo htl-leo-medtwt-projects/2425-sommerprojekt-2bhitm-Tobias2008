@@ -149,7 +149,7 @@ function removeItem(item) {
 
     player[index] = user;
 
-    localStorage.setItem("loggedUser", JSON.stringify(user));
+    localStorage.setItem("loggedPlayer", JSON.stringify(user));
     localStorage.setItem("playerData", JSON.stringify(player));
 }
 
